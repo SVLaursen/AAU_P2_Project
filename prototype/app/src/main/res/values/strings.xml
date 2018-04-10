@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">P2_Prototype</string>
+    <string name="app_name">PROTOTYPE</string>
+    <string name="ProfileActivity">ProfileActivity</string>
 </resources>
