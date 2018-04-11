@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PROTOTYPE</string>
     <string name="ProfileActivity">ProfileActivity</string>
+    <string name="input">INPUT</string>
 </resources>
