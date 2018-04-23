@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 
 public class CalendarFragment extends Fragment {
 
-
     public CalendarFragment() {
-        // Required empty public constructor
     }
 
 
