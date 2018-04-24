@@ -52,10 +52,7 @@ public class HomeFragment extends Fragment {
                 if(vibrator.hasVibrator()){
                     vibrator.vibrate(10);
                 }
-
                 DisplayDialog(v,"insulin");
-
-                //TODO: Dialogue Pop-up
             }
         });
     }
@@ -63,19 +60,34 @@ public class HomeFragment extends Fragment {
     private void DisplayDialog(View v, String type){
         AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
         View newView = null;
+        final Fragment fragment = this;
+        final Vibrator vibrator = (Vibrator) fragment.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         if(type == "insulin"){
+            //THIS IS WHERE YOU PUT INTERACTION FOR THE INSULIN INPUT DIALOGUE!!!!
+
             newView = getLayoutInflater().inflate(R.layout.dialog_insulin_input,null);
+            ImageButton cancelButton = newView.findViewById(R.id.cancelButton);
+
+            builder.setView(newView);
+            final AlertDialog dialog = builder.create();
+            dialog.show();
+
+            cancelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(vibrator.hasVibrator()){
+                        vibrator.vibrate(10);
+                    }
+                    dialog.cancel();
+                }
+            });
+
         }
         else if(type == "exercise"){
             //TODO: Popup for exercise input
         }
 
-        if(newView != null){
-            builder.setView(newView);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }
     }
 
 }
