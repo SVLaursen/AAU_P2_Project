@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="This is home" />
+    <ImageButton
+        android:id="@+id/InputExercise"
+        android:layout_width="84dp"
+        android:layout_height="86dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="31dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/exercise_input_button_unclicked" />
 
-</FrameLayout>
+    <ImageButton
+        android:id="@+id/InputInsulin"
+        android:layout_width="86dp"
+        android:layout_height="86dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/InputExercise"
+        android:layout_marginEnd="31dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/insulin_input_unclicked" />
+</RelativeLayout>
