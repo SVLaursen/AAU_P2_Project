@@ -27,4 +27,15 @@
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:src="@drawable/insulin_input_unclicked" />
+
+    <ImageButton
+        android:id="@+id/instantButton"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="135dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/Grey_Circle_Button" />
 </RelativeLayout>

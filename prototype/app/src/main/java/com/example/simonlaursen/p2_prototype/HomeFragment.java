@@ -32,6 +32,7 @@ public class HomeFragment extends Fragment {
 
         ImageButton inputExercise = v.findViewById(R.id.InputExercise);
         ImageButton inputInsulin = v.findViewById(R.id.InputInsulin);
+        ImageButton instantButton = v.findViewById(R.id.instantButton);
 
         final Vibrator vibrator = (Vibrator) fragment.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -41,8 +42,7 @@ public class HomeFragment extends Fragment {
                 if(vibrator.hasVibrator()){
                     vibrator.vibrate(10);
                 }
-
-                //TODO: Dialogue Pop-up
+                DisplayDialog(v,"exercise");
             }
         });
 
@@ -55,11 +55,21 @@ public class HomeFragment extends Fragment {
                 DisplayDialog(v,"insulin");
             }
         });
+
+        instantButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(vibrator.hasVibrator()){
+                    vibrator.vibrate(10);
+                }
+                //TODO: Change function of the grey button
+            }
+        });
     }
 
     private void DisplayDialog(View v, String type){
         AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-        View newView = null;
+        View newView = null; //Null until changed when a specific dialog is chosen
         final Fragment fragment = this;
         final Vibrator vibrator = (Vibrator) fragment.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
