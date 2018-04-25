@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment {
         final Vibrator vibrator = (Vibrator) fragment.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         if(type == "insulin"){
-            //THIS IS WHERE YOU PUT INTERACTION FOR THE INSULIN INPUT DIALOGUE!!!!
+            //THIS IS WHERE YOU PUT INTERACTION FOR THE INSULIN INPUT DIALOG!!!!
 
             newView = getLayoutInflater().inflate(R.layout.dialog_insulin_input,null);
             ImageButton cancelButton = newView.findViewById(R.id.cancelButton);
@@ -85,7 +85,24 @@ public class HomeFragment extends Fragment {
 
         }
         else if(type == "exercise"){
-            //TODO: Popup for exercise input
+            //THIS IS WHERE YOU PUT INTERACTION FOR THE INSULIN INPUT DIALOG!!!!
+
+            newView = getLayoutInflater().inflate(R.layout.dialog_exercise_input,null);
+            ImageButton cancelButton = newView.findViewById(R.id.cancelButton);
+
+            builder.setView(newView);
+            final AlertDialog dialog = builder.create();
+            dialog.show();
+
+            cancelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(vibrator.hasVibrator()){
+                        vibrator.vibrate(10);
+                    }
+                    dialog.cancel();
+                }
+            });
         }
 
     }
