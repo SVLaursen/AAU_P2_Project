@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(vibrator.hasVibrator()){
-                    vibrator.vibrate(10);
+                    vibrator.vibrate(100);
                 }
                 //TODO: Change function of the grey button
             }
