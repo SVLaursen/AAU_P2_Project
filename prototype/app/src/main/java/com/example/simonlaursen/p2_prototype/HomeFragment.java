@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 public class HomeFragment extends Fragment {
 
@@ -22,15 +23,19 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_home,null);
-        ProgressBar(v);
+        RunProgressBar(v);
         InputButtons(v);
 
         // Inflate the layout for this fragment
         return v;
     }
 
-    private void ProgressBar(View v){
-        
+    private void RunProgressBar(View v){
+        ProgressBar progressBar = v.findViewById(R.id.progressBar);
+
+        progressBar.setMax(database.getInt("maxProgress"));
+        progressBar.setProgress(database.getInt("currentProgress"));
+
     }
 
     private void InputButtons(View v){

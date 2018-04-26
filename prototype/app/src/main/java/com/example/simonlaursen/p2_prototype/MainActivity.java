@@ -19,14 +19,20 @@ public class MainActivity extends AppCompatActivity {
 
     //GLOBAL VARIABLES HERE!
     private Fragment currentFragment = null; //Used to check which fragment is currently running
+    private Database database = new Database();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //THIS CODE BELOW IS FOR DEBUGGING ONLY, REMOVE LATER
+        database.setValue(50,"currentProgress");
+        //END DEBUG CODE
+
         NavBarSetup(); //Used to setup the size of the navigation bar
         loadFragment(new HomeFragment());
+
     }
 
     //NAV BAR
