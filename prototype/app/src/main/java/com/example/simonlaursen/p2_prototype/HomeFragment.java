@@ -12,19 +12,25 @@ import android.widget.ImageButton;
 
 public class HomeFragment extends Fragment {
 
+    private Database database;
 
     public HomeFragment() {
-
+        database = new Database();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_home,null);
+        ProgressBar(v);
         InputButtons(v);
 
         // Inflate the layout for this fragment
         return v;
+    }
+
+    private void ProgressBar(View v){
+        
     }
 
     private void InputButtons(View v){
