@@ -28,6 +28,7 @@
         android:scaleType="fitCenter"
         android:src="@drawable/insulin_input_unclicked" />
 
+<<<<<<< HEAD
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
@@ -40,4 +41,16 @@
         android:max="150"
         android:progress="120"
         android:progressDrawable="@layout/circular_progress_bar" />
+=======
+    <ImageButton
+        android:id="@+id/instantButton"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="135dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/Grey_Circle_Button" />
+>>>>>>> a59d041356b147131c71046ac31e0ad3cdcd67fd
 </RelativeLayout>

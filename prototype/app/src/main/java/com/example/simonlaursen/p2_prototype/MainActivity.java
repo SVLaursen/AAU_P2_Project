@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,13 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
         final Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-        homeButton.setImageResource(R.drawable.homepage_button_clicked);
+        homeButton.setImageResource(R.drawable.homepage_button_clicked); //Initial screen to load
 
         //CLICK LISTENERS
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"HOME",Toast.LENGTH_SHORT).show();
                 loadFragment(new HomeFragment());//Load the home screen
 
                 homeButton.setImageResource(R.drawable.homepage_button_clicked);
@@ -60,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 loadFragment(new ProfileFragment()); //Load the profile screen
 
                 homeButton.setImageResource(R.drawable.homepage_button_unclicked);
@@ -76,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         calendarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 loadFragment(new CalendarFragment()); //Load the calendar screen
 
                 homeButton.setImageResource(R.drawable.homepage_button_unclicked);
