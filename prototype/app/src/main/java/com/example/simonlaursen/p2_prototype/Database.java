@@ -1,5 +1,7 @@
 package com.example.simonlaursen.p2_prototype;
 
+import android.view.ViewDebug;
+
 public class Database {
 
     private static float fullTime = 0;
@@ -7,7 +9,7 @@ public class Database {
     private static int inputTime = 0;
     private static int currentInsulin = 0;
     private static int maxProgress = 150; //Variable for the max progress on the progressbar
-    private static int currentProgress = 0;
+    private static int currentProgress = 100; //Change this value to 0 before releasing app, the current value is for debugging only
 
     public Database(){
 
@@ -67,6 +69,10 @@ public class Database {
     public float getFloat(String name){
         //TODO: Implement a float return
         return 0;
+    }
+
+    public String getProgressText(){
+        return currentProgress + "/" + maxProgress;
     }
 
 }

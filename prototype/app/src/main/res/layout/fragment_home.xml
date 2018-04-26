@@ -53,5 +53,41 @@
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:src="@drawable/grey_circle_button" />
->>>>>>> a59d041356b147131c71046ac31e0ad3cdcd67fd
+
+    <TextView
+        android:id="@+id/startText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/showProgress"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-234dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="START"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        android:typeface="normal" />
+
+    <TextView
+        android:id="@+id/showProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="228dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Progress"
+        android:textColor="@color/colorBackground"
+        android:textSize="42sp"
+        android:typeface="normal" />
+
+    <TextView
+        android:id="@+id/progressBarSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/showProgress"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/roboto_bold"
+        android:text="min per uge"
+        android:textColor="@color/colorPrimary" />
+
 </RelativeLayout>

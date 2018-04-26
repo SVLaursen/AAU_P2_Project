@@ -26,10 +26,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //THIS CODE BELOW IS FOR DEBUGGING ONLY, REMOVE LATER
-        database.setValue(50,"currentProgress");
-        //END DEBUG CODE
-
         NavBarSetup(); //Used to setup the size of the navigation bar
         loadFragment(new HomeFragment());
 

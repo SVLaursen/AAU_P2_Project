@@ -1,5 +1,6 @@
 package com.example.simonlaursen.p2_prototype;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class HomeFragment extends Fragment {
 
@@ -23,8 +27,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_home,null);
-        RunProgressBar(v);
         InputButtons(v);
+        RunProgressBar(v);
 
         // Inflate the layout for this fragment
         return v;
@@ -34,8 +38,13 @@ public class HomeFragment extends Fragment {
         ProgressBar progressBar = v.findViewById(R.id.progressBar);
 
         progressBar.setMax(database.getInt("maxProgress"));
-        progressBar.setProgress(database.getInt("currentProgress"));
+        progressBar.setProgress(database.getInt("currentProgress"),true);
 
+        TextView showProgress = v.findViewById(R.id.showProgress);
+        showProgress.setText(database.getProgressText());
+
+        TextView startText = v.findViewById(R.id.startText);
+        startText.setText("START");
     }
 
     private void InputButtons(View v){
@@ -125,7 +134,6 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
-
     }
 
 }
