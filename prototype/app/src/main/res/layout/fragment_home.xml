@@ -90,4 +90,10 @@
         android:text="min per uge"
         android:textColor="@color/colorPrimary" />
 
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/cmTimer" />
+
 </RelativeLayout>
