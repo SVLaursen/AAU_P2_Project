@@ -1,6 +1,7 @@
 package com.example.simonlaursen.p2_prototype;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -45,6 +46,7 @@ public class ProfileFragment extends Fragment {
                 if(vibrator.hasVibrator()){
                     vibrator.vibrate(10);
                 }
+                DisplayDialog(v,"results");
             }
         });
 
@@ -54,6 +56,7 @@ public class ProfileFragment extends Fragment {
                 if(vibrator.hasVibrator()){
                     vibrator.vibrate(10);
                 }
+                DisplayDialog(v,"graphs");
             }
         });
 
@@ -63,8 +66,41 @@ public class ProfileFragment extends Fragment {
                 if(vibrator.hasVibrator()){
                     vibrator.vibrate(10);
                 }
+                DisplayDialog(v,"statistics");
             }
         });
+    }
+
+    private void DisplayDialog(View v, String type){
+        /*
+        This one is used to create dialog pop-ups containing information.
+        It takes in the view that we're current in and then a string to determine which pop-up we want.
+         */
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+        View newView = null; //Null until changed when a specific dialog is chosen
+
+        if(type == "results"){
+            newView = getLayoutInflater().inflate(R.layout.dialog_results,null);
+
+            builder.setView(newView);
+            final AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        else if(type == "graphs"){
+            newView = getLayoutInflater().inflate(R.layout.dialog_graph,null);
+
+            builder.setView(newView);
+            final AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        else if(type == "statistics"){
+            newView = getLayoutInflater().inflate(R.layout.dialog_statistics,null);
+
+            builder.setView(newView);
+            final AlertDialog dialog = builder.create();
+            dialog.show();
+        }
     }
 
     private void Latest(View v){

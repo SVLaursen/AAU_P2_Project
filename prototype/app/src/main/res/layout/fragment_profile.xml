@@ -39,12 +39,21 @@
         android:textSize="24sp" />
 
     <ImageButton
+        android:id="@+id/resultsButton"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/resultat_button" />
+
+    <ImageButton
         android:id="@+id/graphButton"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="197dp"
+        android:layout_marginBottom="153dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:src="@drawable/graf_button" />
@@ -55,19 +64,9 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="107dp"
+        android:layout_marginBottom="72dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:src="@drawable/statistik_button" />
 
-    <ImageButton
-        android:id="@+id/resultsButton"
-        android:layout_width="280dp"
-        android:layout_height="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="219dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        android:src="@drawable/resultat_button" />
 </RelativeLayout>
