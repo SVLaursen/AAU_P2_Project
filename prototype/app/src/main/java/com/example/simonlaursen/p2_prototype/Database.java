@@ -9,7 +9,7 @@ public class Database {
     private static int inputTime = 0;
     private static int currentInsulin = 0;
     private static int maxProgress = 150; //Variable for the max progress on the progressbar
-    private static int currentProgress = 100; //Change this value to 0 before releasing app, the current value is for debugging only
+    private static int currentProgress = 0; //Change this value to 0 before releasing app, the current value is for debugging only
 
     public Database(){
 

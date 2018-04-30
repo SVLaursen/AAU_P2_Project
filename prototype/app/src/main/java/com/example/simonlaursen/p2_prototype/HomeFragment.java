@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.concurrent.TimeUnit;
+
 public class HomeFragment extends Fragment {
 
     private Database database;
@@ -38,15 +40,11 @@ public class HomeFragment extends Fragment {
         InputButtons(v);
         RunProgressBar(v);
         cmTimer = (Chronometer) v.findViewById(R.id.cmTimer);
-        //cmTimer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-                                                       /*  public void onChronometerTick(Chronometer arg0) {
-                                                             if (!timerStopped) {
-                                                                 long minutes = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) / 60;
-                                                                 long seconds = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) % 60;
-                                                                 elapsedTime = SystemClock.elapsedRealtime();
-                                                             }
-                                                         }
-                });*/
+
+
+
+
+
         // Inflate the layout for this fragment
         return v;
     }
@@ -60,10 +58,22 @@ public class HomeFragment extends Fragment {
         TextView showProgress = v.findViewById(R.id.showProgress);
         showProgress.setText(database.getProgressText());
 
-       TextView startText = v.findViewById(R.id.startText);
-        startText.setText("START");
-    }
 
+    }
+   /* Chronometer timeElapsed  = (Chronometer) findViewById(R.id.cmTimer);
+    cmTimer = (Chronometer) v.findViewById(R.id.cmTimer);
+timeElapsed.setOnChronometerTickListener(new OnChronometerTickListener(){
+        @Override
+        public void onChronometerTick(Chronometer cmTimer){
+            long time = SystemClock.elapsedRealtime() - cmTimer.getBase();
+            int h = (int) (time / 3600000);
+            int m = (int) (time - h * 3600000) / 60000;
+            int s = (int) (time - h * 3600000 - m * 60000) / 1000;
+            String hh = h < 10 ? "0" + h : h + "";
+            String mm = m < 10 ? "0" + m : m + "";
+            String ss = s < 10 ? "0" + s : s + "";
+            cmTimer.setText(hh + ":" + mm + ":" + ss);
+        }}*/
     private void InputButtons(View v){
         final Fragment fragment = this;
 
@@ -92,30 +102,58 @@ public class HomeFragment extends Fragment {
                 DisplayDialog(v,"insulin");
             }
         });
-
+        final TextView startText = v.findViewById(R.id.startText);
         instantButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int current = 0;
                // TextView startText = v.findViewById(R.id.startText);
                 if(vibrator.hasVibrator()){
                     vibrator.vibrate(100);
                 }
                 if (timerStopped) {
-
-                   // startText.setText("START");
+                    cmTimer.setBase(SystemClock.elapsedRealtime());
+                    startText.setText("STOP");
                     cmTimer.start();
+                    timerStopped=false;
                 } else {
                    cmTimer.stop();
-                    // database.setValue(elapsedTime+"currentProgress");
+                 convertTime(cmTimer.getFormat());
+                    startText.setText("START");
+
+                    if(convertTime(cmTimer.getFormat()) < 0){
+                        current = database.getInt("currentProgress");
+                        database.setValue(current + convertTime(cmTimer.getFormat()),"currentProgress");
+                    }
+
                     //currentProgress+=elapsedTime;
                     //progressBar.setProgress(database.getInt("currentProgress"),true);
                     cmTimer.setText("00:00");
-                   // startText.setText("STOP");
 
+                   // startText.setText("STOP");
+                    timerStopped=true;
 
                 }
             }
         });
+    }
+    int convertTime(String timeString) {
+        String[] time = timeString.split(":");
+        int pos = time.length - 1;
+        long res = 0;
+        if (pos >= 0) {
+            res = res + TimeUnit.SECONDS.toMillis(Long.parseLong(time[pos]));
+            pos--;
+        }
+        if (pos >= 0) {
+            res = res + TimeUnit.MINUTES.toMillis(Long.parseLong(time[pos]));
+            pos--;
+        }
+        if (pos >= 0) {
+            res = res + TimeUnit.HOURS.toMillis(Long.parseLong(time[pos]));
+            pos--;
+        }
+        return (int) res;
     }
 
     private void DisplayDialog(View v, String type){
