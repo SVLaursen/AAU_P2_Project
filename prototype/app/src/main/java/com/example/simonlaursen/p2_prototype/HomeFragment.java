@@ -157,6 +157,11 @@ timeElapsed.setOnChronometerTickListener(new OnChronometerTickListener(){
     }
 
     private void DisplayDialog(View v, String type){
+        /*
+        This one is used to create dialog pop-ups containing information.
+        It takes in the view that we're current in and then a string to determine which pop-up we want.
+         */
+
         AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
         View newView = null; //Null until changed when a specific dialog is chosen
         final Fragment fragment = this;
