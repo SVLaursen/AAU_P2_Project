@@ -1,14 +1,17 @@
 package com.example.simonlaursen.p2_prototype;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,6 +21,11 @@ import org.w3c.dom.Text;
 public class HomeFragment extends Fragment {
 
     private Database database;
+    Chronometer cmTimer;
+
+    Boolean timerStopped = true;
+    long elapsedTime;
+
 
     public HomeFragment() {
         database = new Database();
@@ -29,7 +37,16 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home,null);
         InputButtons(v);
         RunProgressBar(v);
-
+        cmTimer = (Chronometer) v.findViewById(R.id.cmTimer);
+        //cmTimer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+                                                       /*  public void onChronometerTick(Chronometer arg0) {
+                                                             if (!timerStopped) {
+                                                                 long minutes = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) / 60;
+                                                                 long seconds = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) % 60;
+                                                                 elapsedTime = SystemClock.elapsedRealtime();
+                                                             }
+                                                         }
+                });*/
         // Inflate the layout for this fragment
         return v;
     }
@@ -43,7 +60,7 @@ public class HomeFragment extends Fragment {
         TextView showProgress = v.findViewById(R.id.showProgress);
         showProgress.setText(database.getProgressText());
 
-        TextView startText = v.findViewById(R.id.startText);
+       TextView startText = v.findViewById(R.id.startText);
         startText.setText("START");
     }
 
@@ -79,10 +96,24 @@ public class HomeFragment extends Fragment {
         instantButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               // TextView startText = v.findViewById(R.id.startText);
                 if(vibrator.hasVibrator()){
                     vibrator.vibrate(100);
                 }
-                //TODO: Change function of the grey button
+                if (timerStopped) {
+
+                   // startText.setText("START");
+                    cmTimer.start();
+                } else {
+                   cmTimer.stop();
+                    // database.setValue(elapsedTime+"currentProgress");
+                    //currentProgress+=elapsedTime;
+                    //progressBar.setProgress(database.getInt("currentProgress"),true);
+                    cmTimer.setText("00:00");
+                   // startText.setText("STOP");
+
+
+                }
             }
         });
     }
@@ -135,5 +166,4 @@ public class HomeFragment extends Fragment {
             });
         }
     }
-
 }

@@ -11,7 +11,7 @@
         android:layout_width="84dp"
         android:layout_height="86dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/InputInsulin"
         android:layout_marginStart="31dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
@@ -22,8 +22,9 @@
         android:layout_width="86dp"
         android:layout_height="86dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/InputExercise"
+        android:layout_alignParentTop="true"
         android:layout_marginEnd="31dp"
+        android:layout_marginTop="37dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:src="@drawable/insulin_input_unclicked" />
@@ -33,9 +34,9 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="108dp"
+        android:layout_marginBottom="97dp"
         android:background="@layout/circle_shape"
         android:indeterminate="false"
         android:max="150"
@@ -45,11 +46,11 @@
 
     <ImageButton
         android:id="@+id/instantButton"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        android:layout_alignParentTop="true"
+        android:layout_width="242dp"
+        android:layout_height="241dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="138dp"
+        android:layout_marginBottom="126dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:src="@drawable/grey_circle_button" />
@@ -60,7 +61,6 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/showProgress"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-234dp"
         android:fontFamily="@font/roboto_bold"
         android:text="START"
         android:textColor="@color/colorPrimary"
@@ -71,9 +71,9 @@
         android:id="@+id/showProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="228dp"
+        android:layout_marginBottom="217dp"
         android:fontFamily="@font/roboto_bold"
         android:text="Progress"
         android:textColor="@color/colorBackground"
@@ -86,8 +86,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/showProgress"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="-217dp"
         android:fontFamily="@font/roboto_bold"
         android:text="min per uge"
         android:textColor="@color/colorPrimary" />
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/cmTimer" />
 
 </RelativeLayout>
