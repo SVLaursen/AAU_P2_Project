@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     >
 
+    <ImageView
+        android:id="@+id/insulinInputDialog"
+        android:layout_width="308dp"
+        android:layout_height="412dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        app:srcCompat="@drawable/input_insuling_dialog_background" />
+
     <ImageButton
         android:id="@+id/cancelButton"
         android:layout_width="112dp"
@@ -60,4 +68,5 @@
         android:layout_alignStart="@+id/Date1"
         android:layout_marginTop="540dp"
         android:text="Date 3" />
+
 </RelativeLayout>
