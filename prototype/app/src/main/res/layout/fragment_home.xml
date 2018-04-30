@@ -92,9 +92,11 @@
         android:textColor="@color/colorPrimary" />
 
     <Chronometer
+        android:id="@+id/cmTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:id="@+id/cmTimer" />
+        android:layout_alignTop="@+id/instantButton"
+        android:layout_centerHorizontal="true"
+        android:textSize="40sp" />
 
 </RelativeLayout>
