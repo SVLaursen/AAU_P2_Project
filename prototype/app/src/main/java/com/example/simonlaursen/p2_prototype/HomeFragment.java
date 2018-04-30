@@ -24,9 +24,7 @@ public class HomeFragment extends Fragment {
 
     private Database database;
     Chronometer cmTimer;
-
     Boolean timerStopped = true;
-    long elapsedTime;
 
 
     public HomeFragment() {
@@ -60,21 +58,8 @@ public class HomeFragment extends Fragment {
 
 
     }
-   /* Chronometer timeElapsed  = (Chronometer) findViewById(R.id.cmTimer);
-    cmTimer = (Chronometer) v.findViewById(R.id.cmTimer);
-timeElapsed.setOnChronometerTickListener(new OnChronometerTickListener(){
-        @Override
-        public void onChronometerTick(Chronometer cmTimer){
-            long time = SystemClock.elapsedRealtime() - cmTimer.getBase();
-            int h = (int) (time / 3600000);
-            int m = (int) (time - h * 3600000) / 60000;
-            int s = (int) (time - h * 3600000 - m * 60000) / 1000;
-            String hh = h < 10 ? "0" + h : h + "";
-            String mm = m < 10 ? "0" + m : m + "";
-            String ss = s < 10 ? "0" + s : s + "";
-            cmTimer.setText(hh + ":" + mm + ":" + ss);
-        }}*/
-    private void InputButtons(View v){
+
+    private void InputButtons(View v) {
         final Fragment fragment = this;
 
         ImageButton inputExercise = v.findViewById(R.id.InputExercise);
@@ -86,20 +71,20 @@ timeElapsed.setOnChronometerTickListener(new OnChronometerTickListener(){
         inputExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(vibrator.hasVibrator()){
+                if (vibrator.hasVibrator()) {
                     vibrator.vibrate(10);
                 }
-                DisplayDialog(v,"exercise");
+                DisplayDialog(v, "exercise");
             }
         });
 
         inputInsulin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(vibrator.hasVibrator()){
+                if (vibrator.hasVibrator()) {
                     vibrator.vibrate(10);
                 }
-                DisplayDialog(v,"insulin");
+                DisplayDialog(v, "insulin");
             }
         });
         final TextView startText = v.findViewById(R.id.startText);
@@ -107,55 +92,38 @@ timeElapsed.setOnChronometerTickListener(new OnChronometerTickListener(){
             @Override
             public void onClick(View v) {
                 int current = 0;
-               // TextView startText = v.findViewById(R.id.startText);
-                if(vibrator.hasVibrator()){
+                long elapsedMillis = SystemClock.elapsedRealtime() - cmTimer.getBase();
+                // TextView startText = v.findViewById(R.id.startText);
+                if (vibrator.hasVibrator()) {
                     vibrator.vibrate(100);
                 }
                 if (timerStopped) {
                     cmTimer.setBase(SystemClock.elapsedRealtime());
                     startText.setText("STOP");
                     cmTimer.start();
-                    timerStopped=false;
+                    timerStopped = false;
                 } else {
-                   cmTimer.stop();
-                 convertTime(cmTimer.getFormat());
-                    startText.setText("START");
+                    cmTimer.stop();
 
-                    if(convertTime(cmTimer.getFormat()) < 0){
+                    startText.setText("START");
+                    //database.setValue(100, "currentProgress");
+                    if (elapsedMillis > 6) {
                         current = database.getInt("currentProgress");
-                        database.setValue(current + convertTime(cmTimer.getFormat()),"currentProgress");
+                        database.setValue(current+100, "currentProgress");
                     }
 
                     //currentProgress+=elapsedTime;
                     //progressBar.setProgress(database.getInt("currentProgress"),true);
                     cmTimer.setText("00:00");
 
-                   // startText.setText("STOP");
-                    timerStopped=true;
+                    // startText.setText("STOP");
+                    timerStopped = true;
 
                 }
             }
         });
-    }
-    int convertTime(String timeString) {
-        String[] time = timeString.split(":");
-        int pos = time.length - 1;
-        long res = 0;
-        if (pos >= 0) {
-            res = res + TimeUnit.SECONDS.toMillis(Long.parseLong(time[pos]));
-            pos--;
-        }
-        if (pos >= 0) {
-            res = res + TimeUnit.MINUTES.toMillis(Long.parseLong(time[pos]));
-            pos--;
-        }
-        if (pos >= 0) {
-            res = res + TimeUnit.HOURS.toMillis(Long.parseLong(time[pos]));
-            pos--;
-        }
-        return (int) res;
-    }
 
+    }
     private void DisplayDialog(View v, String type){
         /*
         This one is used to create dialog pop-ups containing information.
