@@ -20,6 +20,8 @@ import org.w3c.dom.Text;
 
 import java.util.concurrent.TimeUnit;
 
+import static android.widget.ProgressBar.*;
+
 public class HomeFragment extends Fragment {
 
     private Database database;
@@ -36,11 +38,9 @@ public class HomeFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_home,null);
         InputButtons(v);
-        RunProgressBar(v);
         cmTimer = (Chronometer) v.findViewById(R.id.cmTimer);
-
-
-
+        cmTimer.setText(" ");
+        RunProgressBar(v);
 
 
         // Inflate the layout for this fragment
@@ -59,9 +59,18 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void InputButtons(View v) {
-        final Fragment fragment = this;
+  /*  private void UpdateProgressBar(View v){
+        ProgressBar progressBar = v.findViewById(R.id.progressBar);
+        progressBar.setProgress(database.getInt("currentProgress"),true);
+        TextView showProgress = v.findViewById(R.id.showProgress);
+        showProgress.setText(database.getProgressText());
 
+    }*/
+  private void InputButtons(View v) {
+        final Fragment fragment = this;
+        cmTimer = (Chronometer) v.findViewById(R.id.cmTimer);
+        final ProgressBar progressBar = v.findViewById(R.id.progressBar);
+        final TextView showProgress = v.findViewById(R.id.showProgress);
         ImageButton inputExercise = v.findViewById(R.id.InputExercise);
         ImageButton inputInsulin = v.findViewById(R.id.InputInsulin);
         ImageButton instantButton = v.findViewById(R.id.instantButton);
@@ -93,13 +102,14 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 int current = 0;
                 long elapsedMillis = SystemClock.elapsedRealtime() - cmTimer.getBase();
-                // TextView startText = v.findViewById(R.id.startText);
+                cmTimer.setText(" ");
                 if (vibrator.hasVibrator()) {
                     vibrator.vibrate(100);
                 }
                 if (timerStopped) {
                     cmTimer.setBase(SystemClock.elapsedRealtime());
                     startText.setText("STOP");
+                    showProgress.setText(database.getBlankText());
                     cmTimer.start();
                     timerStopped = false;
                 } else {
@@ -107,16 +117,19 @@ public class HomeFragment extends Fragment {
 
                     startText.setText("START");
                     //database.setValue(100, "currentProgress");
-                    if (elapsedMillis > 6) {
+                    if (elapsedMillis > 60000) {
                         current = database.getInt("currentProgress");
-                        database.setValue(current+100, "currentProgress");
+                        long abe =elapsedMillis/60000+current;
+
+                       // System.out.print(abe);
+                        database.setValue((int) abe, "currentProgress");
+                        progressBar.setProgress(database.getInt("currentProgress"),true);
+
                     }
 
-                    //currentProgress+=elapsedTime;
-                    //progressBar.setProgress(database.getInt("currentProgress"),true);
-                    cmTimer.setText("00:00");
+                    cmTimer.setText(" ");
+                    showProgress.setText(database.getProgressText());
 
-                    // startText.setText("STOP");
                     timerStopped = true;
 
                 }

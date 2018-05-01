@@ -35,7 +35,7 @@ public class Database {
         }
     }
 
-    public void setValue(float value, String name){
+    public void setValue2(float value, String name){
         //TODO: Implement float set
 
         if(name == "fullTime"){
@@ -74,5 +74,7 @@ public class Database {
     public String getProgressText(){
         return currentProgress + "/" + maxProgress;
     }
-
+    public String getBlankText(){
+        return " " ;
+    }
 }
