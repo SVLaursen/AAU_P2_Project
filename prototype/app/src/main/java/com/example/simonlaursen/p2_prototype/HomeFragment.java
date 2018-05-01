@@ -143,7 +143,7 @@ public class HomeFragment extends Fragment {
         It takes in the view that we're current in and then a string to determine which pop-up we want.
          */
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(),R.style.AppTheme_DialogTheme);
         View newView = null; //Null until changed when a specific dialog is chosen
         final Fragment fragment = this;
         final Vibrator vibrator = (Vibrator) fragment.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
