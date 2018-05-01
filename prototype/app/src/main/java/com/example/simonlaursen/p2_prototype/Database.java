@@ -2,6 +2,9 @@ package com.example.simonlaursen.p2_prototype;
 
 import android.view.ViewDebug;
 
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 public class Database {
 
     private static float fullTime = 0;
@@ -10,6 +13,9 @@ public class Database {
     private static int currentInsulin = 0;
     private static int maxProgress = 150; //Variable for the max progress on the progressbar
     private static int currentProgress = 0; //Change this value to 0 before releasing app, the current value is for debugging only
+    private static LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
+
+    });
 
     public Database(){
 
@@ -73,6 +79,15 @@ public class Database {
 
     public String getProgressText(){
         return currentProgress + "/" + maxProgress;
+    }
+
+    public LineGraphSeries<DataPoint> getPoint(){
+        //TODO: Setup a return for this function
+        return null;
+    }
+
+    public void setPoint(int pointX, int pointY){
+        //TODO: Figure out how to set the points from this function
     }
 
 }
