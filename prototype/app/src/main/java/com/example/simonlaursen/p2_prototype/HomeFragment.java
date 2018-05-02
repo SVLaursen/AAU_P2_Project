@@ -120,12 +120,19 @@ public class HomeFragment extends Fragment {
                     if (elapsedMillis > 60000) {
                         // asking the database for the current amount of progress on the progressbar
                         current = database.getInt("currentProgress");
+<<<<<<< HEAD
                         // dividing by 60.000 to make it from milliseconds into minutes
                         long input =elapsedMillis/60000+current;
                         // updating the progress in the database
                         // typecased the long to be an int 
                         database.setValue((int) input, "currentProgress");
                         //updating the progress bar
+=======
+                        long abe =elapsedMillis/60000+current;
+
+                       // System.out.print(abe);
+                        database.setInt((int) abe, "currentProgress");
+>>>>>>> ca99fd1ed65b72ed4d9880d52e24ce49c0a72cfb
                         progressBar.setProgress(database.getInt("currentProgress"),true);
                     }
                     //the text is shown again, and button is made ready for another press by making timerStopped true again

@@ -1,22 +1,29 @@
 package com.example.simonlaursen.p2_prototype;
 
-import android.view.ViewDebug;
-
 public class Database {
 
     private static float fullTime = 0;
+
     private static int shownTime = 0;
     private static int inputTime = 0;
     private static int currentInsulin = 0;
     private static int maxProgress = 150; //Variable for the max progress on the progressbar
     private static int currentProgress = 0; //Change this value to 0 before releasing app, the current value is for debugging only
 
+<<<<<<< HEAD
     public Database() {
 
     }
 
     public void setValue(int value, String name) {
         //TODO:Implement set int value
+=======
+    //DEFAULT CONSTRUCTOR
+    public Database(){
+    }
+
+    public void setInt(int value, String name){
+>>>>>>> ca99fd1ed65b72ed4d9880d52e24ce49c0a72cfb
 
         if (name == "shownTime") {
             shownTime = value;
@@ -31,16 +38,25 @@ public class Database {
         }
     }
 
+<<<<<<< HEAD
     public void setValue2(float value, String name) {
         //TODO: Implement float set
 
         if (name == "fullTime") {
+=======
+    public void setFloat(float value, String name){
+        if(name == "fullTime"){
+>>>>>>> ca99fd1ed65b72ed4d9880d52e24ce49c0a72cfb
             fullTime += value;
         }
     }
 
+<<<<<<< HEAD
     public int getInt(String name) {
         //TODO: Implement a int return
+=======
+    public int getInt(String name){
+>>>>>>> ca99fd1ed65b72ed4d9880d52e24ce49c0a72cfb
 
         if (name == "shownTime") {
             return shownTime;
@@ -57,21 +73,37 @@ public class Database {
         }
     }
 
+<<<<<<< HEAD
     public float getFloat(String name) {
         //TODO: Implement a float return
         return 0;
+=======
+    public float getFloat(String name){
+        if(name == "fullTime"){
+            return fullTime;
+        }
+        else {
+            return 0;
+        }
+>>>>>>> ca99fd1ed65b72ed4d9880d52e24ce49c0a72cfb
     }
 
     public String getProgressText() {
         return currentProgress + "/" + maxProgress;
     }
 
+<<<<<<< HEAD
     public String getBlankText() {
         return " ";
     }
 
     public String getMinPerweek() {
         return "min per uge";
+=======
+    public String getBlankText(){
+        return " " ;
+>>>>>>> ca99fd1ed65b72ed4d9880d52e24ce49c0a72cfb
     }
+
 }
 
