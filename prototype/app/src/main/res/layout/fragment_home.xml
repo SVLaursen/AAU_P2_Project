@@ -101,6 +101,6 @@
         android:layout_marginStart="11dp"
         android:layout_toEndOf="@+id/InputExercise"
         android:fontFamily="@font/roboto_bold"
-        android:textColor="@android:color/background_dark"
+        android:textColor="@android:color/white"
         android:textSize="60sp" />
 </RelativeLayout>

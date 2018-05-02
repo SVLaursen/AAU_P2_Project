@@ -11,70 +11,67 @@ public class Database {
     private static int maxProgress = 150; //Variable for the max progress on the progressbar
     private static int currentProgress = 0; //Change this value to 0 before releasing app, the current value is for debugging only
 
-    public Database(){
+    public Database() {
 
     }
 
-    public void setValue(int value, String name){
+    public void setValue(int value, String name) {
         //TODO:Implement set int value
 
-        if(name == "shownTime"){
+        if (name == "shownTime") {
             shownTime = value;
-        }
-        else if(name =="inputTime"){
+        } else if (name == "inputTime") {
             inputTime = value;
-        }
-        else if(name == "currentInsulin"){
+        } else if (name == "currentInsulin") {
             currentInsulin = value;
-        }
-        else if(name == "maxProgress"){
+        } else if (name == "maxProgress") {
             maxProgress = value;
-        }
-        else if(name == "currentProgress"){
+        } else if (name == "currentProgress") {
             currentProgress = value;
         }
     }
 
-    public void setValue2(float value, String name){
+    public void setValue2(float value, String name) {
         //TODO: Implement float set
 
-        if(name == "fullTime"){
+        if (name == "fullTime") {
             fullTime += value;
         }
     }
 
-    public int getInt(String name){
+    public int getInt(String name) {
         //TODO: Implement a int return
 
-        if(name == "shownTime"){
+        if (name == "shownTime") {
             return shownTime;
-        }
-        else if(name == "inputTime"){
+        } else if (name == "inputTime") {
             return inputTime;
-        }
-        else if(name == "currentInsulin"){
+        } else if (name == "currentInsulin") {
             return currentInsulin;
-        }
-        else if(name == "maxProgress"){
+        } else if (name == "maxProgress") {
             return maxProgress;
-        }
-        else if(name == "currentProgress"){
+        } else if (name == "currentProgress") {
             return currentProgress;
-        }
-        else{
+        } else {
             return 0;
         }
     }
 
-    public float getFloat(String name){
+    public float getFloat(String name) {
         //TODO: Implement a float return
         return 0;
     }
 
-    public String getProgressText(){
+    public String getProgressText() {
         return currentProgress + "/" + maxProgress;
     }
-    public String getBlankText(){
-        return " " ;
+
+    public String getBlankText() {
+        return " ";
+    }
+
+    public String getMinPerweek() {
+        return "min per uge";
     }
 }
+
