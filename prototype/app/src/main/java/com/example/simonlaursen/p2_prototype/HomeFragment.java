@@ -122,7 +122,7 @@ public class HomeFragment extends Fragment {
                         long abe =elapsedMillis/60000+current;
 
                        // System.out.print(abe);
-                        database.setValue((int) abe, "currentProgress");
+                        database.setInt((int) abe, "currentProgress");
                         progressBar.setProgress(database.getInt("currentProgress"),true);
 
                     }
