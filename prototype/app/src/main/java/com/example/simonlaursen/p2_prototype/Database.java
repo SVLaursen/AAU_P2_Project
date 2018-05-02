@@ -2,13 +2,13 @@ package com.example.simonlaursen.p2_prototype;
 
 public class Database {
 
-    private static float fullTime = 0;
+    private static float fullTime;
 
-    private static int shownTime = 0;
-    private static int inputTime = 0;
-    private static int currentInsulin = 0;
+    private static int shownTime;
+    private static int inputTime;
+    private static int currentInsulin;
     private static int maxProgress = 150; //Variable for the max progress on the progressbar
-    private static int currentProgress = 0; //Change this value to 0 before releasing app, the current value is for debugging only
+    private static int currentProgress; //Change this value to 0 before releasing app, the current value is for debugging only
 
     //DEFAULT CONSTRUCTOR
     public Database(){

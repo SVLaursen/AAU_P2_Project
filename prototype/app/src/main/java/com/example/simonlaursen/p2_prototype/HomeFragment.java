@@ -1,5 +1,6 @@
 package com.example.simonlaursen.p2_prototype;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -75,6 +76,8 @@ public class HomeFragment extends Fragment {
         ImageButton inputInsulin = v.findViewById(R.id.InputInsulin);
         ImageButton instantButton = v.findViewById(R.id.instantButton);
 
+        final MainActivity mainActivity = (MainActivity)getActivity();
+
         final Vibrator vibrator = (Vibrator) fragment.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         inputExercise.setOnClickListener(new View.OnClickListener() {
@@ -111,9 +114,18 @@ public class HomeFragment extends Fragment {
                     startText.setText("STOP");
                     showProgress.setText(database.getBlankText());
                     cmTimer.start();
+
+                    //Activity call
+                    mainActivity.timerActive = true;
+                    //End Activity call
+
                     timerStopped = false;
                 } else {
                     cmTimer.stop();
+
+                    //Activity call
+                    mainActivity.timerActive = false;
+                    //End Activity call
 
                     startText.setText("START");
                     //database.setValue(100, "currentProgress");
