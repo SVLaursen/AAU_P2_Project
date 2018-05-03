@@ -19,21 +19,4 @@
     <style name="AppTheme.DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">@color/colorBackground</item>
     </style>
-
-    <style name="MonthTextAppearance" parent="TextAppearance.MaterialCalendarWidget.Header">
-        <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:textSize">25dp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:fontFamily">@font/roboto_bold</item>
-    </style>
-
-    <style name="DayTextAppearance" parent="TextAppearance.MaterialCalendarWidget.Date">
-        <item name="android:textColor">@color/colorYellow</item>
-        <item name="android:textSize">18dp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:fontFamily">@font/roboto_bold</item>
-    </style>
-
-
 </resources>
