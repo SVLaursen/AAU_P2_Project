@@ -1,6 +1,5 @@
 package com.example.simonlaursen.p2_prototype;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -8,8 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
-
-import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,10 +20,6 @@ public class MainActivity extends AppCompatActivity {
     //GLOBAL VARIABLES HERE!
     private Fragment currentFragment = null; //Used to check which fragment is currently running
     private Database database = new Database();
-    private File saveFile;
-    private String savedData = "savedData";
-
-    public boolean timerActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //NAV BAR
-    private void NavBarSetup() {
+    private void NavBarSetup(){
         final ImageButton homeButton = findViewById(R.id.HomeButton);
         final ImageButton profileButton = findViewById(R.id.ProfileButton);
         final ImageButton calendarButton = findViewById(R.id.CalendarButton);
@@ -52,17 +45,13 @@ public class MainActivity extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!timerActive) {
-                    loadFragment(new HomeFragment());//Load the home screen
+                loadFragment(new HomeFragment());//Load the home screen
 
-                    homeButton.setImageResource(R.drawable.homepage_button_clicked);
-                    profileButton.setImageResource(R.drawable.profile_button_unclicked);
-                    calendarButton.setImageResource(R.drawable.calendar_button_unclicked);
-                } else {
-                    loadDialog(v,"Home");
-                }
+                homeButton.setImageResource(R.drawable.homepage_button_clicked);
+                profileButton.setImageResource(R.drawable.profile_button_unclicked);
+                calendarButton.setImageResource(R.drawable.calendar_button_unclicked);
 
-                if (vibrator.hasVibrator()) {
+                if(vibrator.hasVibrator()){
                     vibrator.vibrate(10);
                 }
             }
@@ -71,18 +60,13 @@ public class MainActivity extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!timerActive){
-                    loadFragment(new ProfileFragment()); //Load the profile screen
+                loadFragment(new ProfileFragment()); //Load the profile screen
 
-                    homeButton.setImageResource(R.drawable.homepage_button_unclicked);
-                    profileButton.setImageResource(R.drawable.profile_button_clicked);
-                    calendarButton.setImageResource(R.drawable.calendar_button_unclicked);
-                }
-                else{
-                    loadDialog(v,"Profile");
-                }
+                homeButton.setImageResource(R.drawable.homepage_button_unclicked);
+                profileButton.setImageResource(R.drawable.profile_button_clicked);
+                calendarButton.setImageResource(R.drawable.calendar_button_unclicked);
 
-                if (vibrator.hasVibrator()) {
+                if(vibrator.hasVibrator()){
                     vibrator.vibrate(10);
                 }
             }
@@ -91,18 +75,13 @@ public class MainActivity extends AppCompatActivity {
         calendarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!timerActive){
-                    loadFragment(new CalendarFragment()); //Load the calendar screen
+                loadFragment(new CalendarFragment()); //Load the calendar screen
 
-                    homeButton.setImageResource(R.drawable.homepage_button_unclicked);
-                    profileButton.setImageResource(R.drawable.profile_button_unclicked);
-                    calendarButton.setImageResource(R.drawable.calendar_button_clicked);
-                }
-                else{
-                    loadDialog(v,"Calendar");
-                }
+                homeButton.setImageResource(R.drawable.homepage_button_unclicked);
+                profileButton.setImageResource(R.drawable.profile_button_unclicked);
+                calendarButton.setImageResource(R.drawable.calendar_button_clicked);
 
-                if (vibrator.hasVibrator()) {
+                if(vibrator.hasVibrator()){
                     vibrator.vibrate(10);
                 }
             }
@@ -110,89 +89,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Load in fragment function
-    private void loadFragment(Fragment fragment) {
-        if (fragment != null && currentFragment != fragment) {
+    private void loadFragment(Fragment fragment){
+        if(fragment != null && currentFragment != fragment){
             getSupportFragmentManager().beginTransaction().replace(R.id.FragmentContainer, fragment).commit();
             currentFragment = fragment;
         }
     }
 
-    private void loadDialog(View v, String name){
-        final ImageButton homeButton = findViewById(R.id.HomeButton);
-        final ImageButton profileButton = findViewById(R.id.ProfileButton);
-        final ImageButton calendarButton = findViewById(R.id.CalendarButton);
-
-        final Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(),R.style.AppTheme_DialogTheme);
-        View newView = getLayoutInflater().inflate(R.layout.dialog_alert_stop_timer,null);
-        final String _name = name;
-
-        if(vibrator.hasVibrator()){
-            vibrator.vibrate(100); //Warning vibration
-        }
-
-        ImageButton cancelButton = newView.findViewById(R.id.cancelButton);
-        ImageButton acceptButton = newView.findViewById(R.id.acceptButton);
-
-        builder.setView(newView);
-        final AlertDialog dialog = builder.create();
-        dialog.show();
-
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(vibrator.hasVibrator()){
-                    vibrator.vibrate(10);
-                }
-                dialog.cancel();
-            }
-        });
-
-        acceptButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(vibrator.hasVibrator()){
-                    vibrator.vibrate(10);
-                }
-
-                if(_name == "Home") {
-                    loadFragment(new HomeFragment());//Load the home screen
-
-                    homeButton.setImageResource(R.drawable.homepage_button_clicked);
-                    profileButton.setImageResource(R.drawable.profile_button_unclicked);
-                    calendarButton.setImageResource(R.drawable.calendar_button_unclicked);
-                }
-                else if(_name == "Profile"){
-                    loadFragment(new ProfileFragment()); //Load the profile screen
-
-                    homeButton.setImageResource(R.drawable.homepage_button_unclicked);
-                    profileButton.setImageResource(R.drawable.profile_button_clicked);
-                    calendarButton.setImageResource(R.drawable.calendar_button_unclicked);
-                }
-                else if(_name == "Calendar"){
-                    loadFragment(new CalendarFragment()); //Load the calendar screen
-
-                    homeButton.setImageResource(R.drawable.homepage_button_unclicked);
-                    profileButton.setImageResource(R.drawable.profile_button_unclicked);
-                    calendarButton.setImageResource(R.drawable.calendar_button_clicked);
-                }
-
-                dialog.cancel();
-            }
-        });
-    }
-
-    //When the app closes
-    public void OnDestroy() {
-        super.onDestroy();
-
-        saveFile = new File(getFilesDir(), savedData);
-    }
-
-    private String readSaveData(Context context) {
-        //TODO: Read save data
-        return null; //Temp code
-    }
 }

@@ -22,6 +22,7 @@
         android:layout_width="112dp"
         android:layout_height="36dp"
         android:layout_alignParentStart="true"
+
         android:layout_alignParentTop="true"
         android:layout_marginStart="90dp"
         android:layout_marginTop="167dp"
@@ -31,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.048"
         app:srcCompat="@drawable/fortryd_button" />
-
+    <!--
         <ImageButton
             android:id="@+id/okButton"
             android:layout_width="112dp"
@@ -46,37 +47,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ok_button" />
 
-    <ImageView
-        android:id="@+id/timeInput_Background"
-        android:layout_width="247dp"
-        android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/Date1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="260dp"
+            android:text="Date 1" />
 
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="102dp"
-        app:srcCompat="@drawable/exercise_input_textbox" />
-
-    <EditText
-        android:id="@+id/timeInput"
+        <TextView
+        android:id="@+id/Date2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/cancelButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-167dp"
-        android:ems="10"
-        android:textColorHint="@color/colorBackground"
-        android:textColor="@color/colorWhite"
-        android:hint="Indtast Tid i MInutter"
-        android:inputType="number"
-        android:maxLength="3" />
+        android:layout_alignStart="@+id/Date1"
+        android:layout_marginTop="400dp"
+        android:text="Date 2" />
 
-    <TextView
-        android:id="@+id/testView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/timeInput"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="168dp"
-        android:text="" />
-
+        <TextView
+            android:id="@+id/Date3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/Date1"
+            android:layout_marginTop="540dp"
+            android:text="Date 3" />
+    -->
 </RelativeLayout>
