@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <ImageView
         android:id="@+id/insulinInputDialog"
         android:layout_width="273dp"
         android:layout_height="412dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         app:srcCompat="@drawable/input_insuling_dialog_background" />
@@ -19,126 +20,57 @@
     <ImageButton
         android:id="@+id/cancelButton"
         android:layout_width="112dp"
-        android:layout_height="32dp"
+        android:layout_height="36dp"
+        android:layout_alignParentStart="true"
 
-        android:layout_alignTop="@+id/okButton"
-        android:layout_marginStart="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="167dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.048"
         app:srcCompat="@drawable/fortryd_button" />
+    <!--
+        <ImageButton
+            android:id="@+id/okButton"
+            android:layout_width="112dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/cancelButton"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="180dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ok_button" />
 
-    <ImageButton
-        android:id="@+id/okButton"
-        android:layout_width="66dp"
-        android:layout_height="32dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="60dp"
-        android:layout_marginTop="188dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
+        <TextView
+            android:id="@+id/Date1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="260dp"
+            android:text="Date 1" />
 
-        app:srcCompat="@drawable/ok_button" />
-
-    <ImageView
-        android:id="@+id/timeInput_Background"
-        android:layout_width="247dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="100dp"
-        app:srcCompat="@drawable/exercise_input_textbox" />
-
-    <EditText
-        android:id="@+id/timeInput"
+        <TextView
+        android:id="@+id/Date2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="115dp"
-        android:ems="10"
-        android:hint="Indtast Tid i Minutter"
-        android:inputType="number"
-        android:maxLength="3"
-        android:textColor="@color/colorWhite"
-        android:textColorHint="@color/colorBackground" />
+        android:layout_alignStart="@+id/Date1"
+        android:layout_marginTop="400dp"
+        android:text="Date 2" />
 
-
-
-    <TextView
-        android:id="@+id/date1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/amount1"
-        android:layout_marginStart="40dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/time1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/amount1"
-        android:layout_marginStart="140dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/date2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/date1"
-        android:layout_alignTop="@+id/amount2"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/date3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/date1"
-        android:layout_alignTop="@+id/amount3"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/time2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/time1"
-        android:layout_alignTop="@+id/amount2"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/time3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/time1"
-        android:layout_alignTop="@+id/amount3"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/amount1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="310dp"
-        android:text="hej" />
-
-    <TextView
-        android:id="@+id/amount2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="340dp"
-        android:text="hej" />
-
-    <TextView
-        android:id="@+id/amount3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="380dp"
-        android:text="hej" />
-
+        <TextView
+            android:id="@+id/Date3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/Date1"
+            android:layout_marginTop="540dp"
+            android:text="Date 3" />
+    -->
 </RelativeLayout>

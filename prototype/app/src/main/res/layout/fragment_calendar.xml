@@ -11,7 +11,23 @@
     <ImageView
         android:id="@+id/topBG"
         android:layout_width="match_parent"
-        android:layout_height="169dp"
+        android:layout_height="90dp"
         android:scaleType="fitXY"
         android:src="@drawable/profile_top_bg" />
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
+        app:mcv_headerTextAppearance="@style/MonthTextAppearance"
+        app:mcv_selectionColor="@color/colorLightBlue"
+        app:mcv_showOtherDates="all"
+        app:mcv_weekDayTextAppearance="@style/DayTextAppearance"
+
+        />
+
+
 </FrameLayout>
