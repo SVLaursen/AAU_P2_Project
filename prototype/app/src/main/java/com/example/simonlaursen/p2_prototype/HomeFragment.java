@@ -21,8 +21,6 @@ public class HomeFragment extends Fragment {
     private Database database;
     private Chronometer cmTimer;
     private boolean timerStopped = true;
-    private MainActivity mainActivity = (MainActivity)getActivity();
-
 
     public HomeFragment() {
         database = new Database();
@@ -56,6 +54,7 @@ public class HomeFragment extends Fragment {
     // method for the input buttons
   private void InputButtons(View v) {
         final Fragment fragment = this;
+        final MainActivity mainActivity = (MainActivity)getActivity();
         // calling the objects which is imported in the top of the document.
         // calling the cmTimer and the related textviews.
         cmTimer  =  v.findViewById(R.id.cmTimer);
