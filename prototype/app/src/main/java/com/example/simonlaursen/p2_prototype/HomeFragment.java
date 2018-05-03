@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment {
                 DisplayDialog(v, "insulin");
             }
         });
-        //The text viev called start text is defined.
+        //The text view called start text is defined.
         final TextView startText = v.findViewById(R.id.startText);
         // A listener is setup for the instant button
         instantButton.setOnClickListener(new View.OnClickListener() {
@@ -123,13 +123,9 @@ public class HomeFragment extends Fragment {
                         // dividing by 60.000 to make it from milliseconds into minutes
                         long input =elapsedMillis/60000+current;
                         // updating the progress in the database
-                        // typecased the long to be an int 
+                        // typecasting the long to be an int
                         database.setInt((int) input, "currentProgress");
                         //updating the progress bar
-                        long abe =elapsedMillis/60000+current;
-
-                       // System.out.print(abe);
-                        database.setInt((int) abe, "currentProgress");
                         progressBar.setProgress(database.getInt("currentProgress"),true);
                     }
                     //the text is shown again, and button is made ready for another press by making timerStopped true again

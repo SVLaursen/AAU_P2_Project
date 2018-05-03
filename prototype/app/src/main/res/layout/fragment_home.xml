@@ -40,9 +40,8 @@
         android:background="@layout/circle_shape"
         android:indeterminate="false"
         android:max="150"
-        android:progress="120"
+        android:progress="0"
         android:progressDrawable="@layout/circular_progress_bar" />
-=======
 
     <ImageButton
         android:id="@+id/instantButton"
