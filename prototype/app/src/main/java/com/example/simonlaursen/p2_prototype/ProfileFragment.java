@@ -22,10 +22,7 @@ public class ProfileFragment extends Fragment {
     //TODO: The whole thing actually
     private Database database = new Database(); //database setup for this fragment
 
-    public ProfileFragment() {
-
-    }
-
+    public ProfileFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,11 +38,17 @@ public class ProfileFragment extends Fragment {
     }
 
     private void InputButtons(View v){
+        /*
+        Basic button setup happens in this function.
+        If you want to add a button, do it in here.
+         */
+
         final Fragment fragment = this; //Used to declare what fragment is currently working for the vibrator to work
 
         ImageButton resultsButton = v.findViewById(R.id.resultsButton);
         ImageButton graphsButton = v.findViewById(R.id.graphButton);
         ImageButton statisticButton = v.findViewById(R.id.statisticButton);
+        ImageButton editButton = v.findViewById(R.id.editButton);
 
         final Vibrator vibrator = (Vibrator) fragment.getActivity().getSystemService(Context.VIBRATOR_SERVICE); //Sets up the vibrator
 
@@ -76,6 +79,16 @@ public class ProfileFragment extends Fragment {
                     vibrator.vibrate(10);
                 }
                 DisplayDialog(v,"statistics");
+            }
+        });
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(vibrator.hasVibrator()){
+                    vibrator.vibrate(10);
+                }
+                DisplayDialog(v,"edit");
             }
         });
     }
@@ -111,6 +124,13 @@ public class ProfileFragment extends Fragment {
             final AlertDialog dialog = builder.create();
             dialog.show();
         }
+        else if(type == "edit"){
+            newView = getLayoutInflater().inflate(R.layout.dialog_edit,null);
+
+            builder.setView(newView);
+            final AlertDialog dialog = builder.create();
+            dialog.show();
+        }
     }
 
     private void Latest(View v){
@@ -118,6 +138,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void DisplayGraph(View v){
+        //TODO: Make the graph functioning and not just a static graph
         GraphView graphView = (GraphView) v.findViewById(R.id.graph);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
                 new DataPoint(0, 1),
