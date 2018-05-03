@@ -43,39 +43,43 @@ public class HomeFragment extends Fragment {
         cmTimer.setText(" ");
         RunProgressBar(v);
 
-
         // Inflate the layout for this fragment
         return v;
     }
+
     // method for updating progress bar
     private void RunProgressBar(View v){
         ProgressBar progressBar = v.findViewById(R.id.progressBar);
-        // setting the max progress the progress bar can have
-        progressBar.setMax(database.getInt("maxProgress"));
-        // setting the current progress on the progress bar and animating the change
-        progressBar.setProgress(database.getInt("currentProgress"),true);
-        // calling the textview for showing the progress
-        TextView showProgress = v.findViewById(R.id.showProgress);
-        //calling the get progress method from database and changing the number to fit the currentprogress
-        showProgress.setText(database.getProgressText());
+        progressBar.setMax(database.getInt("maxProgress")); // setting the max progress the progress bar can have
+        progressBar.setProgress(database.getInt("currentProgress"),true); // setting the current progress on the progress bar and animating the change
+        TextView showProgress = v.findViewById(R.id.showProgress); // calling the textview for showing the progress
+        showProgress.setText(database.getProgressText()); //calling the get progress method from database and changing the number to fit the currentprogress
     }
-    // method for the input buttons
-  private void InputButtons(View v) {
+
+    // Method for the input buttons
+    private void InputButtons(View v) {
         final Fragment fragment = this;
         final MainActivity mainActivity = (MainActivity)getActivity();
-        // calling the objects which is imported in the top of the document.
-        // calling the cmTimer and the related textviews.
-        cmTimer  =  v.findViewById(R.id.cmTimer);
+
         // These objects are final to ensure that the reference to the object can not be changed.
         final ProgressBar progressBar = v.findViewById(R.id.progressBar);
         final TextView showProgress = v.findViewById(R.id.showProgress);
         final TextView progressBarSubtitle = v.findViewById(R.id.progressBarSubtitle);
+
         //Here we define the 3 buttons which will be used input data.
         ImageButton inputExercise = v.findViewById(R.id.InputExercise);
         ImageButton inputInsulin = v.findViewById(R.id.InputInsulin);
         ImageButton instantButton = v.findViewById(R.id.instantButton);
-        // vibrator do stuff if it is there
+
+        // Vibrator setup
         final Vibrator vibrator = (Vibrator) fragment.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+
+        //The text view called start text is defined.
+        final TextView startText = v.findViewById(R.id.startText);
+
+        // calling the cmTimer and the related textviews.
+        cmTimer  =  v.findViewById(R.id.cmTimer);
+        cmTimer.setText(" ");
 
         inputExercise.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,22 +100,24 @@ public class HomeFragment extends Fragment {
                 DisplayDialog(v, "insulin");
             }
         });
-        //The text view called start text is defined.
-        final TextView startText = v.findViewById(R.id.startText);
+
         // A listener is setup for the instant button
         instantButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            // In this if statement everything that happens when clicking the instant button happens
-            // The timer starts, and progress is counted up and added to the current progress once the timer is stopped again.
             public void onClick(View v) {
-                //int used to keep track of current progress
-                int current;
-                // long used to kep track of how long the timer has been going for
-                long elapsedMillis = SystemClock.elapsedRealtime() - cmTimer.getBase();
-                cmTimer.setText(" ");
+                /*
+                //In this if statement everything that happens when clicking the instant button happens
+                //The timer starts, and progress is counted up and added to the current progress once the timer is stopped again.
+                */
+
+                int current; //int used to keep track of current progress
+                long elapsedMillis = SystemClock.elapsedRealtime() - cmTimer.getBase(); // long used to kep track of how long the timer has been going for
+
+                //Check if the phone has permission to use the vibrator, if true then give strong vibration
                 if (vibrator.hasVibrator()) {
                     vibrator.vibrate(100);
                 }
+
                 // if the timer if stopped, we need it to start, and do the preperations by removing and changing text
                 if (timerStopped) {
                     cmTimer.setBase(SystemClock.elapsedRealtime());
@@ -120,24 +126,21 @@ public class HomeFragment extends Fragment {
                     showProgress.setText(database.getBlankText());
                     progressBarSubtitle.setText(database.getBlankText());
                     cmTimer.start();
-                    // timer is set to false, to make the else part of the statement happens when the button is pressed again
-                    timerStopped = false;
-                } else {
-                    //the timer is stopped, and if it counted more than 60.000 milliseconds( 1 minute) the timer is added to the current value and the progress is updated
-                    cmTimer.stop();
+                    timerStopped = false; // timer is set to false, to make the else part of the statement happens when the button is pressed again
+                }
+                else {
+                    cmTimer.stop(); //the timer is stopped, and if it counted more than 60.000 milliseconds( 1 minute) the timer is added to the current value and the progress is updated
                     mainActivity.timerActive = false;
                     startText.setText("START");
+
                     if (elapsedMillis > 60000) {
-                        // asking the database for the current amount of progress on the progressbar
-                        current = database.getInt("currentProgress");
-                        // dividing by 60.000 to make it from milliseconds into minutes
-                        long input =elapsedMillis/60000+current;
-                        // updating the progress in the database
-                        // typecasting the long to be an int
-                        database.setInt((int) input, "currentProgress");
-                        //updating the progress bar
-                        progressBar.setProgress(database.getInt("currentProgress"),true);
+                        current = database.getInt("currentProgress"); // asking the database for the current amount of progress on the progressbar
+                        long input =elapsedMillis/60000+current; // dividing by 60.000 to make it from milliseconds into minutes
+
+                        database.setInt((int) input, "currentProgress"); // updating the progress in the database, while typecasting the long to an int
+                        progressBar.setProgress(database.getInt("currentProgress"),true); //updating the progress bar
                     }
+
                     //the text is shown again, and button is made ready for another press by making timerStopped true again
                     cmTimer.setText(" ");
                     showProgress.setText(database.getProgressText());
@@ -148,6 +151,7 @@ public class HomeFragment extends Fragment {
         });
 
     }
+
     private void DisplayDialog(View v, String type) {
         /*
         This one is used to create dialog pop-ups containing information.
