@@ -19,8 +19,9 @@ import org.w3c.dom.Text;
 public class HomeFragment extends Fragment {
 
     private Database database;
-    Chronometer cmTimer;
-    Boolean timerStopped = true;
+    private Chronometer cmTimer;
+    private boolean timerStopped = true;
+    private MainActivity mainActivity = (MainActivity)getActivity();
 
 
     public HomeFragment() {
@@ -108,6 +109,7 @@ public class HomeFragment extends Fragment {
                 if (timerStopped) {
                     cmTimer.setBase(SystemClock.elapsedRealtime());
                     startText.setText("STOP");
+                    mainActivity.timerActive = true;
                     showProgress.setText(database.getBlankText());
                     progressBarSubtitle.setText(database.getBlankText());
                     cmTimer.start();
@@ -116,6 +118,7 @@ public class HomeFragment extends Fragment {
                 } else {
                     //the timer is stopped, and if it counted more than 60.000 milliseconds( 1 minute) the timer is added to the current value and the progress is updated
                     cmTimer.stop();
+                    mainActivity.timerActive = false;
                     startText.setText("START");
                     if (elapsedMillis > 60000) {
                         // asking the database for the current amount of progress on the progressbar
