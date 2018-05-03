@@ -21,7 +21,6 @@ public class HomeFragment extends Fragment {
     private Database database;
     private Chronometer cmTimer;
     private boolean timerStopped = true;
-    private MainActivity mainActivity = (MainActivity)getActivity();
 
 
     public HomeFragment() {
@@ -56,6 +55,7 @@ public class HomeFragment extends Fragment {
     // method for the input buttons
   private void InputButtons(View v) {
         final Fragment fragment = this;
+        final MainActivity mainActivity = (MainActivity)getActivity();
         // calling the objects which is imported in the top of the document.
         // calling the cmTimer and the related textviews.
         cmTimer  =  v.findViewById(R.id.cmTimer);
@@ -109,7 +109,7 @@ public class HomeFragment extends Fragment {
                 if (timerStopped) {
                     cmTimer.setBase(SystemClock.elapsedRealtime());
                     startText.setText("STOP");
-                    mainActivity.timerActive = true;
+                    mainActivity.timerActive = true; //Enables the option for the alert to pop-up
                     showProgress.setText(database.getBlankText());
                     progressBarSubtitle.setText(database.getBlankText());
                     cmTimer.start();
@@ -118,7 +118,7 @@ public class HomeFragment extends Fragment {
                 } else {
                     //the timer is stopped, and if it counted more than 60.000 milliseconds( 1 minute) the timer is added to the current value and the progress is updated
                     cmTimer.stop();
-                    mainActivity.timerActive = false;
+                    mainActivity.timerActive = false; //Disables the option for the alert to pop-up
                     startText.setText("START");
                     if (elapsedMillis > 60000) {
                         // asking the database for the current amount of progress on the progressbar
