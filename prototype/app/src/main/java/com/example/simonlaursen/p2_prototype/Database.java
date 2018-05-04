@@ -12,17 +12,19 @@ public class Database {
     private static int maxProgress; //Variable for the max progress on the progressbar
     private static int currentProgress; //Change this value to 0 before releasing app, the current value is for debugging only
 
-    private static ExerciseInputs[] exerciseInputs = new ExerciseInputs[3];
-    private static InsulinInputs[] insulinInputs = new InsulinInputs[3];
+    private static ExerciseInputs[] exerciseInputs = new ExerciseInputs[3]; //Storage for the data involving the exercise input
+    private static InsulinInputs[] insulinInputs = new InsulinInputs[3]; //Storage for the data involving the insulin input
 
     //DEFAULT CONSTRUCTOR
     public Database(){
 
     }
-public void loadData(){
-    currentProgress = SharedPref.read(SharedPref.CurProg, 0);
-   maxProgress = SharedPref.read(SharedPref.MaxProg, 150);
+
+    public void loadData(){
+        currentProgress = SharedPref.read(SharedPref.CurProg, 0);
+        maxProgress = SharedPref.read(SharedPref.MaxProg, 150);
     }
+
     public void setInt(int value, String name){
         if (name == "shownTime") {
             shownTime = value;
@@ -50,15 +52,20 @@ public void loadData(){
 
         if (name == "shownTime") {
             return shownTime;
-        } else if (name == "inputTime") {
+        }
+        else if (name == "inputTime") {
             return inputTime;
-        } else if (name == "currentInsulin") {
+        }
+        else if (name == "currentInsulin") {
             return currentInsulin;
-        } else if (name == "maxProgress") {
+        }
+        else if (name == "maxProgress") {
             return maxProgress;
-        } else if (name == "currentProgress") {
+        }
+        else if (name == "currentProgress") {
             return currentProgress;
-        } else {
+        }
+        else {
             return 0;
         }
     }
@@ -77,16 +84,14 @@ public void loadData(){
         return currentProgress + "/" + maxProgress;
     }
 
-
     public String getBlankText() {
         return " ";
     }
 
-    public String getMinPerweek() {
-            return "min per uge";
-        }
+    public String getMinPerweek() { return "min per uge"; }
 
-    public void setExerciseInputs(SimpleDateFormat date, SimpleDateFormat time, int value){
+    //EXERCISE INPUT DATA
+    public void setExerciseInputs(String date, String time, String value){
         for(int i = 0; i < 3; i++){
             if(exerciseInputs[i] != null){
                 if(exerciseInputs[i + 1] != null){
@@ -105,19 +110,20 @@ public void loadData(){
         }
     }
 
-    public SimpleDateFormat getExerciseDate(int num){
+    public String getExerciseDate(int num){
         return exerciseInputs[num].date;
     }
 
-    public SimpleDateFormat getExerciseTime(int num){
+    public String getExerciseTime(int num){
         return exerciseInputs[num].time;
     }
 
-    public int getExerciseValue(int num){
+    public String getExerciseValue(int num){
         return exerciseInputs[num].value;
     }
 
-    public void setInsulinInputs(SimpleDateFormat date, SimpleDateFormat time, int value){
+    //INSULIN INPUT DATA
+    public void setInsulinInputs(String date, String time, String value){
         for(int i = 0; i < 3; i++){
             if(insulinInputs[i] != null){
                 if(insulinInputs[i + 1] != null){
@@ -136,15 +142,15 @@ public void loadData(){
         }
     }
 
-    public SimpleDateFormat getInsulinDate(int num){
+    public String getInsulinDate(int num){
         return insulinInputs[num].date;
     }
 
-    public SimpleDateFormat getInsulinTime(int num){
+    public String getInsulinTime(int num){
         return insulinInputs[num].time;
     }
 
-    public int getInsulinValue(int num){
+    public String getInsulinValue(int num){
         return insulinInputs[num].value;
     }
 }
