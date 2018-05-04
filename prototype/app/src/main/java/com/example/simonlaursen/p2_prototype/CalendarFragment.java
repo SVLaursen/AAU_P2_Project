@@ -1,6 +1,9 @@
 package com.example.simonlaursen.p2_prototype;
 
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -43,8 +46,8 @@ public class CalendarFragment extends Fragment {
         return v;
     }
 
-    public void calendarSetup(View v){
-        MaterialCalendarView materialCalendarView = (MaterialCalendarView) v.findViewById(R.id.calendarView);
+    public void calendarSetup(final View v){
+        final MaterialCalendarView materialCalendarView = v.findViewById(R.id.calendarView);
         final View view = v;
 
         materialCalendarView.state().edit()
@@ -82,6 +85,31 @@ public class CalendarFragment extends Fragment {
                 view.addSpan(new RelativeSizeSpan(1.25f)); //sets the fontsize to be a little bigger than the other days.
             }
         });
+
+
+
+        materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+
+                //Creates a toast that shows what date was clicked on in DD/MM/YYYY
+                //Toast.makeText(getActivity().getApplicationContext(), ""+ date.getDay() + " / " + date.getMonth() + " / " + date.getYear(),Toast.LENGTH_SHORT).show();
+
+
+                //Creates and alertDialog pop-up for that day
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("" + date.getDay() + " / " + date.getMonth() + " / " + date.getYear()); //Sets the title of the dialog to the clicked days date
+                builder.setMessage("Message content");
+                builder.setCancelable(true);
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+
+
 
     }
 }

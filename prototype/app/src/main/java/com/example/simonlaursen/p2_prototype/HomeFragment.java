@@ -34,6 +34,7 @@ public class HomeFragment extends Fragment {
 
     public HomeFragment() {
         database = new Database();
+
     }
 
     @Override

@@ -25,17 +25,17 @@ public class MainActivity extends AppCompatActivity {
     private Database database = new Database();
     private File saveFile;
     private String savedData = "savedData";
-
     public boolean timerActive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        SharedPref.init(getApplicationContext());
         NavBarSetup(); //Used to setup the size of the navigation bar
         loadFragment(new HomeFragment());
-
+        database.loadData();
     }
 
     //NAV BAR
