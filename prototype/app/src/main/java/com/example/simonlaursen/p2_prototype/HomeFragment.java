@@ -30,6 +30,7 @@ public class HomeFragment extends Fragment {
     String timeInputValue;
     int s;
     int current1;
+    String t;
 
     public HomeFragment() {
         database = new Database();
@@ -183,7 +184,6 @@ public class HomeFragment extends Fragment {
             final TextView[] date = {newView.findViewById(R.id.date1), newView.findViewById(R.id.date2), newView.findViewById(R.id.date3)};
             final TextView[] time = {newView.findViewById(R.id.time1), newView.findViewById(R.id.time2), newView.findViewById(R.id.time3)};
 
-
             builder.setView(newView);
             final AlertDialog dialog = builder.create();
             dialog.show();
@@ -206,10 +206,12 @@ public class HomeFragment extends Fragment {
 
                     switch (count) {
                         case 0:
-                            amount[0].setText(timeInput.getText().toString());
-                            date[0].setText(formattedDate);
-                            time[0].setText(f);
                             System.out.println(count);
+                            database.setInsulinInputs(formattedDate,f,timeInput.getText().toString());
+                            amount[0].setText(database.getInsulinValue(0));
+                            date[0].setText(database.getInsulinDate(0));
+                            time[0].setText(database.getInsulinTime(0));
+
                             count++;
                             break;
                         case 1:
@@ -240,11 +242,7 @@ public class HomeFragment extends Fragment {
                         vibrator.vibrate(10);
                     }
                     dialog.cancel();
-                    /*
-                    if (cancel) {
-                        count = 0;
-                    }
-                    */
+
 
                 }
             });
@@ -300,12 +298,16 @@ public class HomeFragment extends Fragment {
 
                     switch (count) {
                         case 0:
-                            amount[0].setText(timeInput.getText().toString());
+
                             s = Integer.parseInt(timeInput.getText().toString());
-                            date[0].setText(formattedDate);
-                            time[0].setText(f);
-                            count++;
+
+                            ///////////////////////////////////////////////////////////////////////////
+                            database.setExerciseInputs(formattedDate,f,timeInput.getText().toString());
+                            amount[0].setText(database.getExerciseValue(0));
+                            date[0].setText(database.getExerciseDate(0));
+                            time[0].setText(database.getExerciseTime(0));
                             current1 = database.getInt("currentProgress");
+                            count++;
                             if (s > 1) {
 
                                 current1 = database.getInt("currentProgress");
