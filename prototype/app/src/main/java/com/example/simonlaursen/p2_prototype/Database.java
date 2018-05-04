@@ -27,13 +27,6 @@ public class Database {
             currentProgress = value;
         }
     }
-    public void setValue2(float value, String name){
-            //TODO: Implement float set
-
-            if (name == "fullTime") {
-
-            }
-    }
 
     public void setFloat(float value, String name){
         if(name == "fullTime"){
