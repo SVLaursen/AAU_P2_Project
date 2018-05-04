@@ -1,6 +1,7 @@
 package com.example.simonlaursen.p2_prototype;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Database {
 
@@ -11,18 +12,37 @@ public class Database {
     private static int currentInsulin;
     private static int maxProgress; //Variable for the max progress on the progressbar
     private static int currentProgress; //Change this value to 0 before releasing app, the current value is for debugging only
-
+    private static long StartweekDate;
+    private static long currentDate;
     private static ExerciseInputs[] exerciseInputs = new ExerciseInputs[3]; //Storage for the data involving the exercise input
     private static InsulinInputs[] insulinInputs = new InsulinInputs[3]; //Storage for the data involving the insulin input
 
     //DEFAULT CONSTRUCTOR
-    public Database(){
+    public Database() {
 
     }
 
-    public void loadData(){
+    public void loadData() {
+
         currentProgress = SharedPref.read(SharedPref.CurProg, 0);
         maxProgress = SharedPref.read(SharedPref.MaxProg, 150);
+    }
+
+    public void setLong(long value, String name) {
+        if (name == "StartDate") {
+            StartweekDate = value;
+        } else if (name == "currentDate") {
+            currentDate = value;
+        }
+    }
+    public long getLong(String name){
+        if (name=="StartDate"){
+           return StartweekDate;
+        } else if (name=="currentDate"){
+            return currentDate;
+        } else{
+            return 0;
+        }
     }
 
     public void setInt(int value, String name){

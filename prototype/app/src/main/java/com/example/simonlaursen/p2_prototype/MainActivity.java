@@ -2,6 +2,7 @@ package com.example.simonlaursen.p2_prototype;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
         SharedPref.init(getApplicationContext());
         NavBarSetup(); //Used to setup the size of the navigation bar
         loadFragment(new HomeFragment());
+        SharedPref.wipe(getApplicationContext()); // removes all save data
         database.loadData();
+        checkDate();
     }
 
     //NAV BAR
@@ -59,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                     profileButton.setImageResource(R.drawable.profile_button_unclicked);
                     calendarButton.setImageResource(R.drawable.calendar_button_unclicked);
                 } else {
-                    loadDialog(v,"Home");
+                    loadDialog(v, "Home");
                 }
 
                 if (vibrator.hasVibrator()) {
@@ -71,15 +76,14 @@ public class MainActivity extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!timerActive){
+                if (!timerActive) {
                     loadFragment(new ProfileFragment()); //Load the profile screen
 
                     homeButton.setImageResource(R.drawable.homepage_button_unclicked);
                     profileButton.setImageResource(R.drawable.profile_button_clicked);
                     calendarButton.setImageResource(R.drawable.calendar_button_unclicked);
-                }
-                else{
-                    loadDialog(v,"Profile");
+                } else {
+                    loadDialog(v, "Profile");
                 }
 
                 if (vibrator.hasVibrator()) {
@@ -91,15 +95,14 @@ public class MainActivity extends AppCompatActivity {
         calendarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!timerActive){
+                if (!timerActive) {
                     loadFragment(new CalendarFragment()); //Load the calendar screen
 
                     homeButton.setImageResource(R.drawable.homepage_button_unclicked);
                     profileButton.setImageResource(R.drawable.profile_button_unclicked);
                     calendarButton.setImageResource(R.drawable.calendar_button_clicked);
-                }
-                else{
-                    loadDialog(v,"Calendar");
+                } else {
+                    loadDialog(v, "Calendar");
                 }
 
                 if (vibrator.hasVibrator()) {
@@ -117,18 +120,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void loadDialog(View v, String name){
+    private void loadDialog(View v, String name) {
         final ImageButton homeButton = findViewById(R.id.HomeButton);
         final ImageButton profileButton = findViewById(R.id.ProfileButton);
         final ImageButton calendarButton = findViewById(R.id.CalendarButton);
 
         final Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(),R.style.AppTheme_DialogTheme);
-        View newView = getLayoutInflater().inflate(R.layout.dialog_alert_stop_timer,null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AppTheme_DialogTheme);
+        View newView = getLayoutInflater().inflate(R.layout.dialog_alert_stop_timer, null);
         final String _name = name;
 
-        if(vibrator.hasVibrator()){
+        if (vibrator.hasVibrator()) {
             vibrator.vibrate(100); //Warning vibration
         }
 
@@ -142,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(vibrator.hasVibrator()){
+                if (vibrator.hasVibrator()) {
                     vibrator.vibrate(10);
                 }
                 dialog.cancel();
@@ -153,25 +156,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(vibrator.hasVibrator()){
+                if (vibrator.hasVibrator()) {
                     vibrator.vibrate(10);
                 }
 
-                if(_name == "Home") {
+                if (_name == "Home") {
                     loadFragment(new HomeFragment());//Load the home screen
 
                     homeButton.setImageResource(R.drawable.homepage_button_clicked);
                     profileButton.setImageResource(R.drawable.profile_button_unclicked);
                     calendarButton.setImageResource(R.drawable.calendar_button_unclicked);
-                }
-                else if(_name == "Profile"){
+                } else if (_name == "Profile") {
                     loadFragment(new ProfileFragment()); //Load the profile screen
 
                     homeButton.setImageResource(R.drawable.homepage_button_unclicked);
                     profileButton.setImageResource(R.drawable.profile_button_clicked);
                     calendarButton.setImageResource(R.drawable.calendar_button_unclicked);
-                }
-                else if(_name == "Calendar"){
+                } else if (_name == "Calendar") {
                     loadFragment(new CalendarFragment()); //Load the calendar screen
 
                     homeButton.setImageResource(R.drawable.homepage_button_unclicked);
@@ -194,5 +195,28 @@ public class MainActivity extends AppCompatActivity {
     private String readSaveData(Context context) {
         //TODO: Read save data
         return null; //Temp code
+    }
+
+    public  void checkDate(){
+       boolean newWeek = SharedPref.read(SharedPref.newWeek,true);
+        if (newWeek) {
+            Date startDate = new Date(System.currentTimeMillis());
+           SharedPref.write("time", startDate.getTime());
+            database.setLong(startDate.getTime(),"StartDate");
+            SharedPref.write(SharedPref.newWeek,false);
+
+        } else {
+            Date CurrentDate = new Date(System.currentTimeMillis());
+            Date startdate = new Date(SharedPref.read("time", 0));
+
+            int diffinDays=(int)((CurrentDate.getTime())-(startdate.getTime()));
+                if (diffinDays>0 ){
+                    database.setInt(0,"currentProgress");
+                    SharedPref.write("time", CurrentDate.getTime());
+                    SharedPref.write(SharedPref.newWeek,true);
+
+                }
+        }
+
     }
 }
