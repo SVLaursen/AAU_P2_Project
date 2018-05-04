@@ -3,13 +3,19 @@ package com.example.simonlaursen.p2_prototype;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class ProfileFragment extends Fragment {
 
@@ -25,6 +31,9 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        final MainActivity mainActivity = (MainActivity)getActivity();
+        mainActivity.timerActive = false;
 
         InputButtons(v); //activates the input buttons
 
@@ -77,7 +86,7 @@ public class ProfileFragment extends Fragment {
         It takes in the view that we're current in and then a string to determine which pop-up we want.
          */
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(),R.style.AppTheme_DialogTheme);
         View newView = null; //Null until changed when a specific dialog is chosen
 
         if(type == "results"){
@@ -93,6 +102,7 @@ public class ProfileFragment extends Fragment {
             builder.setView(newView);
             final AlertDialog dialog = builder.create();
             dialog.show();
+            DisplayGraph(newView);
         }
         else if(type == "statistics"){
             newView = getLayoutInflater().inflate(R.layout.dialog_statistics,null);
@@ -108,7 +118,15 @@ public class ProfileFragment extends Fragment {
     }
 
     private void DisplayGraph(View v){
-
+        GraphView graphView = (GraphView) v.findViewById(R.id.graph);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
+        graphView.addSeries(series);
     }
 
 
