@@ -12,11 +12,13 @@ public class Database {
     private static int maxProgress = 150; //Variable for the max progress on the progressbar
     private static int currentProgress=0; //Change this value to 0 before releasing app, the current value is for debugging only
 
-    private static ExerciseInputs[] exerciseInputs = new ExerciseInputs[3];
-    private static InsulinInputs[] insulinInputs = new InsulinInputs[3];
+    private static ExerciseInputs[] exerciseInputs;
+    private static InsulinInputs[] insulinInputs;
 
     //DEFAULT CONSTRUCTOR
     public Database(){
+        exerciseInputs = new ExerciseInputs[3];
+        insulinInputs = new InsulinInputs[3];
     }
 
     public void setInt(int value, String name){
@@ -80,7 +82,7 @@ public class Database {
             return "min per uge";
         }
 
-    public void setExerciseInputs(SimpleDateFormat date, SimpleDateFormat time, int value){
+    public void setExerciseInputs(String date, String time, String value){
         for(int i = 0; i < 3; i++){
             if(exerciseInputs[i] != null){
                 if(exerciseInputs[i + 1] != null){
@@ -99,46 +101,45 @@ public class Database {
         }
     }
 
-    public SimpleDateFormat getExerciseDate(int num){
+    public String getExerciseDate(int num){
         return exerciseInputs[num].date;
     }
 
-    public SimpleDateFormat getExerciseTime(int num){
+    public String getExerciseTime(int num){
         return exerciseInputs[num].time;
     }
 
-    public int getExerciseValue(int num){
+    public String getExerciseValue(int num){
         return exerciseInputs[num].value;
     }
 
-    public void setInsulinInputs(SimpleDateFormat date, SimpleDateFormat time, int value){
-        for(int i = 0; i < 3; i++){
-            if(insulinInputs[i] != null){
-                if(insulinInputs[i + 1] != null){
-                    insulinInputs[i+2] = insulinInputs[i+1];
-                    insulinInputs[i+1] = insulinInputs[i];
-                    insulinInputs[i] = new InsulinInputs(date,time,value);
-                }
-                else{
-                    insulinInputs[i+1] = insulinInputs[i];
-                    insulinInputs[i] = new InsulinInputs(date,time,value);
-                }
+    public void setInsulinInputs(String date, String time, String value){
+
+        if(insulinInputs[0] != null){
+            if(insulinInputs[0 + 1] != null){
+                insulinInputs[0+2] = insulinInputs[0+1];
+                insulinInputs[0+1] = insulinInputs[0];
+                insulinInputs[0] = new InsulinInputs(date,time,value);
             }
             else{
-                insulinInputs[i] = new InsulinInputs(date,time,value);
+                insulinInputs[0+1] = insulinInputs[0];
+                insulinInputs[0] = new InsulinInputs(date,time,value);
             }
+        }
+        else{
+            insulinInputs[0] = new InsulinInputs(date,time,value);
         }
     }
 
-    public SimpleDateFormat getInsulinDate(int num){
+    public String getInsulinDate(int num){
         return insulinInputs[num].date;
     }
 
-    public SimpleDateFormat getInsulinTime(int num){
+    public String getInsulinTime(int num){
         return insulinInputs[num].time;
     }
 
-    public int getInsulinValue(int num){
+    public String getInsulinValue(int num){
         return insulinInputs[num].value;
     }
 }

@@ -4,15 +4,15 @@ import java.text.SimpleDateFormat;
 
 public class ExerciseInputs {
 
-    public SimpleDateFormat date;
-    public  SimpleDateFormat time;
-    public int value;
+    public String date;
+    public String time;
+    public String value;
 
     public ExerciseInputs(){
 
     }
 
-    public ExerciseInputs(SimpleDateFormat date, SimpleDateFormat time, int value){
+    public ExerciseInputs(String date, String time, String value){
         this.date = date;
         this.time = time;
         this.value = value;
