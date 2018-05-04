@@ -28,6 +28,8 @@ public class HomeFragment extends Fragment {
     int count = 0;
     boolean cancel = true;
     String timeInputValue;
+    int s;
+    int current1;
 
     public HomeFragment() {
         database = new Database();
@@ -61,33 +63,32 @@ public class HomeFragment extends Fragment {
     }
     // method for the input buttons
   private void InputButtons(View v) {
-        final Fragment fragment = this;
-        final MainActivity mainActivity = (MainActivity)getActivity();
-        // calling the objects which is imported in the top of the document.
-        // calling the cmTimer and the related textviews.
-        cmTimer  =  v.findViewById(R.id.cmTimer);
-        // These objects are final to ensure that the reference to the object can not be changed.
-        final ProgressBar progressBar = v.findViewById(R.id.progressBar);
-        final TextView showProgress = v.findViewById(R.id.showProgress);
-        final TextView progressBarSubtitle = v.findViewById(R.id.progressBarSubtitle);
-        //Here we define the 3 buttons which will be used input data.
-        ImageButton inputExercise = v.findViewById(R.id.InputExercise);
-        ImageButton inputInsulin = v.findViewById(R.id.InputInsulin);
-        ImageButton instantButton = v.findViewById(R.id.instantButton);
-        // vibrator do stuff if it is there
-        final Vibrator vibrator = (Vibrator) fragment.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+      final Fragment fragment = this;
+      final MainActivity mainActivity = (MainActivity) getActivity();
+      // calling the objects which is imported in the top of the document.
+      // calling the cmTimer and the related textviews.
+      cmTimer = v.findViewById(R.id.cmTimer);
+      // These objects are final to ensure that the reference to the object can not be changed.
+      final ProgressBar progressBar = v.findViewById(R.id.progressBar);
+      final TextView showProgress = v.findViewById(R.id.showProgress);
+      final TextView progressBarSubtitle = v.findViewById(R.id.progressBarSubtitle);
+      //Here we define the 3 buttons which will be used input data.
+      ImageButton inputExercise = v.findViewById(R.id.InputExercise);
+      ImageButton inputInsulin = v.findViewById(R.id.InputInsulin);
+      ImageButton instantButton = v.findViewById(R.id.instantButton);
+      // vibrator do stuff if it is there
+      final Vibrator vibrator = (Vibrator) fragment.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
-        inputExercise.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (vibrator.hasVibrator()) {
-                    vibrator.vibrate(10);
-                }
-                DisplayDialog(v, "exercise");
-            }
-        });
-
-        inputInsulin.setOnClickListener(new View.OnClickListener() {
+      inputExercise.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              if (vibrator.hasVibrator()) {
+                  vibrator.vibrate(10);
+              }
+              DisplayDialog(v, "exercise");
+          }
+      });
+  inputInsulin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (vibrator.hasVibrator()) {
@@ -155,7 +156,9 @@ public class HomeFragment extends Fragment {
          */
 
         AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AppTheme_DialogTheme);
+
         View newView = null; //Null until changed when a specific dialog is chosen
+
         final Fragment fragment = this;
         final Vibrator vibrator = (Vibrator) fragment.getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -163,13 +166,13 @@ public class HomeFragment extends Fragment {
             //THIS IS WHERE YOU PUT INTERACTION FOR THE INSULIN INPUT DIALOG!!!!
             count = 0;
             newView = getLayoutInflater().inflate(R.layout.dialog_insulin_input, null);
+            final ProgressBar progressBar =(ProgressBar) v.findViewById(R.id.progressBar);
             ImageButton cancelButton = newView.findViewById(R.id.cancelButton);
             ImageButton okButton = newView.findViewById(R.id.okButton);
             final EditText timeInput = newView.findViewById(R.id.timeInput);
             //final TextView amount1 = newView.findViewById(R.id.amount1);
             //final TextView amount2 = newView.findViewById(R.id.amount2);
             //final TextView amount3 = newView.findViewById(R.id.amount3);
-
             final TextView[] amount = {newView.findViewById(R.id.amount1), newView.findViewById(R.id.amount2), newView.findViewById(R.id.amount3)};
             final TextView[] date = {newView.findViewById(R.id.date1), newView.findViewById(R.id.date2), newView.findViewById(R.id.date3)};
             final TextView[] time = {newView.findViewById(R.id.time1), newView.findViewById(R.id.time2), newView.findViewById(R.id.time3)};
@@ -236,17 +239,19 @@ public class HomeFragment extends Fragment {
                         count = 0;
                     }
                     */
+
                 }
             });
 
 
         } else if (type == "exercise") {
-            //THIS IS WHERE YOU PUT INTERACTION FOR THE INSULIN INPUT DIALOG!!!!
+            //THIS IS WHERE YOU PUT INTERACTION FOR THE exercise DIALOG!!!!
             count = 0;
             newView = getLayoutInflater().inflate(R.layout.dialog_insulin_input, null);
             ImageButton cancelButton = newView.findViewById(R.id.cancelButton);
             ImageButton okButton = newView.findViewById(R.id.okButton);
             final EditText timeInput = newView.findViewById(R.id.timeInput);
+           final ProgressBar progressBar =(ProgressBar) v.findViewById(R.id.progressBar);
             //final TextView amount1 = newView.findViewById(R.id.amount1);
             //final TextView amount2 = newView.findViewById(R.id.amount2);
             //final TextView amount3 = newView.findViewById(R.id.amount3);
@@ -264,7 +269,6 @@ public class HomeFragment extends Fragment {
             okButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     if (vibrator.hasVibrator()) {
                         vibrator.vibrate(10);
                     }
@@ -292,10 +296,29 @@ public class HomeFragment extends Fragment {
                     switch (count) {
                         case 0:
                             amount[0].setText(timeInput.getText().toString());
+                            s = Integer.parseInt(timeInput.getText().toString());
                             date[0].setText(formattedDate);
                             time[0].setText(f);
                             System.out.println(count);
                             count++;
+                            current1 = database.getInt("currentProgress");
+                            if (s > 1) {
+
+                                current1 = database.getInt("currentProgress");
+
+                                long input47 =s+current1;
+
+                                database.setInt((int) input47, "currentProgress");
+
+
+                                // setting the current progress on the progress bar and animating the change
+                                progressBar.setProgress(database.getInt("currentProgress"),true);
+                                // calling the textview for showing the progress
+
+                                //calling the get progress method from database and changing the number to fit the currentprogress
+                                //showProgress.setText(database.getProgressText());
+                               // progressBar.setProgress(database.getInt("currentProgress"),true);
+                            }
                             break;
                         case 1:
                             amount[1].setText(timeInput.getText().toString());
@@ -303,6 +326,7 @@ public class HomeFragment extends Fragment {
                             time[1].setText(f);
                             System.out.println(count);
                             count++;
+
                             break;
                         case 2:
                             amount[2].setText(timeInput.getText().toString());
