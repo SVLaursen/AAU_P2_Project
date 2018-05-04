@@ -1,5 +1,7 @@
 package com.example.simonlaursen.p2_prototype;
 
+import java.text.SimpleDateFormat;
+
 public class Database {
 
     private static float fullTime;
@@ -9,6 +11,9 @@ public class Database {
     private static int currentInsulin;
     private static int maxProgress = 150; //Variable for the max progress on the progressbar
     private static int currentProgress=0; //Change this value to 0 before releasing app, the current value is for debugging only
+
+    private static ExerciseInputs[] exerciseInputs = new ExerciseInputs[3];
+    private static InsulinInputs[] insulinInputs = new InsulinInputs[3];
 
     //DEFAULT CONSTRUCTOR
     public Database(){
@@ -75,6 +80,65 @@ public class Database {
             return "min per uge";
         }
 
+    public void setExerciseInputs(SimpleDateFormat date, SimpleDateFormat time, int value){
+        for(int i = 0; i < 3; i++){
+            if(exerciseInputs[i] != null){
+                if(exerciseInputs[i + 1] != null){
+                    exerciseInputs[i+2] = exerciseInputs[i+1];
+                    exerciseInputs[i+1] = exerciseInputs[i];
+                    exerciseInputs[i] = new ExerciseInputs(date,time,value);
+                }
+                else{
+                    exerciseInputs[i+1] = exerciseInputs[i];
+                    exerciseInputs[i] = new ExerciseInputs(date,time,value);
+                }
+            }
+            else{
+                exerciseInputs[i] = new ExerciseInputs(date,time,value);
+            }
+        }
+    }
 
+    public SimpleDateFormat getExerciseDate(int num){
+        return exerciseInputs[num].date;
+    }
+
+    public SimpleDateFormat getExerciseTime(int num){
+        return exerciseInputs[num].time;
+    }
+
+    public int getExerciseValue(int num){
+        return exerciseInputs[num].value;
+    }
+
+    public void setInsulinInputs(SimpleDateFormat date, SimpleDateFormat time, int value){
+        for(int i = 0; i < 3; i++){
+            if(insulinInputs[i] != null){
+                if(insulinInputs[i + 1] != null){
+                    insulinInputs[i+2] = insulinInputs[i+1];
+                    insulinInputs[i+1] = insulinInputs[i];
+                    insulinInputs[i] = new InsulinInputs(date,time,value);
+                }
+                else{
+                    insulinInputs[i+1] = insulinInputs[i];
+                    insulinInputs[i] = new InsulinInputs(date,time,value);
+                }
+            }
+            else{
+                insulinInputs[i] = new InsulinInputs(date,time,value);
+            }
+        }
+    }
+
+    public SimpleDateFormat getInsulinDate(int num){
+        return insulinInputs[num].date;
+    }
+
+    public SimpleDateFormat getInsulinTime(int num){
+        return insulinInputs[num].time;
+    }
+
+    public int getInsulinValue(int num){
+        return insulinInputs[num].value;
+    }
 }
-
