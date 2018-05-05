@@ -318,9 +318,11 @@ public class HomeFragment extends Fragment {
 
 
                                 // setting the current progress on the progress bar and animating the change
-                                showProgress.setText(database.getProgressText());
-                                progressBar.setProgress(database.getInt("currentProgress"),true);
 
+                                progressBar.setProgress(database.getInt("currentProgress"),true);
+                                if(timerStopped){
+                                    showProgress.setText(database.getProgressText());
+                                }
                                 dialog.cancel();
                             }
                             break;

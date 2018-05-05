@@ -1,15 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:color="#e40202"
+    android:orientation="vertical"
+    tools:background="@color/colorBackground">
 
-    <TextView
-        android:id="@+id/textView3"
+
+    <TableLayout
+        android:id="@+id/tabla_layout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="statistics here"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="218dp" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/numberOfWeeks"
+                android:layout_width="225dp"
+                android:layout_height="50dp"
+                android:background="@drawable/cell_shape"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="5dp"
+                android:text="Antal uger brugt app"
+                android:textAlignment="gravity"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:typeface="normal">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/numberOfWeeksNum"
+                android:layout_width="99dp"
+                android:layout_height="50dp"
+                android:background="@drawable/cell_shape"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="5dp"
+                android:text="47"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:typeface="normal">
+
+            </TextView>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/hitGoal"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/cell_shape"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="5dp"
+                android:text="Antal uger ramt mål"
+                android:textAlignment="gravity"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:typeface="normal">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/hitGoalNum"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/cell_shape"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="5dp"
+                android:text="2"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:typeface="normal">
+
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/exerciseAll"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/cell_shape"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="5dp"
+                android:text="Motions min samlet"
+                android:textAlignment="gravity"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:typeface="normal">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/exerciseAllNum"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/cell_shape"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="5dp"
+                android:text="345"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:typeface="normal">
+
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/highestExercise"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/cell_shape"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="5dp"
+                android:text="Højeste antal min "
+                android:textAlignment="gravity"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:typeface="normal">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/highestExerciseNum"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/cell_shape"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="5dp"
+                android:text="566"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:typeface="normal">
+
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/ph1"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/cell_shape"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="5dp"
+                android:text="ph1"
+                android:textAlignment="gravity"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:typeface="normal">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/ph1num"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/cell_shape"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="5dp"
+                android:text="ph1"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:typeface="normal">
+
+            </TextView>
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/ph2"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/cell_shape"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="5dp"
+                android:text="ph2"
+                android:textAlignment="gravity"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:typeface="normal">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/ph2Num"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/cell_shape"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="5dp"
+                android:text="ph2"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:typeface="normal">
+
+            </TextView>
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>
