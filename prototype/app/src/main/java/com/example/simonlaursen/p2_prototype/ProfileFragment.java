@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
@@ -85,7 +86,7 @@ public class ProfileFragment extends Fragment {
         This one is used to create dialog pop-ups containing information.
         It takes in the view that we're current in and then a string to determine which pop-up we want.
          */
-
+        //final Fragment fragment = this;
         AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(),R.style.AppTheme_DialogTheme);
         View newView = null; //Null until changed when a specific dialog is chosen
 
@@ -105,7 +106,18 @@ public class ProfileFragment extends Fragment {
             DisplayGraph(newView);
         }
         else if(type == "statistics"){
-            newView = getLayoutInflater().inflate(R.layout.dialog_statistics,null);
+           newView = getLayoutInflater().inflate(R.layout.dialog_statistics,null);
+            final TextView numberOfWeeksNum = newView.findViewById(R.id.numberOfWeeksNum);
+            final TextView hitGoalNum = newView.findViewById(R.id.hitGoalNum);
+            final TextView exerciseAllNum = newView.findViewById(R.id.exerciseAllNum);
+            final TextView highestExerciseNum = newView.findViewById(R.id.highestExerciseNum);
+            final TextView ph1num = newView.findViewById(R.id.ph1num);
+            final TextView ph2num = newView.findViewById(R.id.ph2Num);
+
+            numberOfWeeksNum.setText("" + (database.getInt("numberOfWeeksNum")));
+            hitGoalNum.setText("" + (database.getInt("hitGoalNum")));
+            exerciseAllNum.setText("" + (database.getInt("exerciseAllNum")));
+            highestExerciseNum.setText("" + (database.getInt("highestExerciseNum")));
 
             builder.setView(newView);
             final AlertDialog dialog = builder.create();

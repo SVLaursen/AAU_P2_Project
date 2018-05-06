@@ -7,9 +7,13 @@ import android.content.SharedPreferences;
 public class SharedPref
 {
     private static SharedPreferences mSharedPref;
-    public static final String CurProg = "CurProg";
+    public static final String currentProgress = "currentProgress";
     public static final String MaxProg = "MaxProg";
     public static final String newWeek= "newWeek";
+    public static final String numberOfWeeksNum="numberOfWeeksNum";
+    public static final String hitGoalNum="hitGoalNum";
+    public static final String exerciseAllNum="exerciseAllNum";
+    public static final String highestExerciseNum="highestExerciseNum";
 
     public SharedPref()
     {
@@ -26,43 +30,42 @@ public class SharedPref
         prefsEditor.clear();
         prefsEditor.commit();
     }
-    public static String read(String key, String defValue) {
+    public static String readString(String key, String defValue) {
         return mSharedPref.getString(key, defValue);
     }
 
-    public static void write(String key, String value) {
+    public static void writeString(String key, String value) {
         SharedPreferences.Editor prefsEditor = mSharedPref.edit();
         prefsEditor.putString(key, value);
         prefsEditor.commit();
     }
 
-    public static boolean read(String key, boolean defValue) {
+    public static boolean readBoolean(String key, boolean defValue) {
         return mSharedPref.getBoolean(key, defValue);
     }
 
-    public static void write(String key, boolean value) {
+    public static void writeBoolean(String key, boolean value) {
         SharedPreferences.Editor prefsEditor = mSharedPref.edit();
         prefsEditor.putBoolean(key, value);
         prefsEditor.commit();
     }
 
-    public static Integer read(String key, int defValue) {
+    public static Integer readInteger(String key, int defValue) {
         return mSharedPref.getInt(key, defValue);
     }
 
-    public static void write(String key, Integer value) {
+    public static void writeInteger(String key, Integer value) {
         SharedPreferences.Editor prefsEditor = mSharedPref.edit();
         prefsEditor.putInt(key, value).commit();
     }
 
-   public static void write(String key, long value) {
+   public static void writeLong(String key, long value) {
         SharedPreferences.Editor prefsEditor = mSharedPref.edit();
         prefsEditor.putLong(key, value);
         prefsEditor.commit();
     }
 
-
-    public static Long read(String key, long defValue) {
+    public static Long readLong(String key, long defValue) {
         return mSharedPref.getLong(key, defValue);
     }
 }

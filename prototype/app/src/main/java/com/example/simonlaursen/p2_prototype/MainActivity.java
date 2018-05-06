@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     //GLOBAL VARIABLES HERE!
     private Fragment currentFragment = null; //Used to check which fragment is currently running
     private Database database = new Database();
-    private File saveFile;
-    private String savedData = "savedData";
     public boolean timerActive = false;
 
     @Override
@@ -35,12 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SharedPref.init(getApplicationContext());
+       SharedPref.init(getApplicationContext());
         NavBarSetup(); //Used to setup the size of the navigation bar
         loadFragment(new HomeFragment());
-        SharedPref.wipe(getApplicationContext()); // removes all save data
-        database.loadData();
-        checkDate();
+        //SharedPref.wipe(getApplicationContext()); // removes all save data
+        database.setInt(4,"numberOfWeeksNum");
+       database.loadData();
+       checkDate();
     }
 
     //NAV BAR
@@ -188,32 +187,40 @@ public class MainActivity extends AppCompatActivity {
     //When the app closes
     public void OnDestroy() {
         super.onDestroy();
-
-        saveFile = new File(getFilesDir(), savedData);
-    }
-
-    private String readSaveData(Context context) {
-        //TODO: Read save data
-        return null; //Temp code
     }
 
     public  void checkDate(){
-       boolean newWeek = SharedPref.read(SharedPref.newWeek,true);
+       boolean newWeek = SharedPref.readBoolean(SharedPref.newWeek,true);
         if (newWeek) {
             Date startDate = new Date(System.currentTimeMillis());
-           SharedPref.write("time", startDate.getTime());
+           SharedPref.writeLong("time", startDate.getTime());
             database.setLong(startDate.getTime(),"StartDate");
-            SharedPref.write(SharedPref.newWeek,false);
+            SharedPref.writeBoolean(SharedPref.newWeek,false);
 
         } else {
             Date CurrentDate = new Date(System.currentTimeMillis());
-            Date startdate = new Date(SharedPref.read("time", 0));
+            Date startdate = new Date(SharedPref.readLong("time", 0));
 
             int diffinDays=(int)((CurrentDate.getTime())-(startdate.getTime()));
-                if (diffinDays>0 ){
-                    database.setInt(0,"currentProgress");
-                    SharedPref.write("time", CurrentDate.getTime());
-                    SharedPref.write(SharedPref.newWeek,true);
+                if (diffinDays>0 ){ //change this to 7, i think it works
+
+                    int curr = database.getInt("currentProgress");
+                    int max = database.getInt("highestExerciseNum");
+                    int all =database.getInt("exerciseAllNum");
+                    database.setInt((all+curr),"exerciseAllNum"); // add the amount of progress to the total amount of all progress
+                        if(curr>=150){
+                           int k= (database.getInt("hitGoalNum")+1);
+                            database.setInt(k,"numberOfWeeksNum"); // if the current amount of min at the end of a week is 150 or over, the number of weeks the goal has been met goes up by 1
+                        }
+                    // if the current amount of progress at the end of a week is higher than the week performed best, the current weak becomes best
+                        if(curr>max){
+                        database.setInt(curr,"highestExerciseNum");
+                        }
+                    database.setInt(0,"currentProgress"); // reset the current progress
+                    int i = (database.getInt("numberOfWeeksNum")+1);
+                    database.setInt(i,"numberOfWeeksNum"); //1 is added to the amount of weeks the app has been used
+                    SharedPref.writeLong("time", CurrentDate.getTime());
+                    SharedPref.writeBoolean(SharedPref.newWeek,true);
 
                 }
         }
