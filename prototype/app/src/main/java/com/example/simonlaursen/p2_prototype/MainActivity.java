@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         NavBarSetup(); //Used to setup the size of the navigation bar
         loadFragment(new HomeFragment());
         //SharedPref.wipe(getApplicationContext()); // removes all save data
-        database.setInt(4,"numberOfWeeksNum");
        database.loadData();
        checkDate();
     }

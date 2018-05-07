@@ -6,7 +6,6 @@ import java.util.Date;
 public class Database {
 
     private static float fullTime;
-
     private static int shownTime;
     private static int inputTime;
     private static int currentInsulin;
