@@ -131,13 +131,7 @@ public class ProfileFragment extends Fragment {
 
     private void DisplayGraph(View v){
         GraphView graphView = (GraphView) v.findViewById(R.id.graph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        });
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(database.loadDataPoints());
         graphView.addSeries(series);
     }
 
