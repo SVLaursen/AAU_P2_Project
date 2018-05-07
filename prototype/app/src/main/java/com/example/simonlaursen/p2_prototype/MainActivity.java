@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             Date startdate = new Date(SharedPref.readLong("time", 0));
 
             int diffinDays=(int)((CurrentDate.getTime())-(startdate.getTime()));
-                if (diffinDays>0 ){ //change this to 7, i think it works
+                if (diffinDays>7 ){ //change this to 7, i think it works
 
                     int curr = database.getInt("currentProgress");
                     int max = database.getInt("highestExerciseNum");

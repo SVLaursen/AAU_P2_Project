@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:background="@color/colorYellow">
 
     <EditText
         android:id="@+id/maal"
@@ -15,9 +16,9 @@
         android:ems="10"
         android:hint="Indtast nyt mål i minutter"
         android:inputType="number"
-        android:maxLength="4"
+        android:maxLength="12"
         android:textColor="@android:color/black"
-        android:textColorHint="@color/colorBackground" />
+        android:textColorHint="@android:color/black" />
 
     <ImageButton
         android:id="@+id/okButton"

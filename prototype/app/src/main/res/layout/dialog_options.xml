@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:color="#e40202"
+    android:color="@color/colorYellow"
     android:orientation="vertical"
-    tools:background="@color/colorBackground">
-
+    tools:background="@color/colorYellow">
 
     <Button
         android:id="@+id/button4"
@@ -15,7 +14,7 @@
         android:layout_alignBaseline="@+id/button5"
         android:layout_alignBottom="@+id/button5"
         android:layout_centerHorizontal="true"
-        android:text="Mål" />
+        android:text="Navn" />
 
     <Button
         android:id="@+id/button5"
@@ -23,8 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="53dp"
-        android:text="Navn" />
+        android:layout_marginTop="55dp"
+        android:text="Slet data" />
 
     <Button
         android:id="@+id/button6"
@@ -32,6 +31,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="false"
         android:layout_alignParentTop="false"
-        android:layout_marginTop="47dp"
-        android:text="Slet data" />
+        android:layout_marginTop="55dp"
+        android:text="Mål" />
 </RelativeLayout>
