@@ -44,19 +44,19 @@ public class ProfileFragment extends Fragment {
     private void InputButtons(View v){
         final Fragment fragment = this; //Used to declare what fragment is currently working for the vibrator to work
 
-        ImageButton resultsButton = v.findViewById(R.id.resultsButton);
+        ImageButton settingsButton = v.findViewById(R.id.settingsButton);
         ImageButton graphsButton = v.findViewById(R.id.graphButton);
         ImageButton statisticButton = v.findViewById(R.id.statisticButton);
 
         final Vibrator vibrator = (Vibrator) fragment.getActivity().getSystemService(Context.VIBRATOR_SERVICE); //Sets up the vibrator
 
-        resultsButton.setOnClickListener(new View.OnClickListener() {
+        settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(vibrator.hasVibrator()){
                     vibrator.vibrate(10);
                 }
-                DisplayDialog(v,"results");
+                DisplayDialog(v,"settings");
             }
         });
 
@@ -90,8 +90,8 @@ public class ProfileFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(),R.style.AppTheme_DialogTheme);
         View newView = null; //Null until changed when a specific dialog is chosen
 
-        if(type == "results"){
-            newView = getLayoutInflater().inflate(R.layout.dialog_results,null);
+        if(type == "settings"){
+            newView = getLayoutInflater().inflate(R.layout.dialog_settings,null);
 
             builder.setView(newView);
             final AlertDialog dialog = builder.create();
