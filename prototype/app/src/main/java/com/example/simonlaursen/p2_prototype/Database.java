@@ -1,12 +1,14 @@
 package com.example.simonlaursen.p2_prototype;
 
+import android.text.TextUtils;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import com.jjoe64.graphview.series.DataPoint;
 
 public class Database {
 
     private static float fullTime;
-
     private static int shownTime;
     private static int inputTime;
     private static int currentInsulin;
@@ -16,10 +18,14 @@ public class Database {
     private static int highestExerciseNum;
     private static int maxProgress; //Variable for the max progress on the progressbar
     private static int currentProgress; //Change this value to 0 before releasing app, the current value is for debugging only
+
     private static long StartweekDate;
     private static long currentDate;
+
     private static ExerciseInputs[] exerciseInputs = new ExerciseInputs[3]; //Storage for the data involving the exercise input
     private static InsulinInputs[] insulinInputs = new InsulinInputs[3]; //Storage for the data involving the insulin input
+
+    private String userName="Abe Lone";
 
     //DEFAULT CONSTRUCTOR
     public Database() {
@@ -27,13 +33,13 @@ public class Database {
     }
 
     public void loadData() {
-
-     currentProgress = SharedPref.readInteger(SharedPref.currentProgress, 0);
-       maxProgress = SharedPref.readInteger(SharedPref.MaxProg, 150);
-     numberOfWeeksNum = SharedPref.readInteger(SharedPref.numberOfWeeksNum,0);
+        currentProgress = SharedPref.readInteger(SharedPref.currentProgress, 0);
+        maxProgress = SharedPref.readInteger(SharedPref.MaxProg, 150);
+        numberOfWeeksNum = SharedPref.readInteger(SharedPref.numberOfWeeksNum,0);
         hitGoalNum=SharedPref.readInteger(SharedPref.hitGoalNum,0);
         exerciseAllNum=SharedPref.readInteger(SharedPref.exerciseAllNum,0);
-       highestExerciseNum=SharedPref.readInteger(SharedPref.highestExerciseNum,0);
+        highestExerciseNum=SharedPref.readInteger(SharedPref.highestExerciseNum,0);
+        userName=SharedPref.readString("name","Aida Guerra");
     }
 
     public void setLong(long value, String name) {
@@ -43,6 +49,7 @@ public class Database {
             currentDate = value;
         }
     }
+
     public long getLong(String name){
         if (name=="StartDate"){
            return StartweekDate;
@@ -131,7 +138,12 @@ public class Database {
         }
 
     }
+    public void setName(String navn2){
+        userName=navn2;
+        SharedPref.writeString("name",navn2);
 
+    }
+    public String getName() {return userName;}
     public String getProgressText() {
         return currentProgress + "/" + maxProgress;
     }
@@ -144,22 +156,20 @@ public class Database {
 
     //EXERCISE INPUT DATA
     public void setExerciseInputs(String date, String time, String value){
-        for(int i = 0; i < 3; i++){
-            if(exerciseInputs[i] != null){
-                if(exerciseInputs[i + 1] != null){
-                    exerciseInputs[i+2] = exerciseInputs[i+1];
-                    exerciseInputs[i+1] = exerciseInputs[i];
-                    exerciseInputs[i] = new ExerciseInputs(date,time,value);
+            if(exerciseInputs[0] != null){
+                if(exerciseInputs[1] != null){
+                    exerciseInputs[0+2] = exerciseInputs[0+1];
+                    exerciseInputs[0+1] = exerciseInputs[0];
+                    exerciseInputs[0] = new ExerciseInputs(date,time,value);
                 }
                 else{
-                    exerciseInputs[i+1] = exerciseInputs[i];
-                    exerciseInputs[i] = new ExerciseInputs(date,time,value);
+                    exerciseInputs[1] = exerciseInputs[0];
+                    exerciseInputs[0] = new ExerciseInputs(date,time,value);
                 }
             }
             else{
-                exerciseInputs[i] = new ExerciseInputs(date,time,value);
+                exerciseInputs[0] = new ExerciseInputs(date,time,value);
             }
-        }
     }
 
     public String getExerciseDate(int num){
@@ -176,22 +186,20 @@ public class Database {
 
     //INSULIN INPUT DATA
     public void setInsulinInputs(String date, String time, String value){
-        for(int i = 0; i < 3; i++){
-            if(insulinInputs[i] != null){
-                if(insulinInputs[i + 1] != null){
-                    insulinInputs[i+2] = insulinInputs[i+1];
-                    insulinInputs[i+1] = insulinInputs[i];
-                    insulinInputs[i] = new InsulinInputs(date,time,value);
+            if(insulinInputs[0] != null){
+                if(insulinInputs[1] != null){
+                    insulinInputs[2] = insulinInputs[1];
+                    insulinInputs[1] = insulinInputs[0];
+                    insulinInputs[0] = new InsulinInputs(date,time,value);
                 }
                 else{
-                    insulinInputs[i+1] = insulinInputs[i];
-                    insulinInputs[i] = new InsulinInputs(date,time,value);
+                    insulinInputs[1] = insulinInputs[0];
+                    insulinInputs[0] = new InsulinInputs(date,time,value);
                 }
             }
             else{
-                insulinInputs[i] = new InsulinInputs(date,time,value);
+                insulinInputs[0] = new InsulinInputs(date,time,value);
             }
-        }
     }
 
     public String getInsulinDate(int num){
@@ -205,4 +213,20 @@ public class Database {
     public String getInsulinValue(int num){
         return insulinInputs[num].value;
     }
+
+    public DataPoint[] loadDataPoints(){
+        DataPoint[] dataPoints =  new DataPoint[4];
+
+        //TODO: Change the values based on the prior inputs
+
+        dataPoints[0] = new DataPoint(0,0);
+        dataPoints[1] = new DataPoint(0,0);
+        dataPoints[2] = new DataPoint(0,0);
+        dataPoints[3] = new DataPoint(0,0);
+
+
+        return dataPoints;
+    }
+
+
 }
