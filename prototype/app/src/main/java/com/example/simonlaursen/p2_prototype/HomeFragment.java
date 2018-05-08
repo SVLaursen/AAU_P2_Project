@@ -382,15 +382,11 @@ public class HomeFragment extends Fragment {
         } else if (type == "exercise") {
             //THIS IS WHERE YOU PUT INTERACTION FOR THE exercise DIALOG!!!!
 
-            //count = 0;
-
             newView = getLayoutInflater().inflate(R.layout.dialog_insulin_input, null);
             ImageButton cancelButton = newView.findViewById(R.id.cancelButton);
             ImageButton okButton = newView.findViewById(R.id.okButton);
+
             final EditText timeInput = newView.findViewById(R.id.timeInput);
-            //final TextView amount1 = newView.findViewById(R.id.amount1);
-            //final TextView amount2 = newView.findViewById(R.id.amount2);
-            //final TextView amount3 = newView.findViewById(R.id.amount3);
 
             final TextView[] amount = {newView.findViewById(R.id.amount1), newView.findViewById(R.id.amount2), newView.findViewById(R.id.amount3)};
             final TextView[] date = {newView.findViewById(R.id.date1), newView.findViewById(R.id.date2), newView.findViewById(R.id.date3)};

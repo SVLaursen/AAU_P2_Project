@@ -20,7 +20,6 @@
         android:id="@+id/cancelButton"
         android:layout_width="112dp"
         android:layout_height="32dp"
-
         android:layout_alignTop="@+id/okButton"
         android:layout_marginStart="60dp"
         android:background="@android:color/transparent"

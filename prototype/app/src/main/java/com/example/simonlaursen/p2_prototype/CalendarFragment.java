@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
@@ -23,6 +27,7 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
 import java.util.Calendar;
+import java.util.HashSet;
 
 public class CalendarFragment extends Fragment {
 
@@ -56,15 +61,12 @@ public class CalendarFragment extends Fragment {
         materialCalendarView.setTopbarVisible(true); //Used to enable/disable the top bar, which contains the name of the months and arrows.
         materialCalendarView.setWeekDayLabels(new String[] {"SØN", "MAN", "TIR","ONS","TOR","FRE","LØR"}); //Sets the labels for the weekdays.
 
-
-
         //sets the selected day to the current day, when entering the calendar
         final Calendar calendar = Calendar.getInstance();
         materialCalendarView.setDateSelected(calendar.getTime(), true);
 
-
-
         //Used to find the current day and decorate it
+        //THE CODE BELOW IS DEFUNCT; PLEASE REVISE!
         materialCalendarView.addDecorator(new DayViewDecorator() {
             @Override
             public boolean shouldDecorate(CalendarDay day) {
@@ -79,37 +81,95 @@ public class CalendarFragment extends Fragment {
 
             @Override
             public void decorate(DayViewFacade view) {
-                    view.addSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.colorDarkBlue))); //sets the color
-                    view.addSpan(new StyleSpan(Typeface.BOLD)); //sets the current day to a BOLD text style
-                    //view.addSpan(new RelativeSizeSpan(1.25f)); //sets the font size to be a little bigger than the other days
+                view.addSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.colorDarkBlue))); //sets the color
+                view.addSpan(new StyleSpan(Typeface.BOLD)); //sets the current day to a BOLD text style
+                //view.addSpan(new RelativeSizeSpan(1.25f)); //sets the font size to be a little bigger than the other days
 
-                    /* Adds a dot on the current day.
-                     * For now, only used to test it out.
-                     * But a decorator with a DotSpan is probably needed if we figure out the events thing. */
-                    view.addSpan(new DotSpan(8, R.color.colorDarkBlue));
+                /* Adds a dot on the current day.
+                 * For now, only used to test it out.
+                 * But a decorator with a DotSpan is probably needed if we figure out the events thing. */
+                view.addSpan(new DotSpan(8, R.color.colorDarkBlue));
             }
         });
 
-
+        //ON CLICK LISTENER
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
 
                 /* Creates a toast that shows what date was clicked on in DD/MM/YYYY
                 *  Was used for testing. */
-                //Toast.makeText(getActivity().getApplicationContext(), ""+ date.getDay() + " / " + date.getMonth() + " / " + date.getYear(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity().getApplicationContext(), ""+ date.getDay() + " / " + date.getMonth() + " / " + date.getYear(), Toast.LENGTH_SHORT).show();
+
+                int monthNum = date.getMonth() + 1;
 
                 //Creates and alertDialog pop-up for that day
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                builder.setTitle("" + date.getDay() + " / " + date.getMonth() + " / " + date.getYear()); //Sets the title of the dialog to the clicked days date
-                builder.setMessage("Message content");
-                builder.setCancelable(true);
-                AlertDialog alert = builder.create();
-                alert.show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AppTheme_DialogTheme);
+                View newView = getLayoutInflater().inflate(R.layout.dialog_event_popup, null);
+
+                //Setup for the objects within the dialog popup
+                TextView dateText = newView.findViewById(R.id.dateText);
+                TextView eventName = newView.findViewById(R.id.EventName);
+                TextView hostName = newView.findViewById(R.id.HostName);
+
+                ImageButton joinButton = newView.findViewById(R.id.JoinButton);
+                ImageButton cancelButton = newView.findViewById(R.id.CancelButton);
+
+                /*
+                 * Here we are doing the wizard of oz technique to setup fake events.
+                 * These events could be setup with a online database, but for now we're gonna have
+                 * to settle with the fake contraption.
+                 */
+
+                if(date.getDay() == 20 && date.getMonth() == 4)
+                {
+                    dateText.setText("" + date.getDay() + " / " + monthNum + " / " + date.getYear());
+                    eventName.setText("Søndags Walk");
+                    hostName.setText("Diabetes Foreningen");
+
+                    builder.setView(newView);
+                    final AlertDialog dialog = builder.create();
+                    ButtonSetup(joinButton,cancelButton,dialog);
+                    dialog.show();
+                }
+                else if(date.getDay() == 23 && date.getMonth() == 4)
+                {
+                    dateText.setText("" + date.getDay() + " / " + monthNum + " / " + date.getYear());
+                    eventName.setText("Fællestræning");
+                    hostName.setText("Hjerte Foreningen");
+
+                    builder.setView(newView);
+                    final AlertDialog dialog = builder.create();
+                    ButtonSetup(joinButton,cancelButton,dialog);
+                    dialog.show();
+                }
             }
         });
 
 
+    }
+
+    private void ButtonSetup(ImageButton joinButton, ImageButton cancelButton, AlertDialog dialog){
+
+        final AlertDialog _dialog = dialog;
+
+        joinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //JOIN THE EVENT
+                Toast.makeText(getActivity().getApplicationContext(),"Du er nu tilmeldt",Toast.LENGTH_SHORT).show();
+                _dialog.cancel();
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //LEAVE EVENT
+                Toast.makeText(getActivity().getApplicationContext(),"Du er nu meldt fra",Toast.LENGTH_SHORT).show();
+                _dialog.cancel();
+            }
+        });
     }
 
 }

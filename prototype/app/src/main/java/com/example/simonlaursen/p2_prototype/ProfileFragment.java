@@ -128,7 +128,8 @@ public class ProfileFragment extends Fragment {
                 });
             }
 
-            if (type == "graphs") {
+            if (type == "graphs")
+            {
                 newView = getLayoutInflater().inflate(R.layout.dialog_graph, null);
 
                 builder.setView(newView);
@@ -136,32 +137,41 @@ public class ProfileFragment extends Fragment {
                 dialog.show();
                 DisplayGraph(newView);
             }
-            if (type == "statistics") {
+            if (type == "statistics")
+            {
                 newView = getLayoutInflater().inflate(R.layout.dialog_statistics, null);
+
                 final TextView numberOfWeeksNum = newView.findViewById(R.id.numberOfWeeksNum);
                 final TextView hitGoalNum = newView.findViewById(R.id.hitGoalNum);
                 final TextView exerciseAllNum = newView.findViewById(R.id.exerciseAllNum);
                 final TextView highestExerciseNum = newView.findViewById(R.id.highestExerciseNum);
                 final TextView medtakenweekNumber= newView.findViewById(R.id.medtakenweekNumber);
                 final TextView medtakenallNum= newView.findViewById(R.id.medtakenallNum);
+
                 numberOfWeeksNum.setText("" + (database.getInt("numberOfWeeksNum")));
                 hitGoalNum.setText("" + (database.getInt("hitGoalNum")));
                 exerciseAllNum.setText("" + (database.getInt("exerciseAllNum")));
                 highestExerciseNum.setText("" + (database.getInt("highestExerciseNum")));
                 medtakenweekNumber.setText(""+(database.getInt("medicineWeek")));
                 medtakenallNum.setText(""+(database.getInt("medtakenallNum")));
+
                 builder.setView(newView);
                 final AlertDialog dialog = builder.create();
                 dialog.show();
             }
-            if (type == "maal") {
+            if (type == "maal")
+            {
                 newView = getLayoutInflater().inflate(R.layout.dialog_maal, null);
+
                 final EditText mål = newView.findViewById(R.id.maal);
                 final ImageButton ok = newView.findViewById(R.id.okButton);
+
                 mål.setHint("Mindst 150 min per uge");
                 builder.setView(newView);
+
                 final AlertDialog dialog = builder.create();
                 dialog.show();
+
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -174,12 +184,15 @@ public class ProfileFragment extends Fragment {
                     }
                 });
             }
-        if (type == "navn") {
+        if (type == "navn")
+        {
                 newView = getLayoutInflater().inflate(R.layout.dialog_maal, null);
                 final EditText mål = newView.findViewById(R.id.maal);
                 final ImageButton ok = newView.findViewById(R.id.okButton);
+
                 mål.setHint("Indtast nyt navn");
                 mål.setInputType(InputType.TYPE_CLASS_TEXT);
+
                 builder.setView(newView);
                 final AlertDialog dialog = builder.create();
                 dialog.show();
@@ -196,8 +209,10 @@ public class ProfileFragment extends Fragment {
                     }
                 });
         }
-        if (type == "data") {
+        if (type == "data")
+        {
             newView = getLayoutInflater().inflate(R.layout.dialog_data, null);
+
             final TextView Sure = newView.findViewById(R.id.sure);
             final ImageButton yes = newView.findViewById(R.id.yes);
             final ImageButton no = newView.findViewById(R.id.no);
