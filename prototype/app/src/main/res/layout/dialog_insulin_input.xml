@@ -13,7 +13,7 @@
         android:layout_centerVertical="true"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
-        app:srcCompat="@drawable/input_insuling_dialog_background" />
+        app:srcCompat="@drawable/input_insulin_dialog_background" />
 
 
     <ImageButton
