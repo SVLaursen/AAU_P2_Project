@@ -33,19 +33,20 @@ public class HomeFragment extends Fragment {
     int current1;
     String t;
     boolean ifInput = false;
+    char letter;
 
     // Textview Variables for exercise input
-    TextView a1 = null;
-    TextView a2 = null;
-    TextView a3 = null;
+    String a1 = null;
+    String a2 = null;
+    String a3 = null;
 
-    TextView date1 = null;
-    TextView date2 = null;
-    TextView date3 = null;
+    String date1 = null;
+    String date2 = null;
+    String date3 = null;
 
-    TextView time1 = null;
-    TextView time2 = null;
-    TextView time3 = null;
+    String time1 = null;
+    String time2 = null;
+    String time3 = null;
 
     public HomeFragment() {
         database = new Database();
@@ -306,6 +307,72 @@ public class HomeFragment extends Fragment {
             final TextView[] date = {newView.findViewById(R.id.date1), newView.findViewById(R.id.date2), newView.findViewById(R.id.date3)};
             final TextView[] time = {newView.findViewById(R.id.time1), newView.findViewById(R.id.time2), newView.findViewById(R.id.time3)};
 
+            if(ifInput) {
+                switch (count) {
+                    case 0:
+
+                    if(a1 != null) {
+                        amount[2].setText(a1);
+                        date[2].setText(date1);
+                        time[2].setText(time1);
+                    }
+                    if(a2 != null) {
+                        amount[1].setText(a2);
+                        date[1].setText(date2);
+                        time[1].setText(time2);
+                    }
+
+                    if(a3 != null){
+                        amount[0].setText(a3);
+                        date[0].setText(date3);
+                        time[0].setText(time3);
+                    }
+                        break;
+                    case 1:
+
+                    if(a1 != null) {
+                        amount[0].setText(a1);
+                        date[0].setText(date1);
+                        time[0].setText(time1);
+                    }
+                    if(a2 != null) {
+                        amount[2].setText(a2);
+                        date[2].setText(date2);
+                        time[2].setText(time2);
+                    }
+
+                    if(a3!=null){
+                        amount[1].setText(a3);
+                        date[1].setText(date3);
+                        time[1].setText(time3);
+                    }
+                        break;
+
+                    case 2:
+
+                    if(a1 != null) {
+                        amount[1].setText(a1);
+                        date[1].setText(date1);
+                        time[1].setText(time1);
+                    }
+
+                    if(a2 != null) {
+                        amount[0].setText(a2);
+                        date[0].setText(date2);
+                        time[0].setText(time2);
+                    }
+
+                    if(a3!=null){
+                        amount[2].setText(a3);
+                        date[2].setText(date3);
+                        time[2].setText(time3);
+                    }
+
+                        break;
+                }
+
+            }
+
             builder.setView(newView);
             final AlertDialog dialog = builder.create();
             dialog.show();
@@ -316,7 +383,6 @@ public class HomeFragment extends Fragment {
                     if (vibrator.hasVibrator()) {
                         vibrator.vibrate(10);
                     }
-
 
                     Calendar c = Calendar.getInstance();
                     SimpleDateFormat currentDate = new SimpleDateFormat("MM-dd");
@@ -332,7 +398,7 @@ public class HomeFragment extends Fragment {
                             }
                             else if(Integer.parseInt(timeInput.getText().toString()) <= 0){
                                 dialog.cancel();
-                                break; 
+                                break;
                             }
 
                             s = Integer.parseInt(timeInput.getText().toString());
@@ -340,18 +406,13 @@ public class HomeFragment extends Fragment {
                             ///////////////////////////////////////////////////////////////////////////
                             database.setExerciseInputs(formattedDate,f,timeInput.getText().toString());
 
+                            a1 = timeInput.getText().toString();
+                            date1 = formattedDate;
+                            time1 = f;
 
-
-
-                            amount[0].setText(database.getExerciseValue(0));
-                            date[0].setText(database.getExerciseDate(0));
-                            time[0].setText(database.getExerciseTime(0));
-
-                            a1 = amount[0];
-                            date1 = date[0];
-                            time1 = time[0];
 
                             ifInput = true;
+                            letter = 'a';
                             count++;
                             if (s > 0) {
                                 current1 = database.getInt("currentProgress");
@@ -382,13 +443,12 @@ public class HomeFragment extends Fragment {
 
                             s = Integer.parseInt(timeInput.getText().toString());
                             database.setExerciseInputs(formattedDate,f,timeInput.getText().toString());
-                            amount[1].setText(database.getExerciseValue(0));
-                            date[1].setText(database.getExerciseDate(0));
-                            time[1].setText(database.getExerciseTime(0));
+
                             //System.out.println(count);
-                            a2 = amount[1];
-                            date2 = date[1];
-                            time2 = time[1];
+
+                            a2 = timeInput.getText().toString();
+                            date2 = formattedDate;
+                            time2 = f;
 
                             current1 = database.getInt("currentProgress");
                             count++;
@@ -423,15 +483,32 @@ public class HomeFragment extends Fragment {
                                 break;
                             }
 
+                            s = Integer.parseInt(timeInput.getText().toString());
                             database.setExerciseInputs(formattedDate,f,timeInput.getText().toString());
-                            amount[2].setText(timeInput.getText().toString());
-                            date[2].setText(formattedDate);
-                            time[2].setText(f);
+
                             System.out.println(count);
                             count = 0;
-                            a1 = amount[2];
-                            date1 = date[2];
-                            time1 = time[2];
+                            a3 = timeInput.getText().toString();
+                            date3 = formattedDate;
+                            time3 = f;
+
+                            if (s > 0) {
+                                current1 = database.getInt("currentProgress");
+
+                                long input47 = s + current1;
+
+                                database.setInt((int) input47, "currentProgress");
+
+
+                                // setting the current progress on the progress bar and animating the change
+
+                                progressBar.setProgress(database.getInt("currentProgress"), true);
+                                if (timerStopped && database.getProgressText() != null) {
+                                    showProgress.setText(database.getProgressText());
+                                }
+                                dialog.cancel();
+                            }
+
                             break;
                     }
 
