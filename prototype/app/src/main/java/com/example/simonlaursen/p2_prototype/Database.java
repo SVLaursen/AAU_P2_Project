@@ -18,7 +18,8 @@ public class Database {
     private static int highestExerciseNum;
     private static int maxProgress; //Variable for the max progress on the progressbar
     private static int currentProgress; //Change this value to 0 before releasing app, the current value is for debugging only
-
+    private static int MedicinTakenWeek;
+    private static int medtakenallNum;
     private static long StartweekDate;
     private static long currentDate;
 
@@ -40,6 +41,8 @@ public class Database {
         exerciseAllNum=SharedPref.readInteger(SharedPref.exerciseAllNum,0);
         highestExerciseNum=SharedPref.readInteger(SharedPref.highestExerciseNum,0);
         userName=SharedPref.readString("name","Aida Guerra");
+        MedicinTakenWeek=SharedPref.readInteger("MedicinTakenWeek",0);
+        medtakenallNum=SharedPref.readInteger("MedTakenAll",0);
     }
 
     public void setLong(long value, String name) {
@@ -85,7 +88,12 @@ public class Database {
         } else if (name=="highestExerciseNum") {
             highestExerciseNum=value;
             SharedPref.writeInteger(SharedPref.highestExerciseNum,value);
-        }
+        } else if (name=="medicineWeek") {
+            MedicinTakenWeek=value;
+            medtakenallNum+=value;
+        SharedPref.writeInteger(SharedPref.MedicinTakenWeek,value);
+        SharedPref.writeInteger(SharedPref.MedTakenAll,medtakenallNum);
+    }
      }
 
     public void setFloat(float value, String name){
@@ -123,6 +131,12 @@ public class Database {
         }
         else if (name=="highestExerciseNum") {
             return highestExerciseNum;
+        }
+        else if(name=="medicineWeek") {
+            return MedicinTakenWeek;
+        }
+        else if(name=="medtakenallNum") {
+            return medtakenallNum;
         }
         else {
             return 0;

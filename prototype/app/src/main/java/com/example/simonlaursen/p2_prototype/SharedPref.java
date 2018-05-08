@@ -15,6 +15,8 @@ public class SharedPref
     public static final String exerciseAllNum="exerciseAllNum";
     public static final String highestExerciseNum="highestExerciseNum";
     public static final String Name="name";
+    public static final String MedicinTakenWeek="MedicinTakenWeek";
+    public static final String MedTakenAll="MedTakenAll";
     public SharedPref()
     {
 

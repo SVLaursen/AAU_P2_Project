@@ -218,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
                     database.setInt(0,"currentProgress"); // reset the current progress
                     int i = (database.getInt("numberOfWeeksNum")+1);
                     database.setInt(i,"numberOfWeeksNum"); //1 is added to the amount of weeks the app has been used
+                    database.setInt(0,"medicineWeek");
                     SharedPref.writeLong("time", CurrentDate.getTime());
                     SharedPref.writeBoolean(SharedPref.newWeek,true);
 

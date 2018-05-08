@@ -142,13 +142,14 @@ public class ProfileFragment extends Fragment {
                 final TextView hitGoalNum = newView.findViewById(R.id.hitGoalNum);
                 final TextView exerciseAllNum = newView.findViewById(R.id.exerciseAllNum);
                 final TextView highestExerciseNum = newView.findViewById(R.id.highestExerciseNum);
-
-
+                final TextView medtakenweekNumber= newView.findViewById(R.id.medtakenweekNumber);
+                final TextView medtakenallNum= newView.findViewById(R.id.medtakenallNum);
                 numberOfWeeksNum.setText("" + (database.getInt("numberOfWeeksNum")));
                 hitGoalNum.setText("" + (database.getInt("hitGoalNum")));
                 exerciseAllNum.setText("" + (database.getInt("exerciseAllNum")));
                 highestExerciseNum.setText("" + (database.getInt("highestExerciseNum")));
-
+                medtakenweekNumber.setText(""+(database.getInt("medicineWeek")));
+                medtakenallNum.setText(""+(database.getInt("medtakenallNum")));
                 builder.setView(newView);
                 final AlertDialog dialog = builder.create();
                 dialog.show();
@@ -215,6 +216,7 @@ public class ProfileFragment extends Fragment {
                     database.setInt(0,"hitGoalNum");
                     database.setInt(0,"exerciseAllNum");
                     database.setInt(0,"highestExerciseNum");
+                    name.setText("Navn Navnesen");
                     dialog.cancel();
 
                 }

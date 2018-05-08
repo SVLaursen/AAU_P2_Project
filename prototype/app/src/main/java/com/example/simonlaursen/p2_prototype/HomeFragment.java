@@ -306,7 +306,9 @@ public class HomeFragment extends Fragment {
                                 dialog.cancel();
                                 break;
                             }
-                            else if(Integer.parseInt(timeInput.getText().toString()) <= 0){
+                            else if(Integer.parseInt(timeInput.getText().toString()) >= 0){
+                                int t =database.getInt("medicineWeek");
+                                database.setInt((Integer.parseInt(timeInput.getText().toString()))+t,"medicineWeek");
                                 dialog.cancel();
                                 break;
                             }
