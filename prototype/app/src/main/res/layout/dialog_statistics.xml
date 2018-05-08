@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:color="#e40202"
     android:orientation="vertical"
-    tools:background="@color/colorBackground">
+    tools:background="@color/colorYellow">
 
 
     <TableLayout

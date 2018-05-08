@@ -68,16 +68,4 @@
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         android:src="@drawable/statistik_button" />
-
-    <ImageButton
-        android:id="@+id/editButton"
-        android:layout_width="32dp"
-        android:layout_height="30dp"
-        android:layout_alignBottom="@+id/portrait"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="134dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        android:src="@drawable/edit_button" />
-
 </RelativeLayout>

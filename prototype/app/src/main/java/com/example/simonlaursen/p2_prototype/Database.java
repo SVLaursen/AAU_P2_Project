@@ -9,7 +9,6 @@ import com.jjoe64.graphview.series.DataPoint;
 public class Database {
 
     private static float fullTime;
-
     private static int shownTime;
     private static int inputTime;
     private static int currentInsulin;
@@ -26,6 +25,8 @@ public class Database {
     private static ExerciseInputs[] exerciseInputs = new ExerciseInputs[3]; //Storage for the data involving the exercise input
     private static InsulinInputs[] insulinInputs = new InsulinInputs[3]; //Storage for the data involving the insulin input
 
+    private String userName="Abe Lone";
+
     //DEFAULT CONSTRUCTOR
     public Database() {
 
@@ -38,6 +39,7 @@ public class Database {
         hitGoalNum=SharedPref.readInteger(SharedPref.hitGoalNum,0);
         exerciseAllNum=SharedPref.readInteger(SharedPref.exerciseAllNum,0);
         highestExerciseNum=SharedPref.readInteger(SharedPref.highestExerciseNum,0);
+        userName=SharedPref.readString("name","Aida Guerra");
     }
 
     public void setLong(long value, String name) {
@@ -136,7 +138,12 @@ public class Database {
         }
 
     }
+    public void setName(String navn2){
+        userName=navn2;
+        SharedPref.writeString("name",navn2);
 
+    }
+    public String getName() {return userName;}
     public String getProgressText() {
         return currentProgress + "/" + maxProgress;
     }

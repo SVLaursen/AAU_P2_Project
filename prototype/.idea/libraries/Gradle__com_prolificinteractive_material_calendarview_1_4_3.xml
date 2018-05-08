@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.prolificinteractive:material-calendarview-1.4.3">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/material-calendarview-1.4.3.aar/5958af628e01bf9be7a1b6479011522f/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/material-calendarview-1.4.3.aar/5958af628e01bf9be7a1b6479011522f/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/material-calendarview-1.4.3.aar/5f17815fa3a03265524c6590b01e8c14/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/material-calendarview-1.4.3.aar/5f17815fa3a03265524c6590b01e8c14/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

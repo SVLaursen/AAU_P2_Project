@@ -3,20 +3,23 @@ package com.example.simonlaursen.p2_prototype;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
-import android.view.ContextThemeWrapper;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+
+import org.w3c.dom.Text;
 
 public class ProfileFragment extends Fragment {
 
@@ -32,12 +35,12 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
-
         final MainActivity mainActivity = (MainActivity)getActivity();
         mainActivity.timerActive = false;
-
+        TextView name =(TextView) v.findViewById(R.id.nameArea);
         InputButtons(v); //activates the input buttons
-
+        String t=(SharedPref.readString("name","Navn Navnesen"));
+        name.setText(t);
         return v;
     }
 
@@ -57,6 +60,7 @@ public class ProfileFragment extends Fragment {
                     vibrator.vibrate(10);
                 }
                 DisplayDialog(v,"settings");
+
             }
         });
 
@@ -81,50 +85,155 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    private void DisplayDialog(View v, String type){
+    private void DisplayDialog(View v, String type) {
         /*
         This one is used to create dialog pop-ups containing information.
         It takes in the view that we're current in and then a string to determine which pop-up we want.
          */
         //final Fragment fragment = this;
-        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(),R.style.AppTheme_DialogTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AppTheme_DialogTheme);
+
+        final Fragment fragment = this;
         View newView = null; //Null until changed when a specific dialog is chosen
+        final TextView name =(TextView) fragment.getView().findViewById(R.id.nameArea);
+            if (type == "settings") {
+                newView = getLayoutInflater().inflate(R.layout.dialog_options, null);
+                final Button mål = newView.findViewById(R.id.button6);
+                final Button navn = newView.findViewById(R.id.button4);
+                final Button data = newView.findViewById(R.id.button5);
+                builder.setView(newView);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+                mål.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                        DisplayDialog(v, "maal");
+                    }
+                });
+                navn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DisplayDialog(v, "navn");
+                        dialog.cancel();
+                    }
+                });
+                data.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DisplayDialog(v, "data");
+                        dialog.cancel();
+                    }
+                });
+            }
 
-        if(type == "settings"){
-            newView = getLayoutInflater().inflate(R.layout.dialog_settings,null);
+            if (type == "graphs") {
+                newView = getLayoutInflater().inflate(R.layout.dialog_graph, null);
+
+                builder.setView(newView);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+                DisplayGraph(newView);
+            }
+            if (type == "statistics") {
+                newView = getLayoutInflater().inflate(R.layout.dialog_statistics, null);
+                final TextView numberOfWeeksNum = newView.findViewById(R.id.numberOfWeeksNum);
+                final TextView hitGoalNum = newView.findViewById(R.id.hitGoalNum);
+                final TextView exerciseAllNum = newView.findViewById(R.id.exerciseAllNum);
+                final TextView highestExerciseNum = newView.findViewById(R.id.highestExerciseNum);
+                final TextView ph1num = newView.findViewById(R.id.ph1num);
+                final TextView ph2num = newView.findViewById(R.id.ph2Num);
+
+                numberOfWeeksNum.setText("" + (database.getInt("numberOfWeeksNum")));
+                hitGoalNum.setText("" + (database.getInt("hitGoalNum")));
+                exerciseAllNum.setText("" + (database.getInt("exerciseAllNum")));
+                highestExerciseNum.setText("" + (database.getInt("highestExerciseNum")));
+
+                builder.setView(newView);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+            if (type == "maal") {
+                newView = getLayoutInflater().inflate(R.layout.dialog_maal, null);
+                final EditText mål = newView.findViewById(R.id.maal);
+                final ImageButton ok = newView.findViewById(R.id.okButton);
+                mål.setHint("Mindst 150 min per uge");
+                builder.setView(newView);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+                ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int s = Integer.parseInt(mål.getText().toString());
+                        if (s<150){
+                            s=database.getInt("maxProgress");
+                            }
+                        database.setInt(s,"maxProgress");
+                        dialog.cancel();
+                    }
+                });
+            }
+        if (type == "navn") {
+                newView = getLayoutInflater().inflate(R.layout.dialog_maal, null);
+                final EditText mål = newView.findViewById(R.id.maal);
+                final ImageButton ok = newView.findViewById(R.id.okButton);
+                mål.setHint("Indtast nyt navn");
+                mål.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setView(newView);
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+                ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String s=(mål.getText().toString());
+                        name.setText(s);
+                        database.setName(s);
+
+                        //Name(v);
+                        dialog.cancel();
+
+                    }
+                });
+        }
+        if (type == "data") {
+            newView = getLayoutInflater().inflate(R.layout.dialog_data, null);
+            final TextView Sure = newView.findViewById(R.id.sure);
+            final Button yes = newView.findViewById(R.id.yes);
+            final Button no = newView.findViewById(R.id.no);
 
             builder.setView(newView);
             final AlertDialog dialog = builder.create();
             dialog.show();
-        }
-        else if(type == "graphs"){
-            newView = getLayoutInflater().inflate(R.layout.dialog_graph,null);
+            yes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SharedPref.wipe();
+                    database.loadData();
+                    database.setInt(150,"maxProgress");
+                    database.setInt(0,"currentProgress");
+                    database.setInt(0,"numberOfWeeksNum");
+                    database.setInt(0,"hitGoalNum");
+                    database.setInt(0,"exerciseAllNum");
+                    database.setInt(0,"highestExerciseNum");
+                    dialog.cancel();
 
-            builder.setView(newView);
-            final AlertDialog dialog = builder.create();
-            dialog.show();
-            DisplayGraph(newView);
-        }
-        else if(type == "statistics"){
-           newView = getLayoutInflater().inflate(R.layout.dialog_statistics,null);
-            final TextView numberOfWeeksNum = newView.findViewById(R.id.numberOfWeeksNum);
-            final TextView hitGoalNum = newView.findViewById(R.id.hitGoalNum);
-            final TextView exerciseAllNum = newView.findViewById(R.id.exerciseAllNum);
-            final TextView highestExerciseNum = newView.findViewById(R.id.highestExerciseNum);
-            final TextView ph1num = newView.findViewById(R.id.ph1num);
-            final TextView ph2num = newView.findViewById(R.id.ph2Num);
+                }
+            });
+            no.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.cancel();
 
-            numberOfWeeksNum.setText("" + (database.getInt("numberOfWeeksNum")));
-            hitGoalNum.setText("" + (database.getInt("hitGoalNum")));
-            exerciseAllNum.setText("" + (database.getInt("exerciseAllNum")));
-            highestExerciseNum.setText("" + (database.getInt("highestExerciseNum")));
-
-            builder.setView(newView);
-            final AlertDialog dialog = builder.create();
-            dialog.show();
+                }
+            });
         }
+        }
+
+    public void Name(View v){
+
+        TextView name =(TextView) v.findViewById(R.id.nameArea);
+        name.setText(database.getName());
     }
-
     private void Latest(View v){
 
     }
@@ -134,6 +243,4 @@ public class ProfileFragment extends Fragment {
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(database.loadDataPoints());
         graphView.addSeries(series);
     }
-
-
 }

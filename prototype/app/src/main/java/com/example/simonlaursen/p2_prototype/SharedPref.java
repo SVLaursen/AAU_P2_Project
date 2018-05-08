@@ -14,7 +14,7 @@ public class SharedPref
     public static final String hitGoalNum="hitGoalNum";
     public static final String exerciseAllNum="exerciseAllNum";
     public static final String highestExerciseNum="highestExerciseNum";
-
+    public static final String Name="name";
     public SharedPref()
     {
 
@@ -25,7 +25,7 @@ public class SharedPref
         if(mSharedPref == null)
             mSharedPref = context.getSharedPreferences(context.getPackageName(), Activity.MODE_PRIVATE);
     }
-    public static void wipe(Context context) {
+    public static void wipe() {
         SharedPreferences.Editor prefsEditor = mSharedPref.edit();
         prefsEditor.clear();
         prefsEditor.commit();
