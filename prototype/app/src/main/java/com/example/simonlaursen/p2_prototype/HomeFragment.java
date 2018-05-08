@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,12 +26,26 @@ public class HomeFragment extends Fragment {
     private Database database;
     private Chronometer cmTimer;
     private boolean timerStopped = true;
-    int count = 0;
+    private int count = 0;
     boolean cancel = true;
     String timeInputValue;
     int s;
     int current1;
     String t;
+    boolean ifInput = false;
+
+    // Textview Variables for exercise input
+    TextView a1 = null;
+    TextView a2 = null;
+    TextView a3 = null;
+
+    TextView date1 = null;
+    TextView date2 = null;
+    TextView date3 = null;
+
+    TextView time1 = null;
+    TextView time2 = null;
+    TextView time3 = null;
 
     public HomeFragment() {
         database = new Database();
@@ -161,7 +176,7 @@ public class HomeFragment extends Fragment {
         It takes in the view that we're current in and then a string to determine which pop-up we want.
          */
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AppTheme_DialogTheme);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AppTheme_DialogTheme);
 
         View newView = null; //Null until changed when a specific dialog is chosen
 
@@ -172,14 +187,13 @@ public class HomeFragment extends Fragment {
 
         if (type == "insulin") {
             //THIS IS WHERE YOU PUT INTERACTION FOR THE INSULIN INPUT DIALOG!!!!
-            count = 0;
+            //count = 0;
+
             newView = getLayoutInflater().inflate(R.layout.dialog_insulin_input, null);
             ImageButton cancelButton = newView.findViewById(R.id.cancelButton);
             ImageButton okButton = newView.findViewById(R.id.okButton);
+
             final EditText timeInput = newView.findViewById(R.id.timeInput);
-            //final TextView amount1 = newView.findViewById(R.id.amount1);
-            //final TextView amount2 = newView.findViewById(R.id.amount2);
-            //final TextView amount3 = newView.findViewById(R.id.amount3);
             final TextView[] amount = {newView.findViewById(R.id.amount1), newView.findViewById(R.id.amount2), newView.findViewById(R.id.amount3)};
             final TextView[] date = {newView.findViewById(R.id.date1), newView.findViewById(R.id.date2), newView.findViewById(R.id.date3)};
             final TextView[] time = {newView.findViewById(R.id.time1), newView.findViewById(R.id.time2), newView.findViewById(R.id.time3)};
@@ -187,7 +201,6 @@ public class HomeFragment extends Fragment {
             builder.setView(newView);
             final AlertDialog dialog = builder.create();
             dialog.show();
-
 
             okButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -206,7 +219,15 @@ public class HomeFragment extends Fragment {
 
                     switch (count) {
                         case 0:
-                            System.out.println(count);
+                            if(TextUtils.isEmpty(timeInput.getText().toString())){
+                                dialog.cancel();
+                                break;
+                            }
+                            else if(Integer.parseInt(timeInput.getText().toString()) <= 0){
+                                dialog.cancel();
+                                break;
+                            }
+
                             database.setInsulinInputs(formattedDate,f,timeInput.getText().toString());
                             amount[0].setText(database.getInsulinValue(0));
                             date[0].setText(database.getInsulinDate(0));
@@ -215,6 +236,16 @@ public class HomeFragment extends Fragment {
                             count++;
                             break;
                         case 1:
+                            if(TextUtils.isEmpty(timeInput.getText().toString())){
+                                dialog.cancel();
+                                break;
+                            }
+                            else if(Integer.parseInt(timeInput.getText().toString()) <= 0){
+                                dialog.cancel();
+                                break;
+                            }
+
+                            database.setInsulinInputs(formattedDate,f,timeInput.getText().toString());
                             amount[1].setText(timeInput.getText().toString());
                             date[1].setText(formattedDate);
                             time[1].setText(f);
@@ -222,6 +253,16 @@ public class HomeFragment extends Fragment {
                             count++;
                             break;
                         case 2:
+                            if(TextUtils.isEmpty(timeInput.getText().toString())){
+                                dialog.cancel();
+                                break;
+                            }
+                            else if(Integer.parseInt(timeInput.getText().toString()) <= 0){
+                                dialog.cancel();
+                                break;
+                            }
+
+                            database.setInsulinInputs(formattedDate,f,timeInput.getText().toString());
                             amount[2].setText(timeInput.getText().toString());
                             date[2].setText(formattedDate);
                             time[2].setText(f);
@@ -230,7 +271,7 @@ public class HomeFragment extends Fragment {
                             break;
                     }
 
-
+                    dialog.cancel();
                 }
             });
 
@@ -250,7 +291,9 @@ public class HomeFragment extends Fragment {
 
         } else if (type == "exercise") {
             //THIS IS WHERE YOU PUT INTERACTION FOR THE exercise DIALOG!!!!
-            count = 0;
+
+            //count = 0;
+
             newView = getLayoutInflater().inflate(R.layout.dialog_insulin_input, null);
             ImageButton cancelButton = newView.findViewById(R.id.cancelButton);
             ImageButton okButton = newView.findViewById(R.id.okButton);
@@ -263,11 +306,9 @@ public class HomeFragment extends Fragment {
             final TextView[] date = {newView.findViewById(R.id.date1), newView.findViewById(R.id.date2), newView.findViewById(R.id.date3)};
             final TextView[] time = {newView.findViewById(R.id.time1), newView.findViewById(R.id.time2), newView.findViewById(R.id.time3)};
 
-
             builder.setView(newView);
             final AlertDialog dialog = builder.create();
             dialog.show();
-
 
             okButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -283,38 +324,83 @@ public class HomeFragment extends Fragment {
                     String formattedDate = currentDate.format(c.getTime());
                     String f = currentTime.format(c.getTime());
 
-                        /*
-                        if(count < 3) {
-                            amount[count].setText(timeInput.getText().toString());
-                            date[count].setText(formattedDate);
-                            time[count].setText(f);
-                            count++;
-                            if(count == 3){
-                                count = 0;
-                            }
-                        }
-                        */
-
-
                     switch (count) {
                         case 0:
+                            if(TextUtils.isEmpty(timeInput.getText().toString())){
+                                dialog.cancel();
+                                break;
+                            }
+                            else if(Integer.parseInt(timeInput.getText().toString()) <= 0){
+                                dialog.cancel();
+                                break; 
+                            }
 
                             s = Integer.parseInt(timeInput.getText().toString());
 
                             ///////////////////////////////////////////////////////////////////////////
                             database.setExerciseInputs(formattedDate,f,timeInput.getText().toString());
+
+
+
+
                             amount[0].setText(database.getExerciseValue(0));
                             date[0].setText(database.getExerciseDate(0));
                             time[0].setText(database.getExerciseTime(0));
+
+                            a1 = amount[0];
+                            date1 = date[0];
+                            time1 = time[0];
+
+                            ifInput = true;
+                            count++;
+                            if (s > 0) {
+                                current1 = database.getInt("currentProgress");
+
+                                long input47 = s + current1;
+
+                                database.setInt((int) input47, "currentProgress");
+
+
+                                // setting the current progress on the progress bar and animating the change
+
+                                progressBar.setProgress(database.getInt("currentProgress"), true);
+                                if (timerStopped && database.getProgressText() != null) {
+                                    showProgress.setText(database.getProgressText());
+                                }
+                                dialog.cancel();
+                            }
+                            break;
+                        case 1:
+                            if(TextUtils.isEmpty(timeInput.getText().toString())){
+                                dialog.cancel();
+                                break;
+                            }
+                            else if(Integer.parseInt(timeInput.getText().toString()) <= 0){
+                                dialog.cancel();
+                                break;
+                            }
+
+                            s = Integer.parseInt(timeInput.getText().toString());
+                            database.setExerciseInputs(formattedDate,f,timeInput.getText().toString());
+                            amount[1].setText(database.getExerciseValue(0));
+                            date[1].setText(database.getExerciseDate(0));
+                            time[1].setText(database.getExerciseTime(0));
+                            //System.out.println(count);
+                            a2 = amount[1];
+                            date2 = date[1];
+                            time2 = time[1];
+
                             current1 = database.getInt("currentProgress");
                             count++;
-                            if (s > 1) {
+
+
+
 
                                 current1 = database.getInt("currentProgress");
 
-                                long input47 =s+current1;
+                                long input48 =s+current1;
 
-                                database.setInt((int) input47, "currentProgress");
+                                database.setInt((int) input48, "currentProgress");
 
 
                                 // setting the current progress on the progress bar and animating the change
@@ -323,23 +409,29 @@ public class HomeFragment extends Fragment {
                                 if(timerStopped){
                                     showProgress.setText(database.getProgressText());
                                 }
-                                dialog.cancel();
-                            }
-                            break;
-                        case 1:
-                            amount[1].setText(timeInput.getText().toString());
-                            date[1].setText(formattedDate);
-                            time[1].setText(f);
-                            System.out.println(count);
-                            count++;
+                               dialog.cancel();
+
 
                             break;
                         case 2:
+                            if(TextUtils.isEmpty(timeInput.getText().toString())){
+                                dialog.cancel();
+                                break;
+                            }
+                            else if(Integer.parseInt(timeInput.getText().toString()) <= 0){
+                                dialog.cancel();
+                                break;
+                            }
+
+                            database.setExerciseInputs(formattedDate,f,timeInput.getText().toString());
                             amount[2].setText(timeInput.getText().toString());
                             date[2].setText(formattedDate);
                             time[2].setText(f);
                             System.out.println(count);
                             count = 0;
+                            a1 = amount[2];
+                            date1 = date[2];
+                            time1 = time[2];
                             break;
                     }
 
@@ -365,9 +457,6 @@ public class HomeFragment extends Fragment {
 
         }
     }
-
-
-
 
 
 }

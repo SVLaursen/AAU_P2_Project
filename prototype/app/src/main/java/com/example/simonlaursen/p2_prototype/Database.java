@@ -144,22 +144,20 @@ public class Database {
 
     //EXERCISE INPUT DATA
     public void setExerciseInputs(String date, String time, String value){
-        for(int i = 0; i < 3; i++){
-            if(exerciseInputs[i] != null){
-                if(exerciseInputs[i + 1] != null){
-                    exerciseInputs[i+2] = exerciseInputs[i+1];
-                    exerciseInputs[i+1] = exerciseInputs[i];
-                    exerciseInputs[i] = new ExerciseInputs(date,time,value);
+            if(exerciseInputs[0] != null){
+                if(exerciseInputs[1] != null){
+                    exerciseInputs[0+2] = exerciseInputs[0+1];
+                    exerciseInputs[0+1] = exerciseInputs[0];
+                    exerciseInputs[0] = new ExerciseInputs(date,time,value);
                 }
                 else{
-                    exerciseInputs[i+1] = exerciseInputs[i];
-                    exerciseInputs[i] = new ExerciseInputs(date,time,value);
+                    exerciseInputs[1] = exerciseInputs[0];
+                    exerciseInputs[0] = new ExerciseInputs(date,time,value);
                 }
             }
             else{
-                exerciseInputs[i] = new ExerciseInputs(date,time,value);
+                exerciseInputs[0] = new ExerciseInputs(date,time,value);
             }
-        }
     }
 
     public String getExerciseDate(int num){
@@ -176,22 +174,20 @@ public class Database {
 
     //INSULIN INPUT DATA
     public void setInsulinInputs(String date, String time, String value){
-        for(int i = 0; i < 3; i++){
-            if(insulinInputs[i] != null){
-                if(insulinInputs[i + 1] != null){
-                    insulinInputs[i+2] = insulinInputs[i+1];
-                    insulinInputs[i+1] = insulinInputs[i];
-                    insulinInputs[i] = new InsulinInputs(date,time,value);
+            if(insulinInputs[0] != null){
+                if(insulinInputs[1] != null){
+                    insulinInputs[2] = insulinInputs[1];
+                    insulinInputs[1] = insulinInputs[0];
+                    insulinInputs[0] = new InsulinInputs(date,time,value);
                 }
                 else{
-                    insulinInputs[i+1] = insulinInputs[i];
-                    insulinInputs[i] = new InsulinInputs(date,time,value);
+                    insulinInputs[1] = insulinInputs[0];
+                    insulinInputs[0] = new InsulinInputs(date,time,value);
                 }
             }
             else{
-                insulinInputs[i] = new InsulinInputs(date,time,value);
+                insulinInputs[0] = new InsulinInputs(date,time,value);
             }
-        }
     }
 
     public String getInsulinDate(int num){
