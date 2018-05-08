@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -7,30 +8,49 @@
     android:orientation="vertical"
     tools:background="@color/colorYellow">
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button5"
-        android:layout_alignBottom="@+id/button5"
-        android:layout_centerHorizontal="true"
-        android:text="Navn" />
+    <ImageButton
+        android:id="@+id/målButton"
+        android:layout_width="112dp"
+        android:layout_height="32dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/goalButton"
+        android:layout_marginTop="60dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/profile_button_goal" />
 
-    <Button
-        android:id="@+id/button5"
+    <ImageButton
+        android:id="@+id/nameButton"
+        android:layout_width="112dp"
+        android:layout_height="32dp"
+
+        android:layout_alignTop="@+id/målButton"
+        android:layout_toEndOf="@+id/målButton"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/profile_button_name" />
+
+    <ImageButton
+        android:id="@+id/DataButton"
+        android:layout_width="112dp"
+        android:layout_height="32dp"
+        android:layout_alignTop="@+id/målButton"
+
+        android:layout_toEndOf="@+id/nameButton"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/profile_button_data" />
+
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="55dp"
-        android:text="Slet data" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentTop="false"
-        android:layout_marginTop="55dp"
-        android:text="Mål" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="Hvad vil du ændre?"
+        android:textAllCaps="true"
+        android:textColor="@color/colorDarkGrey"
+        android:textSize="18sp" />
 </RelativeLayout>

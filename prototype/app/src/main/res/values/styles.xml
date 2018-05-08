@@ -20,6 +20,10 @@
         <item name="android:background">@color/colorBackground</item>
     </style>
 
+    <style name="AppTheme.DialogTheme87" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/colorWhite</item>
+    </style>
+
     <style name="MonthTextAppearance" parent="TextAppearance.MaterialCalendarWidget.Header">
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">30dp</item>

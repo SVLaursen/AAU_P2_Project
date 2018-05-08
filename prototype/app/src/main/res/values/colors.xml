@@ -6,10 +6,10 @@
     <color name="colorBackground">#f3f3ea</color>
 
     <!--Colors used for this project -->
-    <color name="colorWhite">#F3F3EA</color>
+    <color name="colorWhite">#f3f3ea</color>
     <color name="colorDarkBlue">#4986B2</color>
     <color name="colorLightBlue">#6CACDA</color>
     <color name="colorYellow">#e1a855</color>
     <color name="colorDarkGrey">#656565</color>
-    <color name="colorLightGrey">#B2B2B2</color>
+    <color name="colorLightGrey">#b2b2b2</color>
 </resources>

@@ -91,16 +91,17 @@ public class ProfileFragment extends Fragment {
         It takes in the view that we're current in and then a string to determine which pop-up we want.
          */
         //final Fragment fragment = this;
-        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AppTheme_DialogTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(), R.style.AppTheme_DialogTheme87);
 
         final Fragment fragment = this;
         View newView = null; //Null until changed when a specific dialog is chosen
         final TextView name =(TextView) fragment.getView().findViewById(R.id.nameArea);
             if (type == "settings") {
                 newView = getLayoutInflater().inflate(R.layout.dialog_options, null);
-                final Button mål = newView.findViewById(R.id.button6);
-                final Button navn = newView.findViewById(R.id.button4);
-                final Button data = newView.findViewById(R.id.button5);
+                final TextView text= newView.findViewById(R.id.textView);
+                final ImageButton mål = newView.findViewById(R.id.målButton);
+                final ImageButton navn = newView.findViewById(R.id.nameButton);
+                final ImageButton data = newView.findViewById(R.id.DataButton);
                 builder.setView(newView);
                 final AlertDialog dialog = builder.create();
                 dialog.show();
@@ -141,8 +142,7 @@ public class ProfileFragment extends Fragment {
                 final TextView hitGoalNum = newView.findViewById(R.id.hitGoalNum);
                 final TextView exerciseAllNum = newView.findViewById(R.id.exerciseAllNum);
                 final TextView highestExerciseNum = newView.findViewById(R.id.highestExerciseNum);
-                final TextView ph1num = newView.findViewById(R.id.ph1num);
-                final TextView ph2num = newView.findViewById(R.id.ph2Num);
+
 
                 numberOfWeeksNum.setText("" + (database.getInt("numberOfWeeksNum")));
                 hitGoalNum.setText("" + (database.getInt("hitGoalNum")));
@@ -198,8 +198,8 @@ public class ProfileFragment extends Fragment {
         if (type == "data") {
             newView = getLayoutInflater().inflate(R.layout.dialog_data, null);
             final TextView Sure = newView.findViewById(R.id.sure);
-            final Button yes = newView.findViewById(R.id.yes);
-            final Button no = newView.findViewById(R.id.no);
+            final ImageButton yes = newView.findViewById(R.id.yes);
+            final ImageButton no = newView.findViewById(R.id.no);
 
             builder.setView(newView);
             final AlertDialog dialog = builder.create();
