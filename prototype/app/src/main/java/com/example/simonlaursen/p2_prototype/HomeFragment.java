@@ -27,12 +27,14 @@ public class HomeFragment extends Fragment {
     private Chronometer cmTimer;
     private boolean timerStopped = true;
     private int count = 0;
+    private int insulinCount = 0;
     boolean cancel = true;
     String timeInputValue;
     int s;
     int current1;
     String t;
     boolean ifInput = false;
+    boolean ifInsulin = false;
     char letter;
 
     // Textview Variables for exercise input
@@ -47,6 +49,20 @@ public class HomeFragment extends Fragment {
     String time1 = null;
     String time2 = null;
     String time3 = null;
+
+    // Textview Variables for insulin input
+    String u1 = null;
+    String u2 = null;
+    String u3 = null;
+
+    String insulinDate1 = null;
+    String insulinDate2 = null;
+    String insulinDate3 = null;
+
+    String insulinTime1 = null;
+    String insulinTime2 = null;
+    String insulinTime3 = null;
+
 
     public HomeFragment() {
         database = new Database();
@@ -199,6 +215,72 @@ public class HomeFragment extends Fragment {
             final TextView[] date = {newView.findViewById(R.id.date1), newView.findViewById(R.id.date2), newView.findViewById(R.id.date3)};
             final TextView[] time = {newView.findViewById(R.id.time1), newView.findViewById(R.id.time2), newView.findViewById(R.id.time3)};
 
+            if(ifInsulin) {
+                switch (insulinCount) {
+                    case 0:
+
+                        if(u1 != null) {
+                            amount[2].setText(u1);
+                            date[2].setText(insulinDate1);
+                            time[2].setText(insulinTime1);
+                        }
+                        if(u2 != null) {
+                            amount[1].setText(u2);
+                            date[1].setText(insulinDate2);
+                            time[1].setText(insulinTime2);
+                        }
+
+                        if(u3 != null){
+                            amount[0].setText(u3);
+                            date[0].setText(insulinDate3);
+                            time[0].setText(insulinTime3);
+                        }
+                        break;
+                    case 1:
+
+                        if(u1 != null) {
+                            amount[0].setText(u1);
+                            date[0].setText(insulinDate1);
+                            time[0].setText(insulinTime1);
+                        }
+                        if(u2 != null) {
+                            amount[2].setText(u2);
+                            date[2].setText(insulinDate2);
+                            time[2].setText(insulinTime2);
+                        }
+
+                        if(u3!=null){
+                            amount[1].setText(u3);
+                            date[1].setText(insulinDate3);
+                            time[1].setText(insulinTime3);
+                        }
+                        break;
+
+                    case 2:
+
+                        if(u1 != null) {
+                            amount[1].setText(u1);
+                            date[1].setText(insulinDate1);
+                            time[1].setText(insulinTime1);
+                        }
+
+                        if(u2 != null) {
+                            amount[0].setText(u2);
+                            date[0].setText(insulinDate2);
+                            time[0].setText(insulinTime3);
+                        }
+
+                        if(u3!=null){
+                            amount[2].setText(u3);
+                            date[2].setText(insulinDate3);
+                            time[2].setText(insulinTime3);
+                        }
+
+                        break;
+                }
+
+            }
+
             builder.setView(newView);
             final AlertDialog dialog = builder.create();
             dialog.show();
@@ -218,7 +300,7 @@ public class HomeFragment extends Fragment {
                     String f = currentTime.format(c.getTime());
 
 
-                    switch (count) {
+                    switch (insulinCount) {
                         case 0:
                             if(TextUtils.isEmpty(timeInput.getText().toString())){
                                 dialog.cancel();
@@ -230,11 +312,12 @@ public class HomeFragment extends Fragment {
                             }
 
                             database.setInsulinInputs(formattedDate,f,timeInput.getText().toString());
-                            amount[0].setText(database.getInsulinValue(0));
-                            date[0].setText(database.getInsulinDate(0));
-                            time[0].setText(database.getInsulinTime(0));
+                            u1 = timeInput.getText().toString();
+                            insulinDate1 = formattedDate;
+                            insulinTime1 = f;
 
-                            count++;
+                            ifInsulin = true;
+                            insulinCount++;
                             break;
                         case 1:
                             if(TextUtils.isEmpty(timeInput.getText().toString())){
@@ -247,11 +330,13 @@ public class HomeFragment extends Fragment {
                             }
 
                             database.setInsulinInputs(formattedDate,f,timeInput.getText().toString());
-                            amount[1].setText(timeInput.getText().toString());
-                            date[1].setText(formattedDate);
-                            time[1].setText(f);
                             System.out.println(count);
-                            count++;
+
+                            u2 = timeInput.getText().toString();
+                            insulinDate2 = formattedDate;
+                            insulinTime2 = f;
+
+                            insulinCount++;
                             break;
                         case 2:
                             if(TextUtils.isEmpty(timeInput.getText().toString())){
@@ -264,11 +349,13 @@ public class HomeFragment extends Fragment {
                             }
 
                             database.setInsulinInputs(formattedDate,f,timeInput.getText().toString());
-                            amount[2].setText(timeInput.getText().toString());
-                            date[2].setText(formattedDate);
-                            time[2].setText(f);
                             System.out.println(count);
-                            count = 0;
+
+                            u3 = timeInput.getText().toString();
+                            insulinDate3 = formattedDate;
+                            insulinTime3 = f;
+
+                            insulinCount = 0;
                             break;
                     }
 
