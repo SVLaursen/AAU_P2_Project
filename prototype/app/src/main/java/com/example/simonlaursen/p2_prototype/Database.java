@@ -2,6 +2,8 @@ package com.example.simonlaursen.p2_prototype;
 
 import com.jjoe64.graphview.series.DataPoint;
 
+import java.util.HashSet;
+
 public class Database {
 
     private static float fullTime;
@@ -35,8 +37,6 @@ public class Database {
     private static ExerciseInputs[] exerciseInputs = new ExerciseInputs[3]; //Storage for the data involving the exercise input
     private static InsulinInputs[] insulinInputs = new InsulinInputs[3]; //Storage for the data involving the insulin input
 
-
-    private String userName="Abe Lone";
 
     private String userName="Brugernavn";
 
@@ -312,12 +312,8 @@ public class Database {
     }
 
     public DataPoint[] loadDataPoints(){
-     //  MainActivity.getDate();
         DataPoint[] dataPoints =  new DataPoint[8];
-      /* time = HomeFragment.getInt("s");
-     //   int input = time;
-       HomeFragment.setInt((int)time,"time");
-        //TODO: Change the values based on the prior inputs*/
+
         dataPoints[0] = new DataPoint(0,0);
         dataPoints[1] = new DataPoint(1.0,day1);
         dataPoints[2] = new DataPoint(2.0,day2);

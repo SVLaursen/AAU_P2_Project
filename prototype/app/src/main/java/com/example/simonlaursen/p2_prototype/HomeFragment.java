@@ -25,21 +25,16 @@ public class HomeFragment extends Fragment {
 
     private Database database;
     private Chronometer cmTimer;
+
     private boolean timerStopped = true;
+    private boolean ifInput = false;
+    private boolean ifInsulin = false;
+
+    private static int s;
+
     private int count = 0;
     private int insulinCount = 0;
-    boolean cancel = true;
-
-    String timeInputValue;
-    public static int s;
-
-    //String timeInputValue;
-    int s;
-
-    int current1;
-    //String t;
-    boolean ifInput = false;
-    boolean ifInsulin = false;
+    private int current1;
 
     // Textview Variables for exercise input
     String a1 = null;
@@ -214,7 +209,7 @@ public class HomeFragment extends Fragment {
             ImageButton cancelButton = newView.findViewById(R.id.cancelButton);
             ImageButton okButton = newView.findViewById(R.id.okButton);
 
-            final EditText unitInput = newView.findViewById(R.id.unitInput);
+            final EditText unitInput = newView.findViewById(R.id.timeInput);
             TextView[] amount = {newView.findViewById(R.id.amount1), newView.findViewById(R.id.amount2), newView.findViewById(R.id.amount3)};
             TextView[] date = {newView.findViewById(R.id.date1), newView.findViewById(R.id.date2), newView.findViewById(R.id.date3)};
             TextView[] time = {newView.findViewById(R.id.time1), newView.findViewById(R.id.time2), newView.findViewById(R.id.time3)};
@@ -641,19 +636,23 @@ public class HomeFragment extends Fragment {
         }
 
     }
-        public static int setInt(int value, String name){
- if (name == "s") {
+
+    //DELETE THIS IF IT ISN'T BEING USED
+    public static int setInt(int value, String name){
+        if (name == "s")
+        {
             s = value;
-}
-return s;
-}
-         public static int getInt(String name){
-         if (name == "s") {
+        }
+
+        return s;
+    }
+
+    public static int getInt(String name){
+        if (name == "s") {
             return s;
         }
+
         return s;
-}
-
-
+    }
 }
 
