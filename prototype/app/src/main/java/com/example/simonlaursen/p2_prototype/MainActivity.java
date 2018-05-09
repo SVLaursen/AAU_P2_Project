@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment currentFragment = null; //Used to check which fragment is currently running
     private Database database = new Database();
     public boolean timerActive = false;
+    public static int diffinDays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public  void checkDate(){
+    public void  checkDate(){
        boolean newWeek = SharedPref.readBoolean(SharedPref.newWeek,true);
         if (newWeek) {
             Date startDate = new Date(System.currentTimeMillis());
@@ -201,6 +202,13 @@ public class MainActivity extends AppCompatActivity {
             Date startdate = new Date(SharedPref.readLong("time", 0));
 
             int diffinDays=(int)((CurrentDate.getTime())-(startdate.getTime()));
+            if (diffinDays>1) {
+                int curr2 = database.getInt("currentProgress");
+                int[] Int ={};
+                database.addElement(Int, curr2);
+                curr2 = 0;
+                database.setInt(curr2, "currentProgress");
+
                 if (diffinDays>7 ){ //change this to 7, i think it works
 
                     int curr = database.getInt("currentProgress");
@@ -222,8 +230,15 @@ public class MainActivity extends AppCompatActivity {
                     SharedPref.writeLong("time", CurrentDate.getTime());
                     SharedPref.writeBoolean(SharedPref.newWeek,true);
 
+
+
                 }
+
         }
 
+
     }
+
+}
+
 }

@@ -30,7 +30,7 @@ public class HomeFragment extends Fragment {
     private int insulinCount = 0;
     boolean cancel = true;
     String timeInputValue;
-    int s;
+    public static int s;
     int current1;
     String t;
     boolean ifInput = false;
@@ -77,6 +77,7 @@ public class HomeFragment extends Fragment {
         cmTimer = v.findViewById(R.id.cmTimer);
         cmTimer.setText(" ");
         RunProgressBar(v);
+
 
         // Inflate the layout for this fragment
         return v;
@@ -548,6 +549,7 @@ public class HomeFragment extends Fragment {
                                 database.setInt((int) input48, "currentProgress");
 
 
+
                                 // setting the current progress on the progress bar and animating the change
 
                                 progressBar.setProgress(database.getInt("currentProgress"),true);
@@ -617,8 +619,23 @@ public class HomeFragment extends Fragment {
                 }
             });
 
+
         }
+
     }
+        public static int setInt(int value, String name){
+ if (name == "s") {
+            s = value;
+}
+return s;
+}
+         public static int getInt(String name){
+         if (name == "s") {
+            return s;
+        }
+        return s;
+}
 
 
 }
+

@@ -22,9 +22,11 @@ public class Database {
     private static int medtakenallNum;
     private static long StartweekDate;
     private static long currentDate;
+    private static int time;
 
     private static ExerciseInputs[] exerciseInputs = new ExerciseInputs[3]; //Storage for the data involving the exercise input
     private static InsulinInputs[] insulinInputs = new InsulinInputs[3]; //Storage for the data involving the insulin input
+    //public static int[] Int = new int[]; //Storage for daily progress
 
     private String userName="Abe Lone";
 
@@ -137,8 +139,11 @@ public class Database {
         }
         else if(name=="medtakenallNum") {
             return medtakenallNum;
+            }
+        else if (name == "time") {
+            return time;
         }
-        else {
+            else {
             return 0;
         }
     }
@@ -165,6 +170,11 @@ public class Database {
     public String getBlankText() {
         return " ";
     }
+    public  int[] addElement(int[] a, int e) {
+    a  = java.util.Arrays.copyOf(a, a.length + 1);
+    a[a.length - 1] = e;
+    return a;
+}
 
     public String getMinPerweek() { return "min per uge"; }
 
@@ -229,18 +239,22 @@ public class Database {
     }
 
     public DataPoint[] loadDataPoints(){
-        DataPoint[] dataPoints =  new DataPoint[4];
-
+        MainActivity.getDate();
+        DataPoint[] dataPoints =  new DataPoint[8];
+       time = HomeFragment.getInt("s");
+     //   int input = time;
+       HomeFragment.setInt((int)time,"time");
         //TODO: Change the values based on the prior inputs
-
         dataPoints[0] = new DataPoint(0,0);
-        dataPoints[1] = new DataPoint(0,0);
-        dataPoints[2] = new DataPoint(0,0);
-        dataPoints[3] = new DataPoint(0,0);
-
+        dataPoints[1] = new DataPoint(1,time);
+        dataPoints[2] = new DataPoint(2,time+time);
+        dataPoints[3] = new DataPoint(3,time+time+time);
+        dataPoints[4] = new DataPoint(4,0);
+        dataPoints[5] = new DataPoint(5,currentProgress);
+        dataPoints[6] = new DataPoint(6,currentProgress);
+        dataPoints[7] = new DataPoint(7,maxProgress);
 
         return dataPoints;
     }
-
 
 }
