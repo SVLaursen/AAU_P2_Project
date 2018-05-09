@@ -1,15 +1,14 @@
 package com.example.simonlaursen.p2_prototype;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,8 +44,7 @@ public class CalendarFragment extends Fragment {
 
     public void calendarSetup(final View v){
         final MaterialCalendarView materialCalendarView = v.findViewById(R.id.calendarView);
-        final View view = v;
-
+        final Fragment current = this;
 
         /* Instantiates the calendar and sets first day of week to monday,
         *  Sets the calendar to go from january 1st 1900 to december 31st 2100.
@@ -62,11 +60,9 @@ public class CalendarFragment extends Fragment {
         materialCalendarView.setWeekDayLabels(new String[] {"SØN", "MAN", "TIR","ONS","TOR","FRE","LØR"}); //Sets the labels for the weekdays.
 
         //sets the selected day to the current day, when entering the calendar
-        final Calendar calendar = Calendar.getInstance();
-        materialCalendarView.setDateSelected(calendar.getTime(), true);
+        materialCalendarView.setDateSelected(Calendar.getInstance().getTime(), true);
 
         //Used to find the current day and decorate it
-        //THE CODE BELOW IS DEFUNCT; PLEASE REVISE!
         materialCalendarView.addDecorator(new DayViewDecorator() {
             @Override
             public boolean shouldDecorate(CalendarDay day) {
@@ -81,14 +77,27 @@ public class CalendarFragment extends Fragment {
 
             @Override
             public void decorate(DayViewFacade view) {
-                view.addSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.colorDarkBlue))); //sets the color
+                view.addSpan(new ForegroundColorSpan(ContextCompat.getColor(current.getContext(), R.color.colorDarkBlue))); //sets the color
                 view.addSpan(new StyleSpan(Typeface.BOLD)); //sets the current day to a BOLD text style
                 //view.addSpan(new RelativeSizeSpan(1.25f)); //sets the font size to be a little bigger than the other days
+            }
+        });
 
-                /* Adds a dot on the current day.
-                 * For now, only used to test it out.
-                 * But a decorator with a DotSpan is probably needed if we figure out the events thing. */
-                view.addSpan(new DotSpan(8, R.color.colorDarkBlue));
+        //COLLECTION OF DATES
+        final HashSet<CalendarDay> dates = new HashSet<>();
+        dates.add(CalendarDay.from(2018,4,20));
+        dates.add(CalendarDay.from(2018,4,23));
+
+        //ADD DOT ON EVENT DAYS
+        materialCalendarView.addDecorator(new DayViewDecorator() {
+            @Override
+            public boolean shouldDecorate(CalendarDay day) {
+                return (dates.contains(day));
+            }
+
+            @Override
+            public void decorate(DayViewFacade view) {
+                view.addSpan(new DotSpan(8,R.color.colorYellow));
             }
         });
 
@@ -98,7 +107,7 @@ public class CalendarFragment extends Fragment {
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
 
                 /* Creates a toast that shows what date was clicked on in DD/MM/YYYY
-                *  Was used for testing. */
+                 *  Was used for testing. */
                 //Toast.makeText(getActivity().getApplicationContext(), ""+ date.getDay() + " / " + date.getMonth() + " / " + date.getYear(), Toast.LENGTH_SHORT).show();
 
                 int monthNum = date.getMonth() + 1;

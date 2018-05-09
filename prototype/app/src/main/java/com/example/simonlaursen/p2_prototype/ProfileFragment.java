@@ -23,7 +23,7 @@ import org.w3c.dom.Text;
 
 public class ProfileFragment extends Fragment {
 
-    //TODO: The whole thing actually
+    //TODO: CLEAN THIS SHIT UP, IT'S FILTHY
     private Database database = new Database(); //database setup for this fragment
 
     public ProfileFragment() {
@@ -36,11 +36,13 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         final MainActivity mainActivity = (MainActivity)getActivity();
+
         mainActivity.timerActive = false;
         TextView name =(TextView) v.findViewById(R.id.nameArea);
         InputButtons(v); //activates the input buttons
         String t=(SharedPref.readString("name","Navn Navnesen"));
         name.setText(t);
+
         return v;
     }
 
