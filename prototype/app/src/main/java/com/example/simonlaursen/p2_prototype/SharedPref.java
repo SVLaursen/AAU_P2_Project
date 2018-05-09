@@ -15,8 +15,30 @@ public class SharedPref
     public static final String exerciseAllNum="exerciseAllNum";
     public static final String highestExerciseNum="highestExerciseNum";
     public static final String Name="name";
+
+    public static final String amount1 = "Amount1";
+    public static final String amount2 = "Amount2";
+    public static final String amount3 = "Amount3";
+    public static final String exerciseDate1 = "exerciseDate1";
+    public static final String exerciseDate2 = "exerciseDate2";
+    public static final String exerciseDate3 = "exerciseDate3";
+    public static final String exerciseTime1 = "exerciseTime1";
+    public static final String exerciseTime2 = "exerciseTime2";
+    public static final String exerciseTime3 = "exerciseTime3";
+
+    public static final String unit1 = "Unit1";
+    public static final String unit2 = "Unit2";
+    public static final String unit3 = "Unit3";
+    public static final String insulinDate1= "insulinDate1";
+    public static final String insulinDate2 = "insulinDate2";
+    public static final String insulinDate3 = "insulinDate3";
+    public static final String insulinTime1 = "insulinTime1";
+    public static final String insulinTime2 = "insulinTime2";
+    public static final String insulinTime3 = "insulinTime3";
+
     public static final String MedicinTakenWeek="MedicinTakenWeek";
     public static final String MedTakenAll="MedTakenAll";
+
     public SharedPref()
     {
 
