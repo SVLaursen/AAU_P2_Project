@@ -52,17 +52,17 @@
 
     <EditText
         android:id="@+id/timeInput"
-        android:layout_width="wrap_content"
+        android:layout_width="147dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="40dp"
         android:layout_marginTop="115dp"
         android:ems="10"
-        android:hint="Indtast Tid i Minutter"
+        android:hint="Indtast I Minutter"
         android:inputType="number"
         android:maxLength="3"
-        android:text="0"
+        android:text=""
         android:textColor="@color/colorWhite"
         android:textColorHint="@color/colorBackground" />
 
@@ -75,7 +75,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/amount1"
         android:layout_marginStart="40dp"
-        android:text="TextView" />
+        android:text="" />
 
     <TextView
         android:id="@+id/time1"
@@ -84,7 +84,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/amount1"
         android:layout_marginStart="140dp"
-        android:text="TextView" />
+        android:text="" />
 
     <TextView
         android:id="@+id/date2"
@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/date1"
         android:layout_alignTop="@+id/amount2"
-        android:text="TextView" />
+        android:text="" />
 
     <TextView
         android:id="@+id/date3"
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/date1"
         android:layout_alignTop="@+id/amount3"
-        android:text="TextView" />
+        android:text="" />
 
     <TextView
         android:id="@+id/time2"
@@ -108,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/time1"
         android:layout_alignTop="@+id/amount2"
-        android:text="TextView" />
+        android:text="" />
 
     <TextView
         android:id="@+id/time3"
@@ -116,15 +116,15 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/time1"
         android:layout_alignTop="@+id/amount3"
-        android:text="TextView" />
+        android:text="" />
 
     <TextView
         android:id="@+id/amount1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="250dp"
-        android:layout_marginTop="310dp"
-        android:text="hej" />
+        android:layout_marginTop="305dp"
+        android:text="" />
 
     <TextView
         android:id="@+id/amount2"
@@ -132,14 +132,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="250dp"
         android:layout_marginTop="340dp"
-        android:text="hej" />
+        android:text="" />
 
     <TextView
         android:id="@+id/amount3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="250dp"
-        android:layout_marginTop="380dp"
-        android:text="hej" />
+        android:layout_marginTop="375dp"
+        android:text="" />
 
 </RelativeLayout>
