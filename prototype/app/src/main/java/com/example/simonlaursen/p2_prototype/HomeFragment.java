@@ -381,7 +381,7 @@ public class HomeFragment extends Fragment {
         } else if (type == "exercise") {
             //THIS IS WHERE YOU PUT INTERACTION FOR THE exercise DIALOG!!!!
 
-            newView = getLayoutInflater().inflate(R.layout.dialog_insulin_input, null);
+            newView = getLayoutInflater().inflate(R.layout.dialog_exercise_input, null);
             ImageButton cancelButton = newView.findViewById(R.id.cancelButton);
             ImageButton okButton = newView.findViewById(R.id.okButton);
 
