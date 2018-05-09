@@ -17,6 +17,13 @@ public class SharedPref
     public static final String Name="name";
     public static final String MedicinTakenWeek="MedicinTakenWeek";
     public static final String MedTakenAll="MedTakenAll";
+    public static final String day1="day1";
+    public static final String day2="day2";
+    public static final String day3="day3";
+    public static final String day4="day4";
+    public static final String day5="day5";
+    public static final String day6="day6";
+    public static final String day7="day7";
     public SharedPref()
     {
 

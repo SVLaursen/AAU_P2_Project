@@ -3,6 +3,7 @@ package com.example.simonlaursen.p2_prototype;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
@@ -17,7 +18,7 @@ import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.BarGraphSeries;
 
 import org.w3c.dom.Text;
 
@@ -259,7 +260,12 @@ public class ProfileFragment extends Fragment {
 
     private void DisplayGraph(View v){
         GraphView graphView = (GraphView) v.findViewById(R.id.graph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(database.loadDataPoints());
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(database.loadDataPoints());
         graphView.addSeries(series);
+
+
     }
+
+
+
 }

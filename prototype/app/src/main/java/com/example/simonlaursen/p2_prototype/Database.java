@@ -1,9 +1,5 @@
 package com.example.simonlaursen.p2_prototype;
 
-import android.text.TextUtils;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import com.jjoe64.graphview.series.DataPoint;
 
 public class Database {
@@ -24,9 +20,19 @@ public class Database {
     private static long currentDate;
     private static int time;
 
+    private static int day1;
+    private static int day2;
+    private static int day3;
+    private static int day4;
+    private static int day5;
+    private static int day6;
+    private static int day7;
+
+
+
     private static ExerciseInputs[] exerciseInputs = new ExerciseInputs[3]; //Storage for the data involving the exercise input
     private static InsulinInputs[] insulinInputs = new InsulinInputs[3]; //Storage for the data involving the insulin input
-    //public static int[] Int = new int[]; //Storage for daily progress
+
 
     private String userName="Abe Lone";
 
@@ -45,6 +51,13 @@ public class Database {
         userName=SharedPref.readString("name","Aida Guerra");
         MedicinTakenWeek=SharedPref.readInteger("MedicinTakenWeek",0);
         medtakenallNum=SharedPref.readInteger("MedTakenAll",0);
+        day1=SharedPref.readInteger("day1",0);
+        day2=SharedPref.readInteger("day2",0);
+        day3=SharedPref.readInteger("day3",0);
+        day4=SharedPref.readInteger("day4",0);
+        day5=SharedPref.readInteger("day5",0);
+        day6=SharedPref.readInteger("day6",0);
+        day7=SharedPref.readInteger("day7",0);
     }
 
     public void setLong(long value, String name) {
@@ -95,7 +108,36 @@ public class Database {
             medtakenallNum+=value;
         SharedPref.writeInteger(SharedPref.MedicinTakenWeek,value);
         SharedPref.writeInteger(SharedPref.MedTakenAll,medtakenallNum);
+
     }
+        else if (name == "day1") {
+             day1=value;
+            SharedPref.writeInteger(SharedPref.day1,value);
+        }
+        else if (name == "day2") {
+             day2=value;
+            SharedPref.writeInteger(SharedPref.day2,value);
+        }
+        else if (name == "day3") {
+             day3=value;
+            SharedPref.writeInteger(SharedPref.day3,value);
+        }
+        else if (name == "day4") {
+             day4=value;
+            SharedPref.writeInteger(SharedPref.day4,value);
+        }
+        else if (name == "day5") {
+             day5=value;
+            SharedPref.writeInteger(SharedPref.day5,value);
+        }
+        else if (name == "day6") {
+             day6=value;
+            SharedPref.writeInteger(SharedPref.day6,value);
+        }
+        else if (name == "day7") {
+             day7=value;
+            SharedPref.writeInteger(SharedPref.day7,value);
+        }
      }
 
     public void setFloat(float value, String name){
@@ -143,6 +185,27 @@ public class Database {
         else if (name == "time") {
             return time;
         }
+        else if (name == "day1") {
+            return day1;
+        }
+        else if (name == "day2") {
+            return day2;
+        }
+        else if (name == "day3") {
+            return day3;
+        }
+        else if (name == "day4") {
+            return day4;
+        }
+        else if (name == "day5") {
+            return day5;
+        }
+        else if (name == "day6") {
+            return day6;
+        }
+        else if (name == "day7") {
+            return day7;
+        }
             else {
             return 0;
         }
@@ -170,11 +233,7 @@ public class Database {
     public String getBlankText() {
         return " ";
     }
-    public  int[] addElement(int[] a, int e) {
-    a  = java.util.Arrays.copyOf(a, a.length + 1);
-    a[a.length - 1] = e;
-    return a;
-}
+
 
     public String getMinPerweek() { return "min per uge"; }
 
@@ -239,20 +298,20 @@ public class Database {
     }
 
     public DataPoint[] loadDataPoints(){
-        MainActivity.getDate();
+     //  MainActivity.getDate();
         DataPoint[] dataPoints =  new DataPoint[8];
-       time = HomeFragment.getInt("s");
+      /* time = HomeFragment.getInt("s");
      //   int input = time;
        HomeFragment.setInt((int)time,"time");
-        //TODO: Change the values based on the prior inputs
+        //TODO: Change the values based on the prior inputs*/
         dataPoints[0] = new DataPoint(0,0);
-        dataPoints[1] = new DataPoint(1,time);
-        dataPoints[2] = new DataPoint(2,time+time);
-        dataPoints[3] = new DataPoint(3,time+time+time);
-        dataPoints[4] = new DataPoint(4,0);
-        dataPoints[5] = new DataPoint(5,currentProgress);
-        dataPoints[6] = new DataPoint(6,currentProgress);
-        dataPoints[7] = new DataPoint(7,maxProgress);
+        dataPoints[1] = new DataPoint(1.0,day1);
+        dataPoints[2] = new DataPoint(2.0,day2);
+        dataPoints[3] = new DataPoint(3.0,day3);
+        dataPoints[4] = new DataPoint(4.0,day4);
+        dataPoints[5] = new DataPoint(5.0,day5);
+        dataPoints[6] = new DataPoint(6.0,day6);
+        dataPoints[7] = new DataPoint(7.0,day7);
 
         return dataPoints;
     }
