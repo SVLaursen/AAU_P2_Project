@@ -33,8 +33,7 @@ public class HomeFragment extends Fragment {
     String timeInputValue;
     public static int s;
 
-    //String timeInputValue;
-    int s;
+
 
     int current1;
     //String t;

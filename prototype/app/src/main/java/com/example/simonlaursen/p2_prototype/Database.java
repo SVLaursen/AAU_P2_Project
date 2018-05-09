@@ -38,7 +38,6 @@ public class Database {
 
     private String userName="Abe Lone";
 
-    private String userName="Brugernavn";
 
 
     //DEFAULT CONSTRUCTOR
