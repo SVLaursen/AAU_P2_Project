@@ -37,30 +37,30 @@ public class HomeFragment extends Fragment {
     private int current1;
 
     // Textview Variables for exercise input
-    String a1 = null;
-    String a2 = null;
-    String a3 = null;
+    private String a1 = null;
+    private String a2 = null;
+    private String a3 = null;
 
-    String date1 = null;
-    String date2 = null;
-    String date3 = null;
+    private String date1 = null;
+    private String date2 = null;
+    private String date3 = null;
 
-    String time1 = null;
-    String time2 = null;
-    String time3 = null;
+    private String time1 = null;
+    private String time2 = null;
+    private String time3 = null;
 
     // Textview Variables for insulin input
-    String u1 = null;
-    String u2 = null;
-    String u3 = null;
+    private String u1 = null;
+    private String u2 = null;
+    private String u3 = null;
 
-    String insulinDate1 = null;
-    String insulinDate2 = null;
-    String insulinDate3 = null;
+    private String insulinDate1 = null;
+    private String insulinDate2 = null;
+    private String insulinDate3 = null;
 
-    String insulinTime1 = null;
-    String insulinTime2 = null;
-    String insulinTime3 = null;
+    private String insulinTime1 = null;
+    private String insulinTime2 = null;
+    private String insulinTime3 = null;
 
 
     public HomeFragment() {

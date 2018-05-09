@@ -38,12 +38,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ProfileFragment.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ProfileFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/ProfileFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="26" column="43" lean-forward="false" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
-              <folding />
+            <state relative-caret-position="1301">
+              <caret line="257" column="29" lean-forward="false" selection-start-line="257" selection-start-column="29" selection-end-line="257" selection-end-column="29" />
+              <folding>
+                <element signature="e#6797#7291#0" expanded="true" />
+                <element signature="e#7290#7291#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -51,10 +54,23 @@
       <file leaf-file-name="HomeFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/HomeFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="526">
-              <caret line="639" column="40" lean-forward="false" selection-start-line="639" selection-start-column="40" selection-end-line="639" selection-end-column="40" />
+            <state relative-caret-position="-1411">
+              <caret line="48" column="32" lean-forward="false" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1575">
+              <caret line="259" column="66" lean-forward="false" selection-start-line="259" selection-start-column="66" selection-end-line="259" selection-end-column="66" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#NavBarSetup#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#loadFragment#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#loadDialog#0;class#MainActivity#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -63,22 +79,38 @@
       <file leaf-file-name="CalendarFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/CalendarFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="112" column="44" lean-forward="false" selection-start-line="112" selection-start-column="44" selection-end-line="112" selection-end-column="44" />
+            <state relative-caret-position="1530">
+              <caret line="131" column="63" lean-forward="false" selection-start-line="131" selection-start-column="63" selection-end-line="131" selection-end-column="63" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Database.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Database.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="163" column="35" lean-forward="false" selection-start-line="163" selection-start-column="35" selection-end-line="163" selection-end-column="35" />
+            <state relative-caret-position="234">
+              <caret line="38" column="41" lean-forward="false" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#7590#7591#0" expanded="true" />
+                <element signature="e#7648#7649#0" expanded="true" />
+                <element signature="e#7684#7685#0" expanded="true" />
+                <element signature="e#7710#7711#0" expanded="true" />
                 <element signature="method#setExerciseInputs#0;class#Database#0" expanded="false" />
+                <element signature="e#8529#8530#0" expanded="true" />
+                <element signature="e#8576#8577#0" expanded="true" />
+                <element signature="e#8621#8622#0" expanded="true" />
+                <element signature="e#8668#8669#0" expanded="true" />
+                <element signature="e#8714#8715#0" expanded="true" />
+                <element signature="e#8762#8763#0" expanded="true" />
                 <element signature="method#setInsulinInputs#0;class#Database#0" expanded="false" />
+                <element signature="e#9496#9497#0" expanded="true" />
+                <element signature="e#9542#9543#0" expanded="true" />
+                <element signature="e#9586#9587#0" expanded="true" />
+                <element signature="e#9632#9633#0" expanded="true" />
+                <element signature="e#9677#9678#0" expanded="true" />
+                <element signature="e#9724#9725#0" expanded="true" />
                 <element signature="method#loadDataPoints#0;class#Database#0" expanded="false" />
                 <element signature="method#SaveData#0;class#Database#0" expanded="false" />
               </folding>
@@ -2130,11 +2162,12 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_event_popup.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/CalendarDecorator.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/EventDot.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/ProfileFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/EventDecorator.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/Database.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/CalendarFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/HomeFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/Database.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/ProfileFragment.java" />
       </list>
     </option>
   </component>
@@ -2168,13 +2201,18 @@
             <path>
               <item name="prototype" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="prototype" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="p2_prototype" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
             <path>
               <item name="prototype" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="prototype" type="1abcf292:AndroidViewProjectNode" />
@@ -2376,7 +2414,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2394,7 +2431,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24900715" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32991952" sideWeight="0.4960286" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32991952" sideWeight="0.4960286" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2418,7 +2455,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/Database.java</url>
-          <line>163</line>
+          <line>161</line>
           <properties class="com.example.simonlaursen.p2_prototype.Database" method="getInt">
             <option name="EMULATED" value="true" />
           </properties>
@@ -2433,7 +2470,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="25" column="43" lean-forward="false" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-          <folding />
+          <folding>
+            <element signature="e#6797#7291#0" expanded="true" />
+            <element signature="e#7290#7291#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2441,9 +2481,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2486,8 +2524,24 @@
           <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#7590#7591#0" expanded="true" />
+            <element signature="e#7648#7649#0" expanded="true" />
+            <element signature="e#7684#7685#0" expanded="true" />
+            <element signature="e#7710#7711#0" expanded="true" />
             <element signature="method#setExerciseInputs#0;class#Database#0" expanded="false" />
+            <element signature="e#8529#8530#0" expanded="true" />
+            <element signature="e#8576#8577#0" expanded="true" />
+            <element signature="e#8621#8622#0" expanded="true" />
+            <element signature="e#8668#8669#0" expanded="true" />
+            <element signature="e#8714#8715#0" expanded="true" />
+            <element signature="e#8762#8763#0" expanded="true" />
             <element signature="method#setInsulinInputs#0;class#Database#0" expanded="false" />
+            <element signature="e#9496#9497#0" expanded="true" />
+            <element signature="e#9542#9543#0" expanded="true" />
+            <element signature="e#9586#9587#0" expanded="true" />
+            <element signature="e#9632#9633#0" expanded="true" />
+            <element signature="e#9677#9678#0" expanded="true" />
+            <element signature="e#9724#9725#0" expanded="true" />
             <element signature="method#loadDataPoints#0;class#Database#0" expanded="false" />
             <element signature="method#SaveData#0;class#Database#0" expanded="false" />
           </folding>
@@ -2506,7 +2560,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="25" column="43" lean-forward="false" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-          <folding />
+          <folding>
+            <element signature="e#6797#7291#0" expanded="true" />
+            <element signature="e#7290#7291#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2514,9 +2571,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2560,8 +2615,24 @@
           <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#7590#7591#0" expanded="true" />
+            <element signature="e#7648#7649#0" expanded="true" />
+            <element signature="e#7684#7685#0" expanded="true" />
+            <element signature="e#7710#7711#0" expanded="true" />
             <element signature="method#setExerciseInputs#0;class#Database#0" expanded="false" />
+            <element signature="e#8529#8530#0" expanded="true" />
+            <element signature="e#8576#8577#0" expanded="true" />
+            <element signature="e#8621#8622#0" expanded="true" />
+            <element signature="e#8668#8669#0" expanded="true" />
+            <element signature="e#8714#8715#0" expanded="true" />
+            <element signature="e#8762#8763#0" expanded="true" />
             <element signature="method#setInsulinInputs#0;class#Database#0" expanded="false" />
+            <element signature="e#9496#9497#0" expanded="true" />
+            <element signature="e#9542#9543#0" expanded="true" />
+            <element signature="e#9586#9587#0" expanded="true" />
+            <element signature="e#9632#9633#0" expanded="true" />
+            <element signature="e#9677#9678#0" expanded="true" />
+            <element signature="e#9724#9725#0" expanded="true" />
             <element signature="method#loadDataPoints#0;class#Database#0" expanded="false" />
             <element signature="method#SaveData#0;class#Database#0" expanded="false" />
           </folding>
@@ -2580,7 +2651,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2910">
           <caret line="212" column="8" lean-forward="false" selection-start-line="212" selection-start-column="8" selection-end-line="212" selection-end-column="8" />
-          <folding />
+          <folding>
+            <element signature="e#6797#7291#0" expanded="true" />
+            <element signature="e#7290#7291#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2588,9 +2662,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3975">
           <caret line="284" column="12" lean-forward="false" selection-start-line="284" selection-start-column="12" selection-end-line="285" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2611,8 +2683,24 @@
           <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#7590#7591#0" expanded="true" />
+            <element signature="e#7648#7649#0" expanded="true" />
+            <element signature="e#7684#7685#0" expanded="true" />
+            <element signature="e#7710#7711#0" expanded="true" />
             <element signature="method#setExerciseInputs#0;class#Database#0" expanded="false" />
+            <element signature="e#8529#8530#0" expanded="true" />
+            <element signature="e#8576#8577#0" expanded="true" />
+            <element signature="e#8621#8622#0" expanded="true" />
+            <element signature="e#8668#8669#0" expanded="true" />
+            <element signature="e#8714#8715#0" expanded="true" />
+            <element signature="e#8762#8763#0" expanded="true" />
             <element signature="method#setInsulinInputs#0;class#Database#0" expanded="false" />
+            <element signature="e#9496#9497#0" expanded="true" />
+            <element signature="e#9542#9543#0" expanded="true" />
+            <element signature="e#9586#9587#0" expanded="true" />
+            <element signature="e#9632#9633#0" expanded="true" />
+            <element signature="e#9677#9678#0" expanded="true" />
+            <element signature="e#9724#9725#0" expanded="true" />
             <element signature="method#loadDataPoints#0;class#Database#0" expanded="false" />
             <element signature="method#SaveData#0;class#Database#0" expanded="false" />
           </folding>
@@ -2631,7 +2719,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#6797#7291#0" expanded="true" />
+            <element signature="e#7290#7291#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2641,8 +2732,24 @@
           <caret line="204" column="0" lean-forward="false" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#7590#7591#0" expanded="true" />
+            <element signature="e#7648#7649#0" expanded="true" />
+            <element signature="e#7684#7685#0" expanded="true" />
+            <element signature="e#7710#7711#0" expanded="true" />
             <element signature="method#setExerciseInputs#0;class#Database#0" expanded="false" />
+            <element signature="e#8529#8530#0" expanded="true" />
+            <element signature="e#8576#8577#0" expanded="true" />
+            <element signature="e#8621#8622#0" expanded="true" />
+            <element signature="e#8668#8669#0" expanded="true" />
+            <element signature="e#8714#8715#0" expanded="true" />
+            <element signature="e#8762#8763#0" expanded="true" />
             <element signature="method#setInsulinInputs#0;class#Database#0" expanded="false" />
+            <element signature="e#9496#9497#0" expanded="true" />
+            <element signature="e#9542#9543#0" expanded="true" />
+            <element signature="e#9586#9587#0" expanded="true" />
+            <element signature="e#9632#9633#0" expanded="true" />
+            <element signature="e#9677#9678#0" expanded="true" />
+            <element signature="e#9724#9725#0" expanded="true" />
             <element signature="method#loadDataPoints#0;class#Database#0" expanded="false" />
             <element signature="method#SaveData#0;class#Database#0" expanded="false" />
           </folding>
@@ -2653,7 +2760,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#6797#7291#0" expanded="true" />
+            <element signature="e#7290#7291#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2663,8 +2773,24 @@
           <caret line="204" column="0" lean-forward="true" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#7590#7591#0" expanded="true" />
+            <element signature="e#7648#7649#0" expanded="true" />
+            <element signature="e#7684#7685#0" expanded="true" />
+            <element signature="e#7710#7711#0" expanded="true" />
             <element signature="method#setExerciseInputs#0;class#Database#0" expanded="false" />
+            <element signature="e#8529#8530#0" expanded="true" />
+            <element signature="e#8576#8577#0" expanded="true" />
+            <element signature="e#8621#8622#0" expanded="true" />
+            <element signature="e#8668#8669#0" expanded="true" />
+            <element signature="e#8714#8715#0" expanded="true" />
+            <element signature="e#8762#8763#0" expanded="true" />
             <element signature="method#setInsulinInputs#0;class#Database#0" expanded="false" />
+            <element signature="e#9496#9497#0" expanded="true" />
+            <element signature="e#9542#9543#0" expanded="true" />
+            <element signature="e#9586#9587#0" expanded="true" />
+            <element signature="e#9632#9633#0" expanded="true" />
+            <element signature="e#9677#9678#0" expanded="true" />
+            <element signature="e#9724#9725#0" expanded="true" />
             <element signature="method#loadDataPoints#0;class#Database#0" expanded="false" />
             <element signature="method#SaveData#0;class#Database#0" expanded="false" />
           </folding>
@@ -2687,14 +2813,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="24" lean-forward="false" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/ProfileFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="26" column="43" lean-forward="false" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -2751,14 +2869,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/CalendarFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="112" column="44" lean-forward="false" selection-start-line="112" selection-start-column="44" selection-end-line="112" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_insulin_input.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -2770,26 +2880,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/HomeFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="639" column="40" lean-forward="false" selection-start-line="639" selection-start-column="40" selection-end-line="639" selection-end-column="40" />
+        <state relative-caret-position="234">
+          <caret line="38" column="41" lean-forward="false" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#7590#7591#0" expanded="true" />
+            <element signature="e#7648#7649#0" expanded="true" />
+            <element signature="e#7684#7685#0" expanded="true" />
+            <element signature="e#7710#7711#0" expanded="true" />
+            <element signature="method#setExerciseInputs#0;class#Database#0" expanded="false" />
+            <element signature="e#8529#8530#0" expanded="true" />
+            <element signature="e#8576#8577#0" expanded="true" />
+            <element signature="e#8621#8622#0" expanded="true" />
+            <element signature="e#8668#8669#0" expanded="true" />
+            <element signature="e#8714#8715#0" expanded="true" />
+            <element signature="e#8762#8763#0" expanded="true" />
+            <element signature="method#setInsulinInputs#0;class#Database#0" expanded="false" />
+            <element signature="e#9496#9497#0" expanded="true" />
+            <element signature="e#9542#9543#0" expanded="true" />
+            <element signature="e#9586#9587#0" expanded="true" />
+            <element signature="e#9632#9633#0" expanded="true" />
+            <element signature="e#9677#9678#0" expanded="true" />
+            <element signature="e#9724#9725#0" expanded="true" />
+            <element signature="method#loadDataPoints#0;class#Database#0" expanded="false" />
+            <element signature="method#SaveData#0;class#Database#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/Database.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/CalendarFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="163" column="35" lean-forward="false" selection-start-line="163" selection-start-column="35" selection-end-line="163" selection-end-column="35" />
+        <state relative-caret-position="1530">
+          <caret line="131" column="63" lean-forward="false" selection-start-line="131" selection-start-column="63" selection-end-line="131" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/HomeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1411">
+          <caret line="48" column="32" lean-forward="false" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1575">
+          <caret line="259" column="66" lean-forward="false" selection-start-line="259" selection-start-column="66" selection-end-line="259" selection-end-column="66" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#setExerciseInputs#0;class#Database#0" expanded="false" />
-            <element signature="method#setInsulinInputs#0;class#Database#0" expanded="false" />
-            <element signature="method#loadDataPoints#0;class#Database#0" expanded="false" />
-            <element signature="method#SaveData#0;class#Database#0" expanded="false" />
+            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#NavBarSetup#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#loadFragment#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#loadDialog#0;class#MainActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/simonlaursen/p2_prototype/ProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1301">
+          <caret line="257" column="29" lean-forward="false" selection-start-line="257" selection-start-column="29" selection-end-line="257" selection-end-column="29" />
+          <folding>
+            <element signature="e#6797#7291#0" expanded="true" />
+            <element signature="e#7290#7291#0" expanded="true" />
           </folding>
         </state>
       </provider>

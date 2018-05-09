@@ -22,13 +22,11 @@ public class MainActivity extends AppCompatActivity {
     The reason why we do this is because it'll be much easier to do hotfixes along the way, as well as accessing the data we need.
      */
 
-
     //GLOBAL VARIABLES HERE!
     private Fragment currentFragment = null; //Used to check which fragment is currently running
     private Database database = new Database();
     public boolean timerActive = false;
-    public static int diffinDays;
-    public boolean abe = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPref.init(getApplicationContext());
         NavBarSetup(); //Used to setup the size of the navigation bar
         loadFragment(new HomeFragment());
-        //SharedPref.wipe(getApplicationContext()); // removes all save data
         database.loadData();
         checkDate();
     }

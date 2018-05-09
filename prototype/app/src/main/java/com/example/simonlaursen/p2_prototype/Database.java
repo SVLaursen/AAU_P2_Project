@@ -32,8 +32,6 @@ public class Database {
     private static int day6;
     private static int day7;
 
-
-
     private static ExerciseInputs[] exerciseInputs = new ExerciseInputs[3]; //Storage for the data involving the exercise input
     private static InsulinInputs[] insulinInputs = new InsulinInputs[3]; //Storage for the data involving the insulin input
 

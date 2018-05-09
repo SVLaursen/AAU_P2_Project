@@ -31,7 +31,6 @@ public class ProfileFragment extends Fragment {
 
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -49,20 +48,16 @@ public class ProfileFragment extends Fragment {
     }
 
     private void InputButtons(View v){
-        final Fragment fragment = this; //Used to declare what fragment is currently working for the vibrator to work
 
         ImageButton settingsButton = v.findViewById(R.id.settingsButton);
         ImageButton graphsButton = v.findViewById(R.id.graphButton);
         ImageButton statisticButton = v.findViewById(R.id.statisticButton);
 
-        final Vibrator vibrator = (Vibrator) fragment.getActivity().getSystemService(Context.VIBRATOR_SERVICE); //Sets up the vibrator
 
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(vibrator.hasVibrator()){
-                    vibrator.vibrate(10);
-                }
+                useVibrator(10);
                 DisplayDialog(v,"settings");
 
             }
@@ -71,9 +66,7 @@ public class ProfileFragment extends Fragment {
         graphsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(vibrator.hasVibrator()){
-                    vibrator.vibrate(10);
-                }
+                useVibrator(10);
                 DisplayDialog(v,"graphs");
             }
         });
@@ -81,9 +74,7 @@ public class ProfileFragment extends Fragment {
         statisticButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(vibrator.hasVibrator()){
-                    vibrator.vibrate(10);
-                }
+                useVibrator(10);
                 DisplayDialog(v,"statistics");
             }
         });
@@ -112,13 +103,15 @@ public class ProfileFragment extends Fragment {
                 mål.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        dialog.cancel();
+                        useVibrator(10);
                         DisplayDialog(v, "maal");
+                        dialog.cancel();
                     }
                 });
                 navn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        useVibrator(10);
                         DisplayDialog(v, "navn");
                         dialog.cancel();
                     }
@@ -126,6 +119,7 @@ public class ProfileFragment extends Fragment {
                 data.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        useVibrator(10);
                         DisplayDialog(v, "data");
                         dialog.cancel();
                     }
@@ -180,6 +174,9 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         int s = Integer.parseInt(mål.getText().toString());
+
+                        useVibrator(10);
+
                         if (s<150){
                             s=database.getInt("maxProgress");
                             }
@@ -227,6 +224,7 @@ public class ProfileFragment extends Fragment {
             yes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    useVibrator(10);
                     SharedPref.wipe();
                     database.loadData();
                     database.setInt(150,"maxProgress");
@@ -243,6 +241,7 @@ public class ProfileFragment extends Fragment {
             no.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    useVibrator(10);
                     dialog.cancel();
 
                 }
@@ -256,7 +255,7 @@ public class ProfileFragment extends Fragment {
         name.setText(database.getName());
     }
     private void Latest(View v){
-
+        //IS THIS BEING USED?
     }
 
     private void DisplayGraph(View v){
@@ -265,6 +264,16 @@ public class ProfileFragment extends Fragment {
         graphView.addSeries(series);
 
 
+    }
+
+    private void useVibrator(int intensity)
+    {
+        final Fragment fragment = this; //Used to declare what fragment is currently working for the vibrator to work
+        final Vibrator vibrator = (Vibrator) fragment.getActivity().getSystemService(Context.VIBRATOR_SERVICE); //Sets up the vibrator
+
+        if(vibrator.hasVibrator()){
+            vibrator.vibrate(intensity);
+        }
     }
 
 

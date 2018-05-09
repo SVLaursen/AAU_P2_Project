@@ -109,10 +109,6 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
 
-                /* Creates a toast that shows what date was clicked on in DD/MM/YYYY
-                 *  Was used for testing. */
-                //Toast.makeText(getActivity().getApplicationContext(), ""+ date.getDay() + " / " + date.getMonth() + " / " + date.getYear(), Toast.LENGTH_SHORT).show();
-
                 int monthNum = date.getMonth() + 1;
 
                 //Creates and alertDialog pop-up for that day
