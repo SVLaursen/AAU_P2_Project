@@ -9,6 +9,7 @@ import com.jjoe64.graphview.series.DataPoint;
 public class Database {
 
     private static float fullTime;
+
     private static int shownTime;
     private static int inputTime;
     private static int currentInsulin;
@@ -20,13 +21,14 @@ public class Database {
     private static int currentProgress; //Change this value to 0 before releasing app, the current value is for debugging only
     private static int MedicinTakenWeek;
     private static int medtakenallNum;
+
     private static long StartweekDate;
     private static long currentDate;
 
     private static ExerciseInputs[] exerciseInputs = new ExerciseInputs[3]; //Storage for the data involving the exercise input
     private static InsulinInputs[] insulinInputs = new InsulinInputs[3]; //Storage for the data involving the insulin input
 
-    private String userName="Abe Lone";
+    private String userName="Brugernavn";
 
     //DEFAULT CONSTRUCTOR
     public Database() {
@@ -34,15 +36,15 @@ public class Database {
     }
 
     public void loadData() {
-        currentProgress = SharedPref.readInteger(SharedPref.currentProgress, 0);
-        maxProgress = SharedPref.readInteger(SharedPref.MaxProg, 150);
-        numberOfWeeksNum = SharedPref.readInteger(SharedPref.numberOfWeeksNum,0);
-        hitGoalNum=SharedPref.readInteger(SharedPref.hitGoalNum,0);
-        exerciseAllNum=SharedPref.readInteger(SharedPref.exerciseAllNum,0);
-        highestExerciseNum=SharedPref.readInteger(SharedPref.highestExerciseNum,0);
-        userName=SharedPref.readString("name","Aida Guerra");
-        MedicinTakenWeek=SharedPref.readInteger("MedicinTakenWeek",0);
-        medtakenallNum=SharedPref.readInteger("MedTakenAll",0);
+        currentProgress = SharedPref.readInteger(SharedPref.currentProgress, currentProgress);
+        maxProgress = SharedPref.readInteger(SharedPref.MaxProg, maxProgress);
+        numberOfWeeksNum = SharedPref.readInteger(SharedPref.numberOfWeeksNum,numberOfWeeksNum);
+        hitGoalNum=SharedPref.readInteger(SharedPref.hitGoalNum,hitGoalNum);
+        exerciseAllNum=SharedPref.readInteger(SharedPref.exerciseAllNum,exerciseAllNum);
+        highestExerciseNum=SharedPref.readInteger(SharedPref.highestExerciseNum,highestExerciseNum);
+        userName=SharedPref.readString("name","Brugernavn");
+        MedicinTakenWeek=SharedPref.readInteger("MedicinTakenWeek",MedicinTakenWeek);
+        medtakenallNum=SharedPref.readInteger("MedTakenAll",medtakenallNum);
     }
 
     public void setLong(long value, String name) {
@@ -72,28 +74,28 @@ public class Database {
             currentInsulin = value;
         } else if (name == "maxProgress") {
             maxProgress = value;
-            SharedPref.writeInteger(SharedPref.MaxProg, value);
+            SharedPref.writeInteger(SharedPref.MaxProg, maxProgress);
         } else if (name == "currentProgress") {
             currentProgress = value;
-            SharedPref.writeInteger(SharedPref.currentProgress, value);
+            SharedPref.writeInteger(SharedPref.currentProgress, currentProgress);
         } else if(name=="numberOfWeeksNum") {
             numberOfWeeksNum=value;
-            SharedPref.writeInteger(SharedPref.numberOfWeeksNum,value);
+            SharedPref.writeInteger(SharedPref.numberOfWeeksNum,numberOfWeeksNum);
         } else if (name=="hitGoalNum") {
-            hitGoalNum=value;
-            SharedPref.writeInteger(SharedPref.hitGoalNum,value);
+            hitGoalNum = value;
+            SharedPref.writeInteger(SharedPref.hitGoalNum,hitGoalNum);
         } else if (name=="exerciseAllNum") {
             exerciseAllNum=value;
-            SharedPref.writeInteger(SharedPref.exerciseAllNum,value);
+            SharedPref.writeInteger(SharedPref.exerciseAllNum,exerciseAllNum);
         } else if (name=="highestExerciseNum") {
             highestExerciseNum=value;
-            SharedPref.writeInteger(SharedPref.highestExerciseNum,value);
+            SharedPref.writeInteger(SharedPref.highestExerciseNum,highestExerciseNum);
         } else if (name=="medicineWeek") {
             MedicinTakenWeek=value;
-            medtakenallNum+=value;
-        SharedPref.writeInteger(SharedPref.MedicinTakenWeek,value);
-        SharedPref.writeInteger(SharedPref.MedTakenAll,medtakenallNum);
-    }
+            medtakenallNum=value;
+            SharedPref.writeInteger(SharedPref.MedicinTakenWeek,MedicinTakenWeek);
+            SharedPref.writeInteger(SharedPref.MedTakenAll,medtakenallNum);
+        }
      }
 
     public void setFloat(float value, String name){
@@ -242,5 +244,14 @@ public class Database {
         return dataPoints;
     }
 
-
+    public void SaveData(){
+        SharedPref.writeInteger(SharedPref.MaxProg, maxProgress);
+        SharedPref.writeInteger(SharedPref.currentProgress, currentProgress);
+        SharedPref.writeInteger(SharedPref.numberOfWeeksNum,numberOfWeeksNum);
+        SharedPref.writeInteger(SharedPref.hitGoalNum,hitGoalNum);
+        SharedPref.writeInteger(SharedPref.exerciseAllNum,exerciseAllNum);
+        SharedPref.writeInteger(SharedPref.highestExerciseNum,highestExerciseNum);
+        SharedPref.writeInteger(SharedPref.MedicinTakenWeek,MedicinTakenWeek);
+        SharedPref.writeInteger(SharedPref.MedTakenAll,medtakenallNum);
+    }
 }
