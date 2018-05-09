@@ -36,9 +36,10 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
-        final MainActivity mainActivity = (MainActivity)getActivity();
 
+        final MainActivity mainActivity = (MainActivity)getActivity();
         mainActivity.timerActive = false;
+
         TextView name =(TextView) v.findViewById(R.id.nameArea);
         InputButtons(v); //activates the input buttons
         String t=(SharedPref.readString("name","Navn Navnesen"));

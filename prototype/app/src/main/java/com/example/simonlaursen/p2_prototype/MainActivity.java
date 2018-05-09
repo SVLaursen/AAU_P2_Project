@@ -31,15 +31,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean abe = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       SharedPref.init(getApplicationContext());
+        SharedPref.init(getApplicationContext());
         NavBarSetup(); //Used to setup the size of the navigation bar
         loadFragment(new HomeFragment());
         //SharedPref.wipe(getApplicationContext()); // removes all save data
-       database.loadData();
-       checkDate();
+        database.loadData();
+        checkDate();
     }
 
     //NAV BAR
@@ -185,8 +184,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //When the app closes
-    public void OnDestroy() {
+    public void onDestroy() {
         super.onDestroy();
+        database.SaveData();
     }
 
     public  void  checkDate() {

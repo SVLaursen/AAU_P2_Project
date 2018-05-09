@@ -5,6 +5,7 @@ import com.jjoe64.graphview.series.DataPoint;
 public class Database {
 
     private static float fullTime;
+
     private static int shownTime;
     private static int inputTime;
     private static int currentInsulin;
@@ -16,6 +17,7 @@ public class Database {
     private static int currentProgress; //Change this value to 0 before releasing app, the current value is for debugging only
     private static int MedicinTakenWeek;
     private static int medtakenallNum;
+
     private static long StartweekDate;
     private static long currentDate;
     private static int time;
@@ -36,12 +38,16 @@ public class Database {
 
     private String userName="Abe Lone";
 
+    private String userName="Brugernavn";
+
+
     //DEFAULT CONSTRUCTOR
     public Database() {
 
     }
 
     public void loadData() {
+
         currentProgress = SharedPref.readInteger(SharedPref.currentProgress, 0);
         maxProgress = SharedPref.readInteger(SharedPref.MaxProg, 150);
         numberOfWeeksNum = SharedPref.readInteger(SharedPref.numberOfWeeksNum,0);
@@ -58,6 +64,8 @@ public class Database {
         day5=SharedPref.readInteger("day5",0);
         day6=SharedPref.readInteger("day6",0);
         day7=SharedPref.readInteger("day7",0);
+
+
     }
 
     public void setLong(long value, String name) {
@@ -87,24 +95,25 @@ public class Database {
             currentInsulin = value;
         } else if (name == "maxProgress") {
             maxProgress = value;
-            SharedPref.writeInteger(SharedPref.MaxProg, value);
+            SharedPref.writeInteger(SharedPref.MaxProg, maxProgress);
         } else if (name == "currentProgress") {
             currentProgress = value;
-            SharedPref.writeInteger(SharedPref.currentProgress, value);
+            SharedPref.writeInteger(SharedPref.currentProgress, currentProgress);
         } else if(name=="numberOfWeeksNum") {
             numberOfWeeksNum=value;
-            SharedPref.writeInteger(SharedPref.numberOfWeeksNum,value);
+            SharedPref.writeInteger(SharedPref.numberOfWeeksNum,numberOfWeeksNum);
         } else if (name=="hitGoalNum") {
-            hitGoalNum=value;
-            SharedPref.writeInteger(SharedPref.hitGoalNum,value);
+            hitGoalNum = value;
+            SharedPref.writeInteger(SharedPref.hitGoalNum,hitGoalNum);
         } else if (name=="exerciseAllNum") {
             exerciseAllNum=value;
-            SharedPref.writeInteger(SharedPref.exerciseAllNum,value);
+            SharedPref.writeInteger(SharedPref.exerciseAllNum,exerciseAllNum);
         } else if (name=="highestExerciseNum") {
             highestExerciseNum=value;
-            SharedPref.writeInteger(SharedPref.highestExerciseNum,value);
+            SharedPref.writeInteger(SharedPref.highestExerciseNum,highestExerciseNum);
         } else if (name=="medicineWeek") {
             MedicinTakenWeek=value;
+
             medtakenallNum+=value;
         SharedPref.writeInteger(SharedPref.MedicinTakenWeek,value);
         SharedPref.writeInteger(SharedPref.MedTakenAll,medtakenallNum);
@@ -137,6 +146,11 @@ public class Database {
         else if (name == "day7") {
              day7=value;
             SharedPref.writeInteger(SharedPref.day7,value);
+
+            medtakenallNum=value;
+            SharedPref.writeInteger(SharedPref.MedicinTakenWeek,MedicinTakenWeek);
+            SharedPref.writeInteger(SharedPref.MedTakenAll,medtakenallNum);
+
         }
      }
 
@@ -316,4 +330,15 @@ public class Database {
         return dataPoints;
     }
 
+
+    public void SaveData(){
+        SharedPref.writeInteger(SharedPref.MaxProg, maxProgress);
+        SharedPref.writeInteger(SharedPref.currentProgress, currentProgress);
+        SharedPref.writeInteger(SharedPref.numberOfWeeksNum,numberOfWeeksNum);
+        SharedPref.writeInteger(SharedPref.hitGoalNum,hitGoalNum);
+        SharedPref.writeInteger(SharedPref.exerciseAllNum,exerciseAllNum);
+        SharedPref.writeInteger(SharedPref.highestExerciseNum,highestExerciseNum);
+        SharedPref.writeInteger(SharedPref.MedicinTakenWeek,MedicinTakenWeek);
+        SharedPref.writeInteger(SharedPref.MedTakenAll,medtakenallNum);
+    }
 }

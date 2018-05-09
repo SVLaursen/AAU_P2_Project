@@ -29,13 +29,17 @@ public class HomeFragment extends Fragment {
     private int count = 0;
     private int insulinCount = 0;
     boolean cancel = true;
+
     String timeInputValue;
     public static int s;
+
+    //String timeInputValue;
+    int s;
+
     int current1;
-    String t;
+    //String t;
     boolean ifInput = false;
     boolean ifInsulin = false;
-    char letter;
 
     // Textview Variables for exercise input
     String a1 = null;
@@ -66,12 +70,11 @@ public class HomeFragment extends Fragment {
 
     public HomeFragment() {
         database = new Database();
-
+        database.loadData();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View v = inflater.inflate(R.layout.fragment_home,null);
         InputButtons(v);
         cmTimer = v.findViewById(R.id.cmTimer);
@@ -205,76 +208,78 @@ public class HomeFragment extends Fragment {
 
         if (type == "insulin") {
             //THIS IS WHERE YOU PUT INTERACTION FOR THE INSULIN INPUT DIALOG!!!!
-            //count = 0;
+
 
             newView = getLayoutInflater().inflate(R.layout.dialog_insulin_input, null);
             ImageButton cancelButton = newView.findViewById(R.id.cancelButton);
             ImageButton okButton = newView.findViewById(R.id.okButton);
 
-            final EditText timeInput = newView.findViewById(R.id.timeInput);
-            final TextView[] amount = {newView.findViewById(R.id.amount1), newView.findViewById(R.id.amount2), newView.findViewById(R.id.amount3)};
-            final TextView[] date = {newView.findViewById(R.id.date1), newView.findViewById(R.id.date2), newView.findViewById(R.id.date3)};
-            final TextView[] time = {newView.findViewById(R.id.time1), newView.findViewById(R.id.time2), newView.findViewById(R.id.time3)};
+            final EditText unitInput = newView.findViewById(R.id.unitInput);
+            TextView[] amount = {newView.findViewById(R.id.amount1), newView.findViewById(R.id.amount2), newView.findViewById(R.id.amount3)};
+            TextView[] date = {newView.findViewById(R.id.date1), newView.findViewById(R.id.date2), newView.findViewById(R.id.date3)};
+            TextView[] time = {newView.findViewById(R.id.time1), newView.findViewById(R.id.time2), newView.findViewById(R.id.time3)};
+
+            System.out.println(insulinCount);
+
 
             if(ifInsulin) {
                 switch (insulinCount) {
                     case 0:
-
                         if(u1 != null) {
-                            amount[2].setText(u1);
-                            date[2].setText(insulinDate1);
-                            time[2].setText(insulinTime1);
+                            amount[2].setText(SharedPref.readString("Unit1",null));
+                            date[2].setText(SharedPref.readString("insulinDate1",null));
+                            time[2].setText(SharedPref.readString("insulinTime1",null));
                         }
                         if(u2 != null) {
-                            amount[1].setText(u2);
-                            date[1].setText(insulinDate2);
-                            time[1].setText(insulinTime2);
+                            amount[1].setText(SharedPref.readString("Unit2",null));
+                            date[1].setText(SharedPref.readString("insulinDate2",null));
+                            time[1].setText(SharedPref.readString("insulinTime2",null));
                         }
 
                         if(u3 != null){
-                            amount[0].setText(u3);
-                            date[0].setText(insulinDate3);
-                            time[0].setText(insulinTime3);
+                            amount[0].setText(SharedPref.readString("Unit3",null));
+                            date[0].setText(SharedPref.readString("insulinDate3",null));
+                            time[0].setText(SharedPref.readString("insulinTime3",null));
                         }
                         break;
                     case 1:
 
                         if(u1 != null) {
-                            amount[0].setText(u1);
-                            date[0].setText(insulinDate1);
-                            time[0].setText(insulinTime1);
+                            amount[0].setText(SharedPref.readString("Unit1",null));
+                            date[0].setText(SharedPref.readString("insulinDate1",null));
+                            time[0].setText(SharedPref.readString("insulinTime1",null));
                         }
                         if(u2 != null) {
-                            amount[2].setText(u2);
-                            date[2].setText(insulinDate2);
-                            time[2].setText(insulinTime2);
+                            amount[2].setText(SharedPref.readString("Unit2",null));
+                            date[2].setText(SharedPref.readString("insulinDate2",null));
+                            time[2].setText(SharedPref.readString("insulinTime2",null));
                         }
 
-                        if(u3!=null){
-                            amount[1].setText(u3);
-                            date[1].setText(insulinDate3);
-                            time[1].setText(insulinTime3);
+                        if(u3 != null){
+                            amount[1].setText(SharedPref.readString("Unit3",null));
+                            date[1].setText(SharedPref.readString("insulinDate3",null));
+                            time[1].setText(SharedPref.readString("insulinTime3",null));
                         }
                         break;
 
                     case 2:
 
                         if(u1 != null) {
-                            amount[1].setText(u1);
-                            date[1].setText(insulinDate1);
-                            time[1].setText(insulinTime1);
+                            amount[1].setText(SharedPref.readString("Unit1",null));
+                            date[1].setText(SharedPref.readString("insulinDate1",null));
+                            time[1].setText(SharedPref.readString("insulinTime1",null));
                         }
 
                         if(u2 != null) {
-                            amount[0].setText(u2);
-                            date[0].setText(insulinDate2);
-                            time[0].setText(insulinTime3);
+                            amount[0].setText(SharedPref.readString("Unit2",null));
+                            date[0].setText(SharedPref.readString("insulinDate2",null));
+                            time[0].setText(SharedPref.readString("insulinTime2",null));
                         }
 
-                        if(u3!=null){
-                            amount[2].setText(u3);
-                            date[2].setText(insulinDate3);
-                            time[2].setText(insulinTime3);
+                        if(u3 != null){
+                            amount[2].setText(SharedPref.readString("Unit3",null));
+                            date[2].setText(SharedPref.readString("insulinDate3",null));
+                            time[2].setText(SharedPref.readString("insulinTime3",null));
                         }
 
                         break;
@@ -303,66 +308,80 @@ public class HomeFragment extends Fragment {
 
                     switch (insulinCount) {
                         case 0:
-                            if(TextUtils.isEmpty(timeInput.getText().toString())){
+
+                            if(TextUtils.isEmpty(unitInput.getText().toString())){
                                 dialog.cancel();
                                 break;
                             }
-                            else if(Integer.parseInt(timeInput.getText().toString()) >= 0){
-                                int t =database.getInt("medicineWeek");
-                                database.setInt((Integer.parseInt(timeInput.getText().toString()))+t,"medicineWeek");
+                            else if(Integer.parseInt(unitInput.getText().toString()) <= 0){
+                                //int t =database.getInt("medicineWeek");
+                                //database.setInt((Integer.parseInt(unitInput.getText().toString()))+t,"medicineWeek");
                                 dialog.cancel();
                                 break;
                             }
 
-                            database.setInsulinInputs(formattedDate,f,timeInput.getText().toString());
-                            u1 = timeInput.getText().toString();
+                            //database.setInsulinInputs(formattedDate,f,unitInput.getText().toString());
+                            u1 = unitInput.getText().toString();
                             insulinDate1 = formattedDate;
                             insulinTime1 = f;
+
+                            SharedPref.writeString("Unit1",u1);
+                            SharedPref.writeString("insulinDate1",insulinDate1);
+                            SharedPref.writeString("insulinTime1",insulinTime1);
 
                             ifInsulin = true;
                             insulinCount++;
                             break;
                         case 1:
-                            if(TextUtils.isEmpty(timeInput.getText().toString())){
+                            if(TextUtils.isEmpty(unitInput.getText().toString())){
                                 dialog.cancel();
                                 break;
                             }
-                            else if(Integer.parseInt(timeInput.getText().toString()) <= 0){
+                            else if(Integer.parseInt(unitInput.getText().toString()) <= 0){
                                 dialog.cancel();
                                 break;
                             }
 
-                            database.setInsulinInputs(formattedDate,f,timeInput.getText().toString());
+                            database.setInsulinInputs(formattedDate,f,unitInput.getText().toString());
                             System.out.println(count);
 
-                            u2 = timeInput.getText().toString();
+                            u2 = unitInput.getText().toString();
                             insulinDate2 = formattedDate;
                             insulinTime2 = f;
+
+                            SharedPref.writeString("Unit2",u2);
+                            SharedPref.writeString("insulinDate2",insulinDate2);
+                            SharedPref.writeString("insulinTime2",insulinTime2);
 
                             insulinCount++;
                             break;
                         case 2:
-                            if(TextUtils.isEmpty(timeInput.getText().toString())){
+                            if(TextUtils.isEmpty(unitInput.getText().toString())){
                                 dialog.cancel();
                                 break;
                             }
-                            else if(Integer.parseInt(timeInput.getText().toString()) <= 0){
+                            else if(Integer.parseInt(unitInput.getText().toString()) <= 0){
                                 dialog.cancel();
                                 break;
                             }
 
-                            database.setInsulinInputs(formattedDate,f,timeInput.getText().toString());
+                            database.setInsulinInputs(formattedDate,f,unitInput.getText().toString());
                             System.out.println(count);
 
-                            u3 = timeInput.getText().toString();
+                            u3 = unitInput.getText().toString();
                             insulinDate3 = formattedDate;
                             insulinTime3 = f;
+
+                            SharedPref.writeString("Unit3",u3);
+                            SharedPref.writeString("insulinDate3",insulinDate3);
+                            SharedPref.writeString("insulinTime3",insulinTime3);
 
                             insulinCount = 0;
                             break;
                     }
 
                     dialog.cancel();
+
                 }
             });
 
@@ -383,75 +402,74 @@ public class HomeFragment extends Fragment {
         } else if (type == "exercise") {
             //THIS IS WHERE YOU PUT INTERACTION FOR THE exercise DIALOG!!!!
 
-            newView = getLayoutInflater().inflate(R.layout.dialog_insulin_input, null);
+            newView = getLayoutInflater().inflate(R.layout.dialog_exercise_input, null);
             ImageButton cancelButton = newView.findViewById(R.id.cancelButton);
             ImageButton okButton = newView.findViewById(R.id.okButton);
 
             final EditText timeInput = newView.findViewById(R.id.timeInput);
-
-            final TextView[] amount = {newView.findViewById(R.id.amount1), newView.findViewById(R.id.amount2), newView.findViewById(R.id.amount3)};
-            final TextView[] date = {newView.findViewById(R.id.date1), newView.findViewById(R.id.date2), newView.findViewById(R.id.date3)};
-            final TextView[] time = {newView.findViewById(R.id.time1), newView.findViewById(R.id.time2), newView.findViewById(R.id.time3)};
+            TextView[] amount = {newView.findViewById(R.id.amount1), newView.findViewById(R.id.amount2), newView.findViewById(R.id.amount3)};
+            TextView[] date = {newView.findViewById(R.id.date1), newView.findViewById(R.id.date2), newView.findViewById(R.id.date3)};
+            TextView[] time = {newView.findViewById(R.id.time1), newView.findViewById(R.id.time2), newView.findViewById(R.id.time3)};
 
             if(ifInput) {
                 switch (count) {
                     case 0:
 
                     if(a1 != null) {
-                        amount[2].setText(a1);
-                        date[2].setText(date1);
-                        time[2].setText(time1);
+                        amount[2].setText(SharedPref.readString("Amount1",null));
+                        date[2].setText(SharedPref.readString("exerciseDate1",null));
+                        time[2].setText(SharedPref.readString("exerciseTime1",null));
                     }
                     if(a2 != null) {
-                        amount[1].setText(a2);
-                        date[1].setText(date2);
-                        time[1].setText(time2);
+                        amount[1].setText(SharedPref.readString("Amount2",null));
+                        date[1].setText(SharedPref.readString("exerciseDate2",null));
+                        time[1].setText(SharedPref.readString("exerciseTime2",null));
                     }
 
                     if(a3 != null){
-                        amount[0].setText(a3);
-                        date[0].setText(date3);
-                        time[0].setText(time3);
+                        amount[0].setText(SharedPref.readString("Amount3",null));
+                        date[0].setText(SharedPref.readString("exerciseDate3",null));
+                        time[0].setText(SharedPref.readString("exerciseTime3",null));
                     }
                         break;
                     case 1:
 
                     if(a1 != null) {
-                        amount[0].setText(a1);
-                        date[0].setText(date1);
-                        time[0].setText(time1);
+                        amount[0].setText(SharedPref.readString("Amount1",null));
+                        date[0].setText(SharedPref.readString("exerciseDate1",null));
+                        time[0].setText(SharedPref.readString("exerciseTime1",null));
                     }
                     if(a2 != null) {
-                        amount[2].setText(a2);
-                        date[2].setText(date2);
-                        time[2].setText(time2);
+                        amount[2].setText(SharedPref.readString("Amount2",null));
+                        date[2].setText(SharedPref.readString("exerciseDate2",null));
+                        time[2].setText(SharedPref.readString("exerciseTime2",null));
                     }
 
                     if(a3!=null){
-                        amount[1].setText(a3);
-                        date[1].setText(date3);
-                        time[1].setText(time3);
+                        amount[1].setText(SharedPref.readString("Amount3",null));
+                        date[1].setText(SharedPref.readString("exerciseDate3",null));
+                        time[1].setText(SharedPref.readString("exerciseTime3",null));
                     }
                         break;
 
                     case 2:
 
                     if(a1 != null) {
-                        amount[1].setText(a1);
-                        date[1].setText(date1);
-                        time[1].setText(time1);
+                        amount[1].setText(SharedPref.readString("Amount1",null));
+                        date[1].setText(SharedPref.readString("exerciseDate1",null));
+                        time[1].setText(SharedPref.readString("exerciseTime1",null));
                     }
 
                     if(a2 != null) {
-                        amount[0].setText(a2);
-                        date[0].setText(date2);
-                        time[0].setText(time2);
+                        amount[0].setText(SharedPref.readString("Amount2",null));
+                        date[0].setText(SharedPref.readString("exerciseDate2",null));
+                        time[0].setText(SharedPref.readString("exerciseTime2",null));
                     }
 
                     if(a3!=null){
-                        amount[2].setText(a3);
-                        date[2].setText(date3);
-                        time[2].setText(time3);
+                        amount[2].setText(SharedPref.readString("Amount3",null));
+                        date[2].setText(SharedPref.readString("exerciseDate3",null));
+                        time[2].setText(SharedPref.readString("exerciseTime3",null));
                     }
 
                         break;
@@ -489,16 +507,16 @@ public class HomeFragment extends Fragment {
 
                             s = Integer.parseInt(timeInput.getText().toString());
 
-                            ///////////////////////////////////////////////////////////////////////////
                             database.setExerciseInputs(formattedDate,f,timeInput.getText().toString());
 
                             a1 = timeInput.getText().toString();
                             date1 = formattedDate;
                             time1 = f;
-
+                            SharedPref.writeString("Amount1",a1);
+                            SharedPref.writeString("exerciseDate1",date1);
+                            SharedPref.writeString("exerciseTime1",time1);
 
                             ifInput = true;
-                            letter = 'a';
                             count++;
                             if (s > 0) {
                                 current1 = database.getInt("currentProgress");
@@ -506,7 +524,6 @@ public class HomeFragment extends Fragment {
                                 long input47 = s + current1;
 
                                 database.setInt((int) input47, "currentProgress");
-
 
                                 // setting the current progress on the progress bar and animating the change
 
@@ -536,11 +553,12 @@ public class HomeFragment extends Fragment {
                             date2 = formattedDate;
                             time2 = f;
 
+                            SharedPref.writeString("Amount2",a2);
+                            SharedPref.writeString("exerciseDate2",date2);
+                            SharedPref.writeString("exerciseTime2",time2);
+
                             current1 = database.getInt("currentProgress");
                             count++;
-
-
-
 
                                 current1 = database.getInt("currentProgress");
 
@@ -579,6 +597,10 @@ public class HomeFragment extends Fragment {
                             date3 = formattedDate;
                             time3 = f;
 
+                            SharedPref.writeString("Amount3",a3);
+                            SharedPref.writeString("exerciseDate3",date3);
+                            SharedPref.writeString("exerciseTime3",time3);
+
                             if (s > 0) {
                                 current1 = database.getInt("currentProgress");
 
@@ -611,11 +633,7 @@ public class HomeFragment extends Fragment {
                     }
                     dialog.cancel();
 
-                    /*
-                    if (cancel) {
-                        count = 0;
-                    }
-                    */
+
                 }
             });
 
