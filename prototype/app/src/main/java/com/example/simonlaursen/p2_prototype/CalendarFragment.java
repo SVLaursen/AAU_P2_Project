@@ -37,6 +37,9 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_calendar, container, false);
 
+        final MainActivity mainActivity = (MainActivity)getActivity();
+        mainActivity.timerActive = false;
+
         calendarSetup(v);
 
         return v;

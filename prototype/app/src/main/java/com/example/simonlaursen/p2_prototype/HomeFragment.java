@@ -65,12 +65,11 @@ public class HomeFragment extends Fragment {
 
     public HomeFragment() {
         database = new Database();
-
+        database.loadData();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View v = inflater.inflate(R.layout.fragment_home,null);
         InputButtons(v);
         cmTimer = v.findViewById(R.id.cmTimer);
