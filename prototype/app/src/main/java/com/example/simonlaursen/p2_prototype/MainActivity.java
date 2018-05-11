@@ -200,7 +200,14 @@ public class MainActivity extends AppCompatActivity {
             Date startdate = new Date(SharedPref.readLong("time", 0));
 
             int diffinDays = (int) ((CurrentDate.getTime()) - (startdate.getTime()));
-            if (diffinDays > 0.00034722222) {
+            if (diffinDays > 1) {
+               int curr =database.getInt("currentProgress");
+               int max = database.getInt("highestExerciseNum");
+                if ( curr>max ) {
+                    max = curr;
+                    database.setInt(max, "highestExerciseNum");
+                    SharedPref.writeInteger("highestExerciseNum",max);
+                }
                 int day1 = database.getInt("day1");
                 int day2 = database.getInt("day2");
                 int day3 = database.getInt("day3");
@@ -239,21 +246,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-              /*  if (diffinDays > 7) { //change this to 7, i think it works
+                if (diffinDays > 7) { //change this to 7, i think it works
 
-                    int curr = database.getInt("currentProgress");
-                    int max = database.getInt("highestExerciseNum");
-                    int all = database.getInt("exerciseAllNum");
-                    database.setInt((all + curr), "exerciseAllNum"); // add the amount of progress to the total amount of all progress
-                    if (curr >= 150) {
+                    int curr2 = database.getInt("currentProgress");
+                    if (curr2 >= 150) {
                         int k = (database.getInt("hitGoalNum") + 1);
                         database.setInt(k, "numberOfWeeksNum"); // if the current amount of min at the end of a week is 150 or over, the number of weeks the goal has been met goes up by 1
                     }
-                    // if the current amount of progress at the end of a week is higher than the week performed best, the current weak becomes best
-                    if (curr > max) {
-                        database.setInt(curr, "highestExerciseNum");
-                    }
-                    database.setInt(0, "currentProgress"); // reset the current progress
                     int i = (database.getInt("numberOfWeeksNum") + 1);
                     database.setInt(i, "numberOfWeeksNum"); //1 is added to the amount of weeks the app has been used
                     database.setInt(0, "medicineWeek");
@@ -261,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
                     SharedPref.writeBoolean(SharedPref.newWeek, true);
 
                 }
-*/
+
             }
 
             }

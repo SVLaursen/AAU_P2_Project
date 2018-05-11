@@ -2,8 +2,6 @@ package com.example.simonlaursen.p2_prototype;
 
 import com.jjoe64.graphview.series.DataPoint;
 
-import java.util.HashSet;
-
 public class Database {
 
     private static float fullTime;
@@ -84,7 +82,7 @@ public class Database {
         }
     }
 
-    public void setInt(int value, String name){
+    public void setInt(int value, String name) {
         if (name == "shownTime") {
             shownTime = value;
         } else if (name == "inputTime") {
@@ -97,66 +95,65 @@ public class Database {
         } else if (name == "currentProgress") {
             currentProgress = value;
             SharedPref.writeInteger(SharedPref.currentProgress, currentProgress);
-        } else if(name=="numberOfWeeksNum") {
-            numberOfWeeksNum=value;
-            SharedPref.writeInteger(SharedPref.numberOfWeeksNum,numberOfWeeksNum);
-        } else if (name=="hitGoalNum") {
+            exerciseAllNum += value;
+            //SharedPref.writeInteger(SharedPref.exerciseAllNum,exerciseAllNum);
+           // if (currentProgress > highestExerciseNum) {
+             //   currentProgress = highestExerciseNum;
+                //  SharedPref.writeInteger(SharedPref.highestExerciseNum,highestExerciseNum);
+            //}
+        } else if (name == "numberOfWeeksNum") {
+            numberOfWeeksNum = value;
+            SharedPref.writeInteger(SharedPref.numberOfWeeksNum, numberOfWeeksNum);
+        } else if (name == "hitGoalNum") {
             hitGoalNum = value;
-            SharedPref.writeInteger(SharedPref.hitGoalNum,hitGoalNum);
-        } else if (name=="exerciseAllNum") {
-            exerciseAllNum=value;
-            SharedPref.writeInteger(SharedPref.exerciseAllNum,exerciseAllNum);
-        } else if (name=="highestExerciseNum") {
-            highestExerciseNum=value;
-            SharedPref.writeInteger(SharedPref.highestExerciseNum,highestExerciseNum);
-        } else if (name=="medicineWeek") {
-            MedicinTakenWeek=value;
+            SharedPref.writeInteger(SharedPref.hitGoalNum, hitGoalNum);
+        } else if (name == "exerciseAllNum") {
+            exerciseAllNum = value;
+            SharedPref.writeInteger(SharedPref.exerciseAllNum, exerciseAllNum);
+        } else if (name == "highestExerciseNum") {
+            highestExerciseNum = value;
+            SharedPref.writeInteger(SharedPref.highestExerciseNum, highestExerciseNum);
+        } else if (name == "medicineWeek") {
+            MedicinTakenWeek = value;
 
-            medtakenallNum+=value;
-        SharedPref.writeInteger(SharedPref.MedicinTakenWeek,value);
-        SharedPref.writeInteger(SharedPref.MedTakenAll,medtakenallNum);
+            medtakenallNum += value;
+            SharedPref.writeInteger(SharedPref.MedicinTakenWeek, value);
+            SharedPref.writeInteger(SharedPref.MedTakenAll, medtakenallNum);
 
+        } else if (name == "day1") {
+            day1 = value;
+            SharedPref.writeInteger(SharedPref.day1, value);
+        } else if (name == "day2") {
+            day2 = value;
+            SharedPref.writeInteger(SharedPref.day2, value);
+        } else if (name == "day3") {
+            day3 = value;
+            SharedPref.writeInteger(SharedPref.day3, value);
+        } else if (name == "day4") {
+            day4 = value;
+            SharedPref.writeInteger(SharedPref.day4, value);
+        } else if (name == "day5") {
+            day5 = value;
+            SharedPref.writeInteger(SharedPref.day5, value);
+        } else if (name == "day6") {
+            day6 = value;
+            SharedPref.writeInteger(SharedPref.day6, value);
+        } else if (name == "day7") {
+            day7 = value;
+            SharedPref.writeInteger(SharedPref.day7, value);
+
+            medtakenallNum = value;
+            SharedPref.writeInteger(SharedPref.MedicinTakenWeek, MedicinTakenWeek);
+            SharedPref.writeInteger(SharedPref.MedTakenAll, medtakenallNum);
+
+        }
     }
-        else if (name == "day1") {
-             day1=value;
-            SharedPref.writeInteger(SharedPref.day1,value);
-        }
-        else if (name == "day2") {
-             day2=value;
-            SharedPref.writeInteger(SharedPref.day2,value);
-        }
-        else if (name == "day3") {
-             day3=value;
-            SharedPref.writeInteger(SharedPref.day3,value);
-        }
-        else if (name == "day4") {
-             day4=value;
-            SharedPref.writeInteger(SharedPref.day4,value);
-        }
-        else if (name == "day5") {
-             day5=value;
-            SharedPref.writeInteger(SharedPref.day5,value);
-        }
-        else if (name == "day6") {
-             day6=value;
-            SharedPref.writeInteger(SharedPref.day6,value);
-        }
-        else if (name == "day7") {
-             day7=value;
-            SharedPref.writeInteger(SharedPref.day7,value);
-
-            medtakenallNum=value;
-            SharedPref.writeInteger(SharedPref.MedicinTakenWeek,MedicinTakenWeek);
-            SharedPref.writeInteger(SharedPref.MedTakenAll,medtakenallNum);
-
-        }
-     }
-
-    public void setFloat(float value, String name){
-        if(name == "fullTime"){
+    public void setFloat(float value, String name) {
+        if (name == "fullTime") {
             fullTime += value;
         }
     }
+
 
 
     public int getInt(String name){
