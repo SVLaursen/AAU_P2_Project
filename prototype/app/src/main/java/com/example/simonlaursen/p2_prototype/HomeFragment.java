@@ -309,13 +309,13 @@ public class HomeFragment extends Fragment {
                                 break;
                             }
                             else if(Integer.parseInt(unitInput.getText().toString()) <= 0){
-                                //int t =database.getInt("medicineWeek");
-                                //database.setInt((Integer.parseInt(unitInput.getText().toString()))+t,"medicineWeek");
+
                                 dialog.cancel();
                                 break;
                             }
-
-                            //database.setInsulinInputs(formattedDate,f,unitInput.getText().toString());
+                            int t =database.getInt("medicineWeek");
+                            database.setInt((Integer.parseInt(unitInput.getText().toString()))+t,"medicineWeek");
+                            database.setInsulinInputs(formattedDate,f,unitInput.getText().toString());
                             u1 = unitInput.getText().toString();
                             insulinDate1 = formattedDate;
                             insulinTime1 = f;
