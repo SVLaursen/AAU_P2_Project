@@ -209,7 +209,7 @@ public class HomeFragment extends Fragment {
             ImageButton cancelButton = newView.findViewById(R.id.cancelButton);
             ImageButton okButton = newView.findViewById(R.id.okButton);
 
-            final EditText unitInput = newView.findViewById(R.id.timeInput);
+            final EditText unitInput = newView.findViewById(R.id.unitInput);
             TextView[] amount = {newView.findViewById(R.id.amount1), newView.findViewById(R.id.amount2), newView.findViewById(R.id.amount3)};
             TextView[] date = {newView.findViewById(R.id.date1), newView.findViewById(R.id.date2), newView.findViewById(R.id.date3)};
             TextView[] time = {newView.findViewById(R.id.time1), newView.findViewById(R.id.time2), newView.findViewById(R.id.time3)};
