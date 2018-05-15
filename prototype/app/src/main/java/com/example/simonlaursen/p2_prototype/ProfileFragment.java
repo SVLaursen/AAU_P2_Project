@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
@@ -26,6 +28,7 @@ public class ProfileFragment extends Fragment {
 
     //TODO: CLEAN THIS SHIT UP, IT'S FILTHY
     private Database database = new Database(); //database setup for this fragment
+    private int s;
 
     public ProfileFragment() {
 
@@ -173,15 +176,23 @@ public class ProfileFragment extends Fragment {
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int s = Integer.parseInt(mål.getText().toString());
-
                         useVibrator(10);
 
-                        if (s<150){
-                            s=database.getInt("maxProgress");
+                        if (TextUtils.isEmpty(mål.getText().toString())) {
+                            dialog.cancel();
+                        }
+                        else{
+                            s = Integer.parseInt(mål.getText().toString());
+
+                            if (s < 150) {
+                                s = database.getInt("maxProgress");
+                                Toast.makeText(getActivity().getApplicationContext(), "Det indtastede mål skal minimum være 150", Toast.LENGTH_SHORT).show();
+                            }else if(s > 150){
+                                Toast.makeText(getActivity().getApplicationContext(), "Dit mål er blevet ændret til: "+s, Toast.LENGTH_SHORT).show();
+                                database.setInt(s, "maxProgress");
+                                dialog.cancel();
                             }
-                        database.setInt(s,"maxProgress");
-                        dialog.cancel();
+                        }
                     }
                 });
             }
@@ -200,6 +211,11 @@ public class ProfileFragment extends Fragment {
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        if(TextUtils.isEmpty(mål.getText())){
+                            dialog.cancel();
+                        }
+
                         String s=(mål.getText().toString());
                         name.setText(s);
                         database.setName(s);
@@ -253,6 +269,7 @@ public class ProfileFragment extends Fragment {
 
         TextView name =(TextView) v.findViewById(R.id.nameArea);
         name.setText(database.getName());
+
     }
     private void Latest(View v){
         //IS THIS BEING USED?
